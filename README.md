@@ -1,4 +1,4 @@
-# MkDocs swagger-ui-tag 
+# MkDocs Swagger UI Tag
 
 [![PyPI version](https://img.shields.io/pypi/v/mkdocs-swagger-ui-tag.svg)](https://pypi.org/project/mkdocs-swagger-ui-tag)
 [![PyPI downloads](https://img.shields.io/pypi/dm/mkdocs-swagger-ui-tag.svg)](https://pypi.org/project/mkdocs-swagger-ui-tag)
