@@ -1,0 +1,34 @@
+site_name: MkDocs Swagger UI Tag
+
+repo_url: https://github.com/blueswen/mkdocs-swagger-ui-tag
+repo_name: blueswen/mkdocs-swagger-ui-tag
+site_url: https://github.com/blueswen/mkdocs-swagger-ui-tag/
+site_dir: ../docs
+edit_uri: ""
+
+theme:
+  name: material
+  features:
+    - toc.integrate
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+plugins:
+  - swagger-ui-tag
+  - glightbox:
+      touchNavigation: true
+      loop: true
+      height: auto
+      width: 80%
+
+nav:
+  - Home: index.md
+  - Pet Store: pet-store.md 
+  - Demo: 
+    - Static File: demo/static-file.md
+    - Multiple: demo/multiple.md
