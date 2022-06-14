@@ -9,8 +9,9 @@ A MkDocs plugin supports for add [Swagger UI](https://github.com/swagger-api/swa
 
 ## Features
 
-1. Multiple OpenAPI Specification file source: url, static file in docs
+1. OpenAPI Specification file from online over URL or static file in docs 
 2. Multiple Swagger UI in same page
+3. Synchronized dark mode with [mkdocs-material](https://squidfunk.github.io/mkdocs-material/)
 
 ## Dependency
 
@@ -44,7 +45,7 @@ A MkDocs plugin supports for add [Swagger UI](https://github.com/swagger-api/swa
 
     | Option     | Default | Description                                                                                                                                       |
     |------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-    | background | White   | Swagger UI iframe body background attribute value. You can use any css value for background for example "#74b9ff" or Gainsboro or "" for nothing. |
+    | background |   ""    | Swagger UI iframe body background attribute value. You can use any css value for background for example "#74b9ff" or Gainsboro or "" for nothing. |
 
 4. Add ```swagger-ui``` tag in markdown to include Swagger UI
 
@@ -52,8 +53,12 @@ A MkDocs plugin supports for add [Swagger UI](https://github.com/swagger-api/swa
     <swagger-ui src="https://petstore.swagger.io/v2/swagger.json"/>
     ```
 
-    ![Swagger UI Sample Image](demo-mkdocs/docs/sample.png)
+    ![Swagger UI Sample Image](https://blueswen.github.io/mkdocs-swagger-ui-tag/sample.png)
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/Blueswen/mkdocs-swagger-ui-tag/blob/main/LICENSE) file for details.
+
+## Reference
+
+1. [Amoenus Swagger Dark Theme](https://github.com/Amoenus/SwaggerDark/): source of dark mode css
