@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <title>Swagger UI</title>
   <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/swagger-ui.css" />
-  <!-- <link rel="stylesheet" type="text/css" id="default-css" href="../../assets/stylesheets/swagger-ui.css" /> -->
   <link rel="stylesheet" type="text/css" id="slate-css" media="none" href="../../assets/stylesheets//swagger-ui-dark.css" />
 </head>
 
@@ -22,7 +21,7 @@
           SwaggerUIBundle.presets.apis,
           SwaggerUIStandalonePreset
         ],
-        url: 'https://petstore.swagger.io/v2/swagger.json',
+        url: '../openapi-spec/sample.yaml',
       })
       const scheme = parent.scheme
       if (scheme === "slate") {
@@ -30,7 +29,7 @@
       }
     }
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("891d4dd2");
+      parent.update_swagger_ui_iframe_height("19cda595");
     });
 
     // start observing for resize
@@ -42,8 +41,6 @@
 
     disable_dark_mode = function(){
       document.getElementById("slate-css").media = "none"
-      // var queryString = '?reload=' + new Date().getTime();
-      // document.getElementById("default-css").href.replace(/\?.*|$/, queryString);
     }
   </script>
 </body>
