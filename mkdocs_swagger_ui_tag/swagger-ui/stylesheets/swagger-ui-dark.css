@@ -534,7 +534,7 @@ font, html { color: #bfbfbf; }
 
 .swagger-ui .opblock.opblock-deprecated .opblock-summary { border-color: #2e2e2e; }
 
-.swagger-ui .filter .operation-filter-input { border: 2px solid #2b3446; }
+.swagger-ui .filter .operation-filter-input { border: 2px solid rgb(58, 64, 80); }
 
 .swagger-ui .tab li:first-of-type::after { background: rgba(0, 0, 0, .2); }
 

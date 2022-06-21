@@ -21,6 +21,24 @@ class SwaggerUIPlugin(BasePlugin):
 
     config_scheme = (
         ("background", config_options.Type(str, default="")),
+        # Display
+        ("docExpansion",
+         config_options.Choice(("list", "full", "none"), default="list")),
+        ("filter", config_options.Type(object, default=False)),
+        ("syntaxHighlightTheme",
+         config_options.Choice(("agate", "arta", "monokai", "nord", "obsidian",
+                                "tomorrow-night"),
+                               default="agate")),
+        ("tryItOutEnabled", config_options.Type(bool, default=False)),
+        # Network
+        ("oauth2RedirectUrl", config_options.Type(str, default=None)),
+        ("supportedSubmitMethods",
+         config_options.Type(list,
+                             default=[
+                                 "get", "put", "post", "delete", "options",
+                                 "head", "patch", "trace"
+                             ])),
+        ("validatorUrl", config_options.Type(str, default=None)),
     )
 
     def on_pre_page(self, page, config, files, **kwargs):
@@ -34,16 +52,17 @@ class SwaggerUIPlugin(BasePlugin):
 
         scheme, netloc, path, query, fragment = urlsplit(url)
 
-        if (scheme or netloc or not path or url.startswith('/') or url.startswith('\\')
-                or AMP_SUBSTITUTE in url or '.' not in os.path.split(path)[-1]):
+        if (scheme or netloc or not path or url.startswith('/')
+                or url.startswith('\\') or AMP_SUBSTITUTE in url
+                or '.' not in os.path.split(path)[-1]):
             # Ignore URLs unless they are a relative link to a source file.
             # AMP_SUBSTITUTE is used internally by Markdown only for email.
             # No '.' in the last part of a path indicates path does not point to a file.
             return url
 
         # Determine the filepath of the target.
-        target_path = os.path.join(os.path.dirname(
-            page_file.src_path), urlunquote(path))
+        target_path = os.path.join(os.path.dirname(page_file.src_path),
+                                   urlunquote(path))
         target_path = os.path.normpath(target_path).lstrip(os.sep)
 
         # Validate that the target exists in files collection.
@@ -65,45 +84,76 @@ class SwaggerUIPlugin(BasePlugin):
             Create a html with Swagger UI for iframe
         """
 
+        css_dir = utils.get_relative_url(
+            utils.normalize_url("assets/stylesheets/"), page.url)
+        js_dir = utils.get_relative_url(
+            utils.normalize_url("assets/javascripts/"), page.url)
+        env = Environment(
+            loader=FileSystemLoader(os.path.join(base_path, "swagger-ui")))
+        template = env.get_template('swagger.html')
+
+        page_dir = os.path.join(config['site_dir'], page.url)
+        if not os.path.exists(page_dir):
+            os.makedirs(page_dir)
+
         soup = BeautifulSoup(output, "html.parser")
         swagger_ui_list = soup.find_all("swagger-ui")
         iframe_id_list = []
+        grouped_list = []
+
         for swagger_ui_ele in swagger_ui_list:
-            css_dir = utils.get_relative_url(
-                utils.normalize_url("assets/stylesheets/"),
-                page.url
-            )
-            js_dir = utils.get_relative_url(
-                utils.normalize_url("assets/javascripts/"),
-                page.url
-            )
+            if swagger_ui_ele.has_attr("grouped"):
+                grouped_list.append(swagger_ui_ele)
+                continue
 
             cur_id = str(uuid.uuid4())[:8]
             iframe_filename = f"swagger-{cur_id}.html"
             iframe_id_list.append(cur_id)
+            cur_options = self.process_options(swagger_ui_ele)
 
-            env = Environment(loader=FileSystemLoader(
-                os.path.join(base_path, "swagger-ui")))
-            template = env.get_template('swagger.html')
-            openapi_spec_url = self.path_to_url(
-                page.file, swagger_ui_ele.get('src', ""))
+            openapi_spec_url = self.path_to_url(page.file,
+                                                swagger_ui_ele.get('src', ""))
             output_from_parsed_template = template.render(
-                css_dir=css_dir, js_dir=js_dir, background=self.config['background'], id=cur_id, openapi_spec_url=openapi_spec_url)
-
-            page_dir = os.path.join(config['site_dir'], page.url)
-            if not os.path.exists(page_dir):
-                os.makedirs(page_dir)
-
+                css_dir=css_dir,
+                js_dir=js_dir,
+                background=self.config['background'],
+                id=cur_id,
+                openapi_spec_url=openapi_spec_url,
+                options=json.dumps(cur_options, indent=4)[1:-1])
             with open(os.path.join(page_dir, iframe_filename), 'w') as f:
                 f.write(output_from_parsed_template)
+            self.replace_with_iframe(soup, swagger_ui_ele, cur_id,
+                                     iframe_filename)
 
-            iframe = soup.new_tag("iframe")
-            iframe['id'] = cur_id
-            iframe['src'] = iframe_filename
-            iframe['frameborder'] = "0"
-            iframe['style'] = "overflow:hidden;width:100%;"
-            iframe['width'] = "100%"
-            swagger_ui_ele.replaceWith(iframe)
+        if grouped_list:
+            cur_id = str(uuid.uuid4())[:8]
+            iframe_filename = f"swagger-{cur_id}.html"
+            iframe_id_list.append(cur_id)
+            openapi_spec_url = []
+            for swagger_ui_ele in grouped_list:
+                cur_url = self.path_to_url(page.file,
+                                           swagger_ui_ele.get('src', ""))
+                cur_name = swagger_ui_ele.get('name',
+                                              swagger_ui_ele.get('src', ""))
+                openapi_spec_url.append({"url": cur_url, "name": cur_name})
+
+            # only use options from first grouped swagger ui tag
+            cur_options = self.process_options(grouped_list[0])
+            output_from_parsed_template = template.render(
+                css_dir=css_dir,
+                js_dir=js_dir,
+                background=self.config['background'],
+                id=cur_id,
+                openapi_spec_url=openapi_spec_url,
+                options=json.dumps(cur_options, indent=4)[1:-1])
+            with open(os.path.join(page_dir, iframe_filename), 'w') as f:
+                f.write(output_from_parsed_template)
+            self.replace_with_iframe(soup, grouped_list[0], cur_id,
+                                     iframe_filename)
+            # only keep first grouped swagger ui tag
+            for rest_swagger_ui_ele in grouped_list[1:]:
+                rest_swagger_ui_ele.extract()
+
         if swagger_ui_list:
             js_code = soup.new_tag("script")
             js_code["type"] = "text/javascript"
@@ -155,16 +205,61 @@ class SwaggerUIPlugin(BasePlugin):
 
         return str(soup)
 
+    def replace_with_iframe(self, soup, swagger_ui_ele, cur_id,
+                            iframe_filename):
+        """ Replace swagger-ui tag with iframe """
+        iframe = soup.new_tag("iframe")
+        iframe['id'] = cur_id
+        iframe['src'] = iframe_filename
+        iframe['frameborder'] = "0"
+        iframe['style'] = "overflow:hidden;width:100%;"
+        iframe['width'] = "100%"
+        swagger_ui_ele.replaceWith(iframe)
+
+    def process_options(self, swagger_ui_ele):
+        """ Retrieve Swagger UI options from attribute and use config options as default """
+        global_options = {
+            k: v
+            for k, v in dict(self.config).items() if k != 'background'
+        }
+        options_keys = global_options.keys()
+        cur_options = {}
+        for k in options_keys:
+            cur_val = swagger_ui_ele.get(k.lower(), None)
+            if cur_val is not None:
+                if k == "supportedSubmitMethods":
+                    try:
+                        cur_val = json.loads(cur_val.replace("'", '"'))
+                        if not isinstance(cur_val, list):
+                            raise ValueError(
+                                f"attribute supportedSubmitMethods: {cur_val} is not a list."
+                            )
+                    except:
+                        cur_val = global_options['supportedSubmitMethods']
+                cur_options[k] = cur_val
+            else:
+                cur_options[k] = global_options[k]
+            if cur_options[k] is None:
+                cur_options.pop(k)
+        if "syntaxHighlightTheme" in cur_options:
+            cur_options["syntaxHighlight.theme"] = cur_options.pop(
+                "syntaxHighlightTheme")
+        return cur_options
+
     def on_post_build(self, config, **kwargs):
         """ Copy Swagger UI css and js files to assets directory """
 
         output_base_path = os.path.join(config["site_dir"], "assets")
         css_path = os.path.join(output_base_path, "stylesheets")
-        for file_name in os.listdir(os.path.join(base_path, "swagger-ui", "stylesheets")):
-            utils.copy_file(os.path.join(base_path, "swagger-ui", "stylesheets", file_name), os.path.join(
-                css_path, file_name))
+        for file_name in os.listdir(
+                os.path.join(base_path, "swagger-ui", "stylesheets")):
+            utils.copy_file(
+                os.path.join(base_path, "swagger-ui", "stylesheets",
+                             file_name), os.path.join(css_path, file_name))
 
         js_path = os.path.join(output_base_path, "javascripts")
-        for file_name in os.listdir(os.path.join(base_path, "swagger-ui", "javascripts")):
-            utils.copy_file(os.path.join(base_path, "swagger-ui", "javascripts", file_name), os.path.join(
-                js_path, file_name))
+        for file_name in os.listdir(
+                os.path.join(base_path, "swagger-ui", "javascripts")):
+            utils.copy_file(
+                os.path.join(base_path, "swagger-ui", "javascripts",
+                             file_name), os.path.join(js_path, file_name))

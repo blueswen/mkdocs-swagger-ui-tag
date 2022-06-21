@@ -16,12 +16,21 @@
     window.onload = function () {
       window.ui = SwaggerUIBundle({
         "dom_id": '#swagger-ui',
-        deepLinking: true,
         presets: [
           SwaggerUIBundle.presets.apis,
           SwaggerUIStandalonePreset
         ],
+        {% if openapi_spec_url is string %}
         url: '{{openapi_spec_url}}',
+        {% elif openapi_spec_url is sequence %}
+        urls: [
+        {% for item in openapi_spec_url %}
+          {url:"{{item.url}}", name:"{{item.name}}"},
+        {% endfor %}
+        ],
+        layout: "StandaloneLayout",
+        {% endif %}
+        {{options}}
       })
       const scheme = parent.scheme
       if (scheme === "slate") {
