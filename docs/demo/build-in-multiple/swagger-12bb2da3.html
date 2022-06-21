@@ -21,7 +21,20 @@
           SwaggerUIStandalonePreset
         ],
         
-        url: '../openapi-spec/sample.yaml',
+        urls: [
+        
+          {url:"https://petstore.swagger.io/v2/swagger.json", name:"Pet Store"},
+        
+          {url:"../openapi-spec/sample.yaml", name:"Sample"},
+        
+          {url:"../openapi-spec/sample-first.yaml", name:"Sample First"},
+        
+          {url:"../openapi-spec/sample-second.yaml", name:"Sample Second"},
+        
+          {url:"../openapi-spec/sample-third.yaml", name:"Sample Third"},
+        
+        ],
+        layout: "StandaloneLayout",
         
         
     "docExpansion": "list",
@@ -46,7 +59,7 @@
       }
     }
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("ae637ed0");
+      parent.update_swagger_ui_iframe_height("12bb2da3");
     });
 
     // start observing for resize
