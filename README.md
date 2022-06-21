@@ -13,7 +13,7 @@ A MkDocs plugin supports for add [Swagger UI](https://github.com/swagger-api/swa
 2. Multiple Swagger UI in same page
 3. Synchronized dark mode with [mkdocs-material](https://squidfunk.github.io/mkdocs-material/)
 4. Configure [Swagger UI configuration](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/) through plugin options and tag attributes
-5. Support multiple OAS in same Swagger UI with top bar selector
+5. Support multiple OAS in single Swagger UI with top bar selector
 
 ## Dependency
 
