@@ -1,0 +1,16 @@
+mkdocs-swagger-ui-tag 0.3.0 (2022-06-21)
+
+    * Support Swagger UI build-in multiple OAS
+    * Support configure Swagger UI through plugin options and tag attributes
+
+mkdocs-swagger-ui-tag 0.2.1 (2022-06-14)
+
+    * Refine code
+
+mkdocs-swagger-ui-tag 0.2.0 (2022-06-14)
+
+    * Support synchronized dark mode with mkdocs-material inspired by #1
+
+mkdocs-swagger-ui-tag 0.1.0 (2022-06-12)
+
+    * first release
