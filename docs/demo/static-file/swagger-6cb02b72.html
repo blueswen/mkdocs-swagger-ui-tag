@@ -16,12 +16,29 @@
     window.onload = function () {
       window.ui = SwaggerUIBundle({
         "dom_id": '#swagger-ui',
-        deepLinking: true,
         presets: [
           SwaggerUIBundle.presets.apis,
           SwaggerUIStandalonePreset
         ],
-        url: 'https://petstore.swagger.io/v2/swagger.json',
+        
+        url: '../openapi-spec/sample.yaml',
+        
+        
+    "docExpansion": "list",
+    "filter": false,
+    "tryItOutEnabled": false,
+    "supportedSubmitMethods": [
+        "get",
+        "put",
+        "post",
+        "delete",
+        "options",
+        "head",
+        "patch",
+        "trace"
+    ],
+    "syntaxHighlight.theme": "agate"
+
       })
       const scheme = parent.scheme
       if (scheme === "slate") {
@@ -29,7 +46,7 @@
       }
     }
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("2c9b50b2");
+      parent.update_swagger_ui_iframe_height("6cb02b72");
     });
 
     // start observing for resize

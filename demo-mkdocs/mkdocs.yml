@@ -2,7 +2,7 @@ site_name: MkDocs Swagger UI Tag
 
 repo_url: https://github.com/blueswen/mkdocs-swagger-ui-tag
 repo_name: blueswen/mkdocs-swagger-ui-tag
-site_url: https://github.com/blueswen/mkdocs-swagger-ui-tag/
+site_url: https://blueswen.github.io/mkdocs-swagger-ui-tag/
 site_dir: ../docs
 edit_uri: ""
 
@@ -31,6 +31,11 @@ theme:
         icon: material/brightness-4
         name: Switch to system preference
 
+extra:
+  analytics:
+    provider: google
+    property: G-XYSWM3DNCQ
+
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
@@ -49,6 +54,8 @@ plugins:
 nav:
   - Home: index.md
   - Pet Store: pet-store.md 
+  - Plugin Options: options.md
   - Demo: 
     - Static File: demo/static-file.md
     - Multiple: demo/multiple.md
+    - Build-in Multiple: demo/build-in-multiple.md
