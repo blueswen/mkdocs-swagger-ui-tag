@@ -35,7 +35,7 @@ plugins:
 
 ### Swagger UI with local configurations
 
-<swagger-ui supportedSubmitMethods="aaaaa" docExpansion="none" filter="" syntaxHighlightTheme="monokai" src="./demo/openapi-spec/sample.yaml"/>
+<swagger-ui supportedSubmitMethods="['get']" docExpansion="none" filter="" syntaxHighlightTheme="monokai" src="./demo/openapi-spec/sample.yaml"/>
 
 ### Swagger UI without local configurations
 
