@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Swagger UI</title>
-  <link rel="stylesheet" type="text/css" href="../assets/stylesheets/swagger-ui.css" />
-  <link rel="stylesheet" type="text/css" id="slate-css" media="none" href="../assets/stylesheets//swagger-ui-dark.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/swagger-ui.css" />
+  <link rel="stylesheet" type="text/css" id="slate-css" media="none" href="../../assets/stylesheets//swagger-ui-dark.css" />
 </head>
 
 <body style="overflow:hidden;background: ;">
   <div id="swagger-ui"></div>
-  <script src="../assets/javascripts//swagger-ui-bundle.js" charset="UTF-8"> </script>
-  <script src="../assets/javascripts//swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
+  <script src="../../assets/javascripts//swagger-ui-bundle.js" charset="UTF-8"> </script>
+  <script src="../../assets/javascripts//swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
   <script>
     window.onload = function () {
       window.ui = SwaggerUIBundle({
@@ -21,7 +21,20 @@
           SwaggerUIStandalonePreset
         ],
         
-        url: 'https://petstore.swagger.io/v2/swagger.json',
+        urls: [
+        
+          {url:"https://petstore.swagger.io/v2/swagger.json", name:"Pet Store"},
+        
+          {url:"../openapi-spec/sample.yaml", name:"Sample"},
+        
+          {url:"../openapi-spec/sample-first.yaml", name:"Sample First"},
+        
+          {url:"../openapi-spec/sample-second.yaml", name:"Sample Second"},
+        
+          {url:"../openapi-spec/sample-third.yaml", name:"Sample Third"},
+        
+        ],
+        layout: "StandaloneLayout",
         
         
     "docExpansion": "list",
@@ -46,7 +59,7 @@
       }
     }
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("2770db91");
+      parent.update_swagger_ui_iframe_height("c7184bba");
     });
 
     // start observing for resize

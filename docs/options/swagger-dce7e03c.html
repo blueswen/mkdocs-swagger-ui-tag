@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Swagger UI</title>
-  <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/swagger-ui.css" />
-  <link rel="stylesheet" type="text/css" id="slate-css" media="none" href="../../assets/stylesheets//swagger-ui-dark.css" />
+  <link rel="stylesheet" type="text/css" href="../assets/stylesheets/swagger-ui.css" />
+  <link rel="stylesheet" type="text/css" id="slate-css" media="none" href="../assets/stylesheets//swagger-ui-dark.css" />
 </head>
 
 <body style="overflow:hidden;background: ;">
   <div id="swagger-ui"></div>
-  <script src="../../assets/javascripts//swagger-ui-bundle.js" charset="UTF-8"> </script>
-  <script src="../../assets/javascripts//swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
+  <script src="../assets/javascripts//swagger-ui-bundle.js" charset="UTF-8"> </script>
+  <script src="../assets/javascripts//swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
   <script>
     window.onload = function () {
       window.ui = SwaggerUIBundle({
@@ -21,7 +21,7 @@
           SwaggerUIStandalonePreset
         ],
         
-        url: '../openapi-spec/sample.yaml',
+        url: '../demo/openapi-spec/sample.yaml',
         
         
     "docExpansion": "list",
@@ -46,7 +46,7 @@
       }
     }
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("a790076c");
+      parent.update_swagger_ui_iframe_height("dce7e03c");
     });
 
     // start observing for resize
