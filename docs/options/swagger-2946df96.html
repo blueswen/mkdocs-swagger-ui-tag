@@ -24,13 +24,20 @@
         url: '../demo/openapi-spec/sample.yaml',
         
         
-    "docExpansion": "none",
-    "filter": "",
+    "docExpansion": "list",
+    "filter": false,
     "tryItOutEnabled": false,
     "supportedSubmitMethods": [
-        "get"
+        "get",
+        "put",
+        "post",
+        "delete",
+        "options",
+        "head",
+        "patch",
+        "trace"
     ],
-    "syntaxHighlight.theme": "monokai"
+    "syntaxHighlight.theme": "agate"
 
       })
       const scheme = parent.scheme
@@ -39,7 +46,7 @@
       }
     }
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("88f971e5");
+      parent.update_swagger_ui_iframe_height("2946df96");
     });
 
     // start observing for resize
