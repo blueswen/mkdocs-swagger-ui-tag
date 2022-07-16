@@ -1,3 +1,7 @@
+mkdocs-swagger-ui-tag 0.3.2 (2022-07-16)
+
+    * Fixed #2: Incompatible with mkdocs-material Instant loading feature
+
 mkdocs-swagger-ui-tag 0.3.1 (2022-07-16)
 
     * Fixed #3: Incompatible with "--no-directory-urls" 

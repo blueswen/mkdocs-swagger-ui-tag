@@ -154,54 +154,55 @@ class SwaggerUIPlugin(BasePlugin):
             for rest_swagger_ui_ele in grouped_list[1:]:
                 rest_swagger_ui_ele.extract()
 
-        if swagger_ui_list:
-            js_code = soup.new_tag("script")
-            js_code["type"] = "text/javascript"
-            js_code.string = """
-                update_swagger_ui_iframe_height = function (id) {
-                    var iFrameID = document.getElementById(id);
-                    if (iFrameID) {
-                        full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
-                        iFrameID.height = full_height;
-                        iFrameID.style.height = full_height;
-                    }
+        js_code = soup.new_tag("script")
+        # trigger from iframe body ResizeObserver
+        js_code.string = """
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
                 }
-                var scheme = document.body.getAttribute("data-md-color-scheme")
-                const options = {
-                    childList: true,
-                    attributes: true,
-                    characterData: false,
-                    subtree: false,
-                    attributeFilter: ['data-md-color-scheme'],
-                    attributeOldValue: false,
-                    characterDataOldValue: false
-                };
-            """
-            js_code.string += f"""
-                const iframe_id_list = {json.dumps(iframe_id_list)}
-            """
+            }
+        """
+        if config["theme"].name == "material":
+            # synchronized dark mode with mkdocs-material
             js_code.string += """
-                function color_scheme_callback(mutations) {
-                    for (let mutation of mutations) {
-                        if (mutation.attributeName === "data-md-color-scheme") {
-                            scheme = document.body.getAttribute("data-md-color-scheme")
-                            iframe_id_list.forEach((id) => {
-                                var ele = document.getElementById(id);
-                                if (ele) {
-                                    if (scheme === "slate") {
-                                        ele.contentWindow.enable_dark_mode();
-                                    } else {
-                                        ele.contentWindow.disable_dark_mode();
-                                    }
+            window.scheme = document.body.getAttribute("data-md-color-scheme")
+            const options = {
+                childList: true,
+                attributes: true,
+                characterData: false,
+                subtree: false,
+                attributeFilter: ['data-md-color-scheme'],
+                attributeOldValue: false,
+                characterDataOldValue: false
+            };
+            function color_scheme_callback(mutations) {
+                for (let mutation of mutations) {
+                    if (mutation.attributeName === "data-md-color-scheme") {
+                        scheme = document.body.getAttribute("data-md-color-scheme")
+                        var iframe_list = document.getElementsByClassName("swagger-ui-iframe")
+                        for(var i = 0; i < iframe_list.length; i++) {
+                            var ele = iframe_list.item(i);
+                            if (ele) {
+                                if (scheme === "slate") {
+                                    ele.contentWindow.enable_dark_mode();
+                                } else {
+                                    ele.contentWindow.disable_dark_mode();
                                 }
-                            })
+                            }
                         }
                     }
                 }
-                observer = new MutationObserver(color_scheme_callback);
-                observer.observe(document.body, options);
+            }
+            observer = new MutationObserver(color_scheme_callback);
+            observer.observe(document.body, options);
             """
-            soup.body.append(js_code)
+            # support compatible with mkdocs-material Instant loading feature
+            js_code.string = "document$.subscribe(() => {" + js_code.string + "})"
+        soup.body.append(js_code)
 
         return str(soup)
 
@@ -214,6 +215,7 @@ class SwaggerUIPlugin(BasePlugin):
         iframe['frameborder'] = "0"
         iframe['style'] = "overflow:hidden;width:100%;"
         iframe['width'] = "100%"
+        iframe['class'] = "swagger-ui-iframe"
         swagger_ui_ele.replaceWith(iframe)
 
     def process_options(self, swagger_ui_ele):
