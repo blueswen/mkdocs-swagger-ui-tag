@@ -2,7 +2,7 @@ Support using local OpenAPI Specification file on website.
 
 ## Markdown
 
-```markdown
+```html
 <swagger-ui src="./openapi-spec/sample.yaml"/>
 ```
 

@@ -31,12 +31,22 @@ plugins:
 ## Through tag attributes
 
 ```html
-<swagger-ui supportedSubmitMethods="['get']" docExpansion="none" filter="" syntaxHighlightTheme="monokai" src="./demo/openapi-spec/sample.yaml"/>
+<swagger-ui supportedSubmitMethods="['get']"
+            docExpansion="none"
+            filter=""
+            syntaxHighlightTheme="monokai"
+            src="./demo/openapi-spec/sample.yaml"/>
 ```
+
+Tag attributes also supports setting [initOAuth](https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/) method.
 
 ### Swagger UI with local configurations
 
-<swagger-ui supportedSubmitMethods="['get']" docExpansion="none" filter="" syntaxHighlightTheme="monokai" src="./demo/openapi-spec/sample.yaml"/>
+<swagger-ui supportedSubmitMethods="['get']"
+            docExpansion="none"
+            filter=""
+            syntaxHighlightTheme="monokai"
+            src="./demo/openapi-spec/sample.yaml"/>
 
 ### Swagger UI without local configurations
 

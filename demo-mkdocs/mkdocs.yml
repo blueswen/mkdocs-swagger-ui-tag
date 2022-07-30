@@ -59,3 +59,4 @@ nav:
     - Static File: demo/static-file.md
     - Multiple: demo/multiple.md
     - Build-in Multiple: demo/build-in-multiple.md
+    - OAuth2 Initialization: demo/oauth2.md

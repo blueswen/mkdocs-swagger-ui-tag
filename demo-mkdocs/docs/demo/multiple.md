@@ -2,7 +2,7 @@ Support render multiple Swagger UI.
 
 ## Markdown
 
-```markdown
+```html
 <swagger-ui src="./openapi-spec/sample.yaml"/>
 <swagger-ui src="https://petstore.swagger.io/v2/swagger.json"/>
 ```

@@ -5,25 +5,25 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://blueswen.github.io/mkdocs-swagger-ui-tag/options/" rel="canonical"/>
-<link href="../assets/images/favicon.png" rel="icon"/>
+<link href="https://blueswen.github.io/mkdocs-swagger-ui-tag/demo/oauth2/" rel="canonical"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.3.0, mkdocs-material-8.3.9+insiders-4.21.0" name="generator"/>
-<title>Plugin Options - MkDocs Swagger UI Tag</title>
-<link href="../assets/stylesheets/main.846d444e.min.css" rel="stylesheet"/>
-<link href="../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<title>OAuth2 Initialization - MkDocs Swagger UI Tag</title>
+<link href="../../assets/stylesheets/main.846d444e.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-XYSWM3DNCQ"),document.addEventListener("DOMContentLoaded",function(){if(document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document.forms.feedback){var e,a=document.forms.feedback;for(e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}"undefined"!=typeof location$&&location$.subscribe(function(e){n("config","G-XYSWM3DNCQ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-XYSWM3DNCQ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
 <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>html.glightbox-open { overflow: initial; height: 100%; }</style><script src="../assets/javascripts/glightbox.min.js"></script></head>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>html.glightbox-open { overflow: initial; height: 100%; }</style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#swagger-ui-options">
+<a class="md-skip" href="#markdown">
           Skip to content
         </a>
 </div>
@@ -31,7 +31,7 @@
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="MkDocs Swagger UI Tag" class="md-header__button md-logo" data-md-component="logo" href=".." title="MkDocs Swagger UI Tag">
+<a aria-label="MkDocs Swagger UI Tag" class="md-header__button md-logo" data-md-component="logo" href="../.." title="MkDocs Swagger UI Tag">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Plugin Options
+              OAuth2 Initialization
             
           </span>
 </div>
@@ -88,7 +88,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--integrated" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="MkDocs Swagger UI Tag" class="md-nav__button md-logo" data-md-component="logo" href=".." title="MkDocs Swagger UI Tag">
+<a aria-label="MkDocs Swagger UI Tag" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="MkDocs Swagger UI Tag">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
 </a>
     MkDocs Swagger UI Tag
@@ -105,75 +105,28 @@
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="..">
+<a class="md-nav__link" href="../..">
 <span class="md-ellipsis">
     Home
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../pet-store/">
+<a class="md-nav__link" href="../../pet-store/">
 <span class="md-ellipsis">
     Pet Store
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    Plugin Options
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../options/">
 <span class="md-ellipsis">
     Plugin Options
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#through-plugin-options">
-<span class="md-ellipsis">
-      Through plugin options
-    </span>
-</a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#through-tag-attributes">
-<span class="md-ellipsis">
-      Through tag attributes
-    </span>
-</a>
-<nav aria-label="Through tag attributes" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#swagger-ui-with-local-configurations">
-<span class="md-ellipsis">
-      Swagger UI with local configurations
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#swagger-ui-without-local-configurations">
-<span class="md-ellipsis">
-      Swagger UI without local configurations
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
 <label class="md-nav__link" for="__nav_4">
 <span class="md-ellipsis">
     Demo
@@ -187,32 +140,61 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../demo/static-file/">
+<a class="md-nav__link" href="../static-file/">
 <span class="md-ellipsis">
     Static File
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../demo/multiple/">
+<a class="md-nav__link" href="../multiple/">
 <span class="md-ellipsis">
     Multiple
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../demo/build-in-multiple/">
+<a class="md-nav__link" href="../build-in-multiple/">
 <span class="md-ellipsis">
     Build-in Multiple
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../demo/oauth2/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    OAuth2 Initialization
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     OAuth2 Initialization
   </span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#markdown">
+<span class="md-ellipsis">
+      Markdown
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#swagger-ui">
+<span class="md-ellipsis">
+      Swagger UI
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -224,83 +206,63 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="swagger-ui-options">Swagger UI Options</h1>
-<p>Some configurations on <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/">Swagger UI Doc</a> could be used in this plugin. There are two ways to configure options:</p>
-<ol>
-<li>Configure through plugin options as global configurations</li>
-<li>Configure through swagger-ui tag attributes as local configurations</li>
-</ol>
-<p>Supported configurations included:</p>
+<h1>OAuth2 Initialization</h1>
+<p>Support configure OAuth 2.0 authorization by setting attributes for <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/">initOAuth</a> method.</p>
 <table>
 <thead>
 <tr>
-<th>Options</th>
-<th>Type</th>
+<th>Attribute</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>background</td>
-<td>String</td>
-<td>Default: "". Swagger UI iframe body background attribute value. You can use any css value for background for example "#74b9ff" or "Gainsboro" or "" for nothing.</td>
+<td>clientId</td>
+<td>Default clientId.</td>
 </tr>
 <tr>
-<td>docExpansion</td>
-<td>String</td>
-<td>Default: "list". Controls the default expansion setting for the operations and tags. It can be "list" (expands only the tags), "full" (expands the tags and operations) or "none" (expands nothing).</td>
+<td>clientSecret</td>
+<td>Default clientSecret.<br/><strong>🚨 Never use this parameter in your production environment. It exposes crucial security information. This feature is intended for dev/test environments only. 🚨</strong></td>
 </tr>
 <tr>
-<td>filter</td>
-<td>String or Boolean</td>
-<td>Default: False. If set, enables filtering. The top bar will show an edit box that you can use to filter the tagged operations that are shown. Can be Boolean to enable or disable, or a string, in which case filtering will be enabled using that string as the filter expression. Filtering is case sensitive matching the filter expression anywhere inside the tag.</td>
+<td>realm</td>
+<td>Realm query parameter (for oauth1) added to <strong>authorizationUrl</strong> and <strong>tokenUrl</strong>.</td>
 </tr>
 <tr>
-<td>syntaxHighlightTheme</td>
-<td>String</td>
-<td>Default: "agate". <a href="https://highlightjs.org/static/demo/">Highlight.js</a> syntax coloring theme to use. It can be "agate", "arta", "monokai", "nord", "obsidian" or "tomorrow-night"</td>
+<td>appName</td>
+<td>Application name, displayed in authorization popup.</td>
 </tr>
 <tr>
-<td>tryItOutEnabled</td>
-<td>Boolean</td>
-<td>Default: False. Controls whether the "Try it out" section should be enabled by default.</td>
+<td>scopes</td>
+<td>Scope space separated string of initially selected oauth scopes, e.g. "openid profile", default is empty.</td>
 </tr>
 <tr>
-<td>oauth2RedirectUrl</td>
-<td>String</td>
-<td>Default: None. OAuth redirect URL.</td>
+<td>additionalQueryStringParams</td>
+<td>Additional query parameters were added to <strong>authorizationUrl</strong> and <strong>tokenUrl</strong>, default is empty.<br/>MUST be a JSON, but could wrap string with single quote when attribute value wrapped with double quote, e.g. <code>additionalQueryStringParams="{'test': 'hello'}"</code>, <code>additionalQueryStringParams='{"test": "hello"}'</code></td>
 </tr>
 <tr>
-<td>supportedSubmitMethods</td>
-<td>Array</td>
-<td>Default: All Http Methods. Array=["get", "put", "post", "delete", "options", "head", "patch", "trace"]. List of HTTP methods that have the "Try it out" feature enabled. An empty array disables "Try it out" for all operations. This does not filter the operations from the display.</td>
+<td>useBasicAuthenticationWithAccessCodeGrant</td>
+<td>Only activated for the <strong>accessCode</strong> flow. During the <strong>authorization_code</strong> request to the <strong>tokenUrl</strong>, pass the <a href="https://tools.ietf.org/html/rfc6749#section-2.3.1">Client Password</a> using the HTTP Basic Authentication scheme (<strong>Authorization</strong> header with <strong>Basic base64encode(client_id + client_secret)</strong>).<br/>The default is false, setting true with any case of "true".</td>
 </tr>
 <tr>
-<td>validatorUrl</td>
-<td>String</td>
-<td>Default: "https://validator.swagger.io/validator". By default, Swagger UI attempts to validate specs against swagger.io's online validator in multiple OAS Swagger UI. You can use this parameter to set a different validator URL, for example for locally deployed validators (<a href="https://github.com/swagger-api/validator-badge">Validator Badge</a>). Setting it "none" to disable validation.</td>
+<td>usePkceWithAuthorizationCodeGrant</td>
+<td>Only applies to <strong>authorizationCode</strong> flows. <a href="https://tools.ietf.org/html/rfc7636">Proof Key for Code Exchange</a> brings enhanced security for OAuth public clients.<br/>The default is false, setting true with any case of "true".</td>
 </tr>
 </tbody>
 </table>
-<h2 id="through-plugin-options">Through plugin options</h2>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">plugins</span><span class="p">:</span><span class="w"></span>
-<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">swagger-ui-tag</span><span class="p">:</span><span class="w"></span>
-<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">        </span><span class="nt">docExpansion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span><span class="w"></span>
-<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">        </span><span class="nt">filter</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w"></span>
-<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">        </span><span class="nt">syntaxHighlightTheme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">monokai</span><span class="w"></span>
+<h2 id="markdown">Markdown</h2>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">swagger-ui</span> <span class="na">src</span><span class="o">=</span><span class="s">"./openapi-spec/sample-oauth2.yaml"</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>            <span class="na">clientId</span><span class="o">=</span><span class="s">"your-client-id"</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>            <span class="na">clientSecret</span><span class="o">=</span><span class="s">"your-client-secret-if-required"</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>            <span class="na">realm</span><span class="o">=</span><span class="s">"your-realms"</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>            <span class="na">appName</span><span class="o">=</span><span class="s">"your-app-name"</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a>            <span class="na">scopes</span><span class="o">=</span><span class="s">"openid profile"</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a>            <span class="na">additionalQueryStringParams</span><span class="o">=</span><span class="s">"{'test': 'hello'}"</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a>            <span class="na">useBasicAuthenticationWithAccessCodeGrant</span><span class="o">=</span><span class="s">"false"</span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a>            <span class="na">usePkceWithAuthorizationCodeGrant</span><span class="o">=</span><span class="s">"false"</span><span class="p">/&gt;</span>
 </code></pre></div>
-<h2 id="through-tag-attributes">Through tag attributes</h2>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="p">&lt;</span><span class="nt">swagger-ui</span> <span class="na">supportedSubmitMethods</span><span class="o">=</span><span class="s">"['get']"</span>
-<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>            <span class="na">docExpansion</span><span class="o">=</span><span class="s">"none"</span>
-<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>            <span class="na">filter</span><span class="o">=</span><span class="s">""</span>
-<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>            <span class="na">syntaxHighlightTheme</span><span class="o">=</span><span class="s">"monokai"</span>
-<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>            <span class="na">src</span><span class="o">=</span><span class="s">"./demo/openapi-spec/sample.yaml"</span><span class="p">/&gt;</span>
-</code></pre></div>
-<p>Tag attributes also supports setting <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/">initOAuth</a> method.</p>
-<h3 id="swagger-ui-with-local-configurations">Swagger UI with local configurations</h3>
-<p><iframe class="swagger-ui-iframe" frameborder="0" id="3f08088b" src="swagger-3f08088b.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
-<h3 id="swagger-ui-without-local-configurations">Swagger UI without local configurations</h3>
-<p><iframe class="swagger-ui-iframe" frameborder="0" id="f2e60bc4" src="swagger-f2e60bc4.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
+<h2 id="swagger-ui">Swagger UI</h2>
+<p><iframe class="swagger-ui-iframe" frameborder="0" id="e523e77e" src="swagger-e523e77e.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
 </article>
 <script>var input,hash=location.hash.slice(1);hash.startsWith("__tabbed_")&&((input=document.getElementById(hash)).checked=!0)</script>
 </div>
@@ -308,7 +270,7 @@
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Pet Store" class="md-footer__link md-footer__link--prev" href="../pet-store/" rel="prev">
+<a aria-label="Previous: Build-in Multiple" class="md-footer__link md-footer__link--prev" href="../build-in-multiple/" rel="prev">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </div>
@@ -317,21 +279,8 @@
 <span class="md-footer__direction">
                 Previous
               </span>
-              Pet Store
+              Build-in Multiple
             </div>
-</div>
-</a>
-<a aria-label="Next: Static File" class="md-footer__link md-footer__link--next" href="../demo/static-file/" rel="next">
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                Next
-              </span>
-              Static File
-            </div>
-</div>
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
 </div>
 </a>
 </nav>
@@ -352,8 +301,8 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate"], "search": "../assets/javascripts/workers/search.720157f5.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
-<script src="../assets/javascripts/bundle.15234abc.min.js"></script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["toc.integrate"], "search": "../../assets/javascripts/workers/search.720157f5.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.15234abc.min.js"></script>
 <script>document$.subscribe(() => {
             window.update_swagger_ui_iframe_height = function (id) {
                 var iFrameID = document.getElementById(id);

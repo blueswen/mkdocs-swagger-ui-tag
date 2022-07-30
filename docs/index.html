@@ -7,9 +7,9 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://blueswen.github.io/mkdocs-swagger-ui-tag/" rel="canonical"/>
 <link href="assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.3.0, mkdocs-material-8.3.9+insiders-4.20.1" name="generator"/>
+<meta content="mkdocs-1.3.0, mkdocs-material-8.3.9+insiders-4.21.0" name="generator"/>
 <title>MkDocs Swagger UI Tag</title>
-<link href="assets/stylesheets/main.19db47b7.min.css" rel="stylesheet"/>
+<link href="assets/stylesheets/main.846d444e.min.css" rel="stylesheet"/>
 <link href="assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -210,6 +210,13 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="demo/oauth2/">
+<span class="md-ellipsis">
+    OAuth2 Initialization
+  </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
@@ -229,15 +236,16 @@
 <li>Synchronized dark mode with <a href="https://squidfunk.github.io/mkdocs-material/">mkdocs-material</a></li>
 <li>Configure <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/">Swagger UI configuration</a> through plugin options and tag attributes</li>
 <li>Support multiple OAS in single Swagger UI with top bar selector</li>
+<li>Support Swagger UI <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/">initOAuth</a> method</li>
 </ol>
 <h2 id="dependency">Dependency</h2>
 <ol>
 <li>Python Package<ol>
-<li>beautifulsoup4==4.11.1</li>
+<li>beautifulsoup4&gt;=4.11.1</li>
 </ol>
 </li>
 <li><a href="https://www.npmjs.com/package/swagger-ui-dist">Swagger UI dist</a> javascript file and css file<ol>
-<li>swagger-ui-dist==4.12.0</li>
+<li>swagger-ui-dist&gt;=4.13.0</li>
 </ol>
 </li>
 </ol>
@@ -254,9 +262,9 @@
 <a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">swagger-ui-tag</span><span class="w"></span>
 </code></pre></div>
 3. Add <code>swagger-ui</code> tag in markdown to include Swagger UI</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>&lt;swagger-ui src="https://petstore.swagger.io/v2/swagger.json"/&gt;
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">swagger-ui</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://petstore.swagger.io/v2/swagger.json"</span><span class="p">/&gt;</span>
 </code></pre></div>
-<p><a class="glightbox" data-draggable="True" data-effect="zoom" data-height="auto" data-width="80%" data-zoomable="True" href="sample.png"><img alt="Swagger UI Sample Image" src="sample.png"/></a></p>
+<p><a class="glightbox" href="sample.png"><img alt="Swagger UI Sample Image" src="sample.png"/></a></p>
 </li>
 <li>
 <p>You may customize the plugin by passing options in mkdocs.yml, check more details on <a href="./options/">options</a>:</p>
@@ -362,7 +370,7 @@
 <div class="md-dialog__inner md-typeset"></div>
 </div>
 <script id="__config" type="application/json">{"base": ".", "features": ["toc.integrate"], "search": "assets/javascripts/workers/search.720157f5.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
-<script src="assets/javascripts/bundle.5e3df397.min.js"></script>
+<script src="assets/javascripts/bundle.15234abc.min.js"></script>
 <script>document$.subscribe(() => {
             window.update_swagger_ui_iframe_height = function (id) {
                 var iFrameID = document.getElementById(id);
@@ -403,5 +411,5 @@
             }
             observer = new MutationObserver(color_scheme_callback);
             observer.observe(document.body, options);
-            })</script><script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": true});})</script></body>
+            })</script><script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": true, "width": "80%", "height": "auto", "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
 </html>
