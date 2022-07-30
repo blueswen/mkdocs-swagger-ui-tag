@@ -14,13 +14,14 @@ A MkDocs plugin supports for add [Swagger UI](https://github.com/swagger-api/swa
 3. Synchronized dark mode with [mkdocs-material](https://squidfunk.github.io/mkdocs-material/)
 4. Configure [Swagger UI configuration](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/) through plugin options and tag attributes
 5. Support multiple OAS in single Swagger UI with top bar selector
+6. Support Swagger UI [initOAuth](https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/) method
 
 ## Dependency
 
 1. Python Package
-    1. beautifulsoup4==4.11.1
+    1. beautifulsoup4>=4.11.1
 2. [Swagger UI dist](https://www.npmjs.com/package/swagger-ui-dist) javascript file and css file
-    1. swagger-ui-dist==4.12.0
+    1. swagger-ui-dist>=4.13.0
 
 ## Usage
 

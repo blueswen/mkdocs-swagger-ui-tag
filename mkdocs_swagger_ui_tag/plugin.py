@@ -110,6 +110,7 @@ class SwaggerUIPlugin(BasePlugin):
             iframe_filename = f"swagger-{cur_id}.html"
             iframe_id_list.append(cur_id)
             cur_options = self.process_options(swagger_ui_ele)
+            cur_oath2_prop = self.process_oath2_prop(swagger_ui_ele)
 
             openapi_spec_url = self.path_to_url(page.file,
                                                 swagger_ui_ele.get('src', ""))
@@ -119,7 +120,8 @@ class SwaggerUIPlugin(BasePlugin):
                 background=self.config['background'],
                 id=cur_id,
                 openapi_spec_url=openapi_spec_url,
-                options=json.dumps(cur_options, indent=4)[1:-1])
+                options=json.dumps(cur_options, indent=4)[1:-1],
+                oath2_prop=json.dumps(cur_oath2_prop))
             with open(os.path.join(page_dir, iframe_filename), 'w') as f:
                 f.write(output_from_parsed_template)
             self.replace_with_iframe(soup, swagger_ui_ele, cur_id,
@@ -139,13 +141,15 @@ class SwaggerUIPlugin(BasePlugin):
 
             # only use options from first grouped swagger ui tag
             cur_options = self.process_options(grouped_list[0])
+            cur_oath2_prop = self.process_oath2_prop(grouped_list[0])
             output_from_parsed_template = template.render(
                 css_dir=css_dir,
                 js_dir=js_dir,
                 background=self.config['background'],
                 id=cur_id,
                 openapi_spec_url=openapi_spec_url,
-                options=json.dumps(cur_options, indent=4)[1:-1])
+                options=json.dumps(cur_options, indent=4)[1:-1],
+                oath2_prop=json.dumps(cur_oath2_prop))
             with open(os.path.join(page_dir, iframe_filename), 'w') as f:
                 f.write(output_from_parsed_template)
             self.replace_with_iframe(soup, grouped_list[0], cur_id,
@@ -227,18 +231,22 @@ class SwaggerUIPlugin(BasePlugin):
         options_keys = global_options.keys()
         cur_options = {}
         for k in options_keys:
-            cur_val = swagger_ui_ele.get(k.lower(), None)
-            if cur_val is not None:
+            val = swagger_ui_ele.get(k.lower(), None)
+            if val is not None:
                 if k == "supportedSubmitMethods":
                     try:
-                        cur_val = json.loads(cur_val.replace("'", '"'))
-                        if not isinstance(cur_val, list):
+                        val = json.loads(val.replace("'", '"'))
+                        if not isinstance(val, list):
                             raise ValueError(
-                                f"attribute supportedSubmitMethods: {cur_val} is not a list."
+                                f"Attribute supportedSubmitMethods: {val} is not a list."
                             )
-                    except:
-                        cur_val = global_options['supportedSubmitMethods']
-                cur_options[k] = cur_val
+                        cur_options[k] = val
+                    except Exception as e:
+                        logging.error(e)
+                        logging.error(
+                            "Ignore supportedSubmitMethods attribute setting.")
+                else:
+                    cur_options[k] = val
             else:
                 cur_options[k] = global_options[k]
             if cur_options[k] is None:
@@ -247,6 +255,44 @@ class SwaggerUIPlugin(BasePlugin):
             cur_options["syntaxHighlight.theme"] = cur_options.pop(
                 "syntaxHighlightTheme")
         return cur_options
+
+    def process_oath2_prop(self, swagger_ui_ele):
+        """ Retrieve Swagger UI OAuth 2.0 configuration from tag attributes """
+        oath_prop_keys = [
+            "clientId",
+            "clientSecret",
+            "realm",
+            "appName",
+            "scopes",
+            "additionalQueryStringParams",
+            "useBasicAuthenticationWithAccessCodeGrant",
+            "usePkceWithAuthorizationCodeGrant",
+        ]
+        cur_prop = {}
+        for k in oath_prop_keys:
+            val = swagger_ui_ele.get(k.lower(), None)
+            if val is not None:
+                if k == "additionalQueryStringParams":
+                    try:
+                        val = json.loads(val.replace("'", '"'))
+                        if not isinstance(val, dict):
+                            raise ValueError(
+                                f"attribute additionalQueryStringParams: {val} is not a dict."
+                            )
+                        cur_prop[k] = val
+                    except Exception as e:
+                        logging.error(e)
+                        logging.error(
+                            "Ignore additionalQueryStringParams attribute setting."
+                        )
+                elif k in [
+                        "useBasicAuthenticationWithAccessCodeGrant",
+                        "usePkceWithAuthorizationCodeGrant"
+                ]:
+                    cur_prop[k] = val.lower().strip() == "true"
+                else:
+                    cur_prop[k] = val
+        return cur_prop
 
     def on_post_build(self, config, **kwargs):
         """ Copy Swagger UI css and js files to assets directory """

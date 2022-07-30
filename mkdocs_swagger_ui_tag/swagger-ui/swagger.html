@@ -32,11 +32,17 @@
         {% endif %}
         {{options}}
       })
+
+      {% if oath2_prop != "{}" %}
+      window.ui.initOAuth({{oath2_prop}})
+      {% endif %}
+
       const scheme = parent.scheme
       if (scheme === "slate") {
           enable_dark_mode();
       }
     }
+
     const resize_ob = new ResizeObserver(function(entries) {
       parent.update_swagger_ui_iframe_height("{{id}}");
     });
