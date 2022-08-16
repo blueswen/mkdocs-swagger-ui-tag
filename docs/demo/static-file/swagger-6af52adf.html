@@ -21,7 +21,7 @@
           SwaggerUIStandalonePreset
         ],
         
-        url: 'https://petstore.swagger.io/v2/swagger.json',
+        url: '../openapi-spec/sample.yaml',
         
         
     "docExpansion": "list",
@@ -37,7 +37,8 @@
         "patch",
         "trace"
     ],
-    "syntaxHighlight.theme": "agate"
+    "syntaxHighlight.theme": "agate",
+    "oauth2RedirectUrl": "https://blueswen.github.io/mkdocs-swagger-ui-tag/assets/swagger-ui/oauth2-redirect.html"
 
       })
 
@@ -50,7 +51,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("d4626579");
+      parent.update_swagger_ui_iframe_height("6af52adf");
     });
 
     // start observing for resize

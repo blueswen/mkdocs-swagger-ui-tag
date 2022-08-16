@@ -24,13 +24,21 @@
         url: '../demo/openapi-spec/sample.yaml',
         
         
-    "docExpansion": "none",
-    "filter": "",
+    "docExpansion": "list",
+    "filter": false,
     "tryItOutEnabled": false,
     "supportedSubmitMethods": [
-        "get"
+        "get",
+        "put",
+        "post",
+        "delete",
+        "options",
+        "head",
+        "patch",
+        "trace"
     ],
-    "syntaxHighlight.theme": "monokai"
+    "syntaxHighlight.theme": "agate",
+    "oauth2RedirectUrl": "https://blueswen.github.io/mkdocs-swagger-ui-tag/assets/swagger-ui/oauth2-redirect.html"
 
       })
 
@@ -43,7 +51,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("3f08088b");
+      parent.update_swagger_ui_iframe_height("ec160306");
     });
 
     // start observing for resize
