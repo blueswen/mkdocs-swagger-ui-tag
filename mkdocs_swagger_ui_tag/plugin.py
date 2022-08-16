@@ -3,7 +3,7 @@ import logging
 import os
 import uuid
 from urllib.parse import unquote as urlunquote
-from urllib.parse import urlsplit, urlunsplit
+from urllib.parse import urlsplit, urlunsplit, urljoin
 
 from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
@@ -109,7 +109,7 @@ class SwaggerUIPlugin(BasePlugin):
             cur_id = str(uuid.uuid4())[:8]
             iframe_filename = f"swagger-{cur_id}.html"
             iframe_id_list.append(cur_id)
-            cur_options = self.process_options(swagger_ui_ele)
+            cur_options = self.process_options(config, swagger_ui_ele)
             cur_oath2_prop = self.process_oath2_prop(swagger_ui_ele)
 
             openapi_spec_url = self.path_to_url(page.file,
@@ -140,7 +140,7 @@ class SwaggerUIPlugin(BasePlugin):
                 openapi_spec_url.append({"url": cur_url, "name": cur_name})
 
             # only use options from first grouped swagger ui tag
-            cur_options = self.process_options(grouped_list[0])
+            cur_options = self.process_options(config, grouped_list[0])
             cur_oath2_prop = self.process_oath2_prop(grouped_list[0])
             output_from_parsed_template = template.render(
                 css_dir=css_dir,
@@ -222,7 +222,7 @@ class SwaggerUIPlugin(BasePlugin):
         iframe['class'] = "swagger-ui-iframe"
         swagger_ui_ele.replaceWith(iframe)
 
-    def process_options(self, swagger_ui_ele):
+    def process_options(self, config, swagger_ui_ele):
         """ Retrieve Swagger UI options from attribute and use config options as default """
         global_options = {
             k: v
@@ -254,6 +254,8 @@ class SwaggerUIPlugin(BasePlugin):
         if "syntaxHighlightTheme" in cur_options:
             cur_options["syntaxHighlight.theme"] = cur_options.pop(
                 "syntaxHighlightTheme")
+        if "oauth2RedirectUrl" not in cur_options:
+            cur_options["oauth2RedirectUrl"] = urljoin(config['site_url'], "assets/swagger-ui/oauth2-redirect.html")
         return cur_options
 
     def process_oath2_prop(self, swagger_ui_ele):
@@ -311,3 +313,10 @@ class SwaggerUIPlugin(BasePlugin):
             utils.copy_file(
                 os.path.join(base_path, "swagger-ui", "javascripts",
                              file_name), os.path.join(js_path, file_name))
+
+        swagger_ui_path = os.path.join(output_base_path, "swagger-ui")
+        if not os.path.exists(swagger_ui_path):
+            os.mkdir(swagger_ui_path)
+        utils.copy_file(
+            os.path.join(base_path, "swagger-ui", "oauth2-redirect.html"),
+            os.path.join(swagger_ui_path, "oauth2-redirect.html"))

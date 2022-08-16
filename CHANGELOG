@@ -1,3 +1,8 @@
+mkdocs-swagger-ui-tag 0.4.1 (2022-08-16)
+
+    * Added support for Swagger UI OAuth2 redirect with oauth2-redirect.html as default (#4)
+    * Updated swagger-ui-dist to 4.13.2
+
 mkdocs-swagger-ui-tag 0.4.0 (2022-07-31)
 
     * Added support for Swagger UI initOAuth method (#4)
