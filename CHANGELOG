@@ -1,3 +1,7 @@
+mkdocs-swagger-ui-tag 0.4.2 (2022-08-17)
+
+    * Support retrieving default oauth2-redirect.html absolute URL from relative URL (#4)
+
 mkdocs-swagger-ui-tag 0.4.1 (2022-08-16)
 
     * Added support for Swagger UI OAuth2 redirect with oauth2-redirect.html as default (#4)

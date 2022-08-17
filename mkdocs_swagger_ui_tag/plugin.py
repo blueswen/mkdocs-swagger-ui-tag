@@ -3,7 +3,7 @@ import logging
 import os
 import uuid
 from urllib.parse import unquote as urlunquote
-from urllib.parse import urlsplit, urlunsplit, urljoin
+from urllib.parse import urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
@@ -88,6 +88,9 @@ class SwaggerUIPlugin(BasePlugin):
             utils.normalize_url("assets/stylesheets/"), page.url)
         js_dir = utils.get_relative_url(
             utils.normalize_url("assets/javascripts/"), page.url)
+        default_oauth2_redirect_file = utils.get_relative_url(
+            utils.normalize_url("assets/swagger-ui/oauth2-redirect.html"),
+            page.url)
         env = Environment(
             loader=FileSystemLoader(os.path.join(base_path, "swagger-ui")))
         template = env.get_template('swagger.html')
@@ -111,6 +114,9 @@ class SwaggerUIPlugin(BasePlugin):
             iframe_id_list.append(cur_id)
             cur_options = self.process_options(config, swagger_ui_ele)
             cur_oath2_prop = self.process_oath2_prop(swagger_ui_ele)
+            oauth2_redirect_url = cur_options.pop('oauth2RedirectUrl', '')
+            if not oauth2_redirect_url:
+                oauth2_redirect_url = default_oauth2_redirect_file
 
             openapi_spec_url = self.path_to_url(page.file,
                                                 swagger_ui_ele.get('src', ""))
@@ -120,8 +126,9 @@ class SwaggerUIPlugin(BasePlugin):
                 background=self.config['background'],
                 id=cur_id,
                 openapi_spec_url=openapi_spec_url,
-                options=json.dumps(cur_options, indent=4)[1:-1],
-                oath2_prop=json.dumps(cur_oath2_prop))
+                oauth2_redirect_url=oauth2_redirect_url,
+                options_str=json.dumps(cur_options, indent=4)[1:-1],
+                oath2_prop_str=json.dumps(cur_oath2_prop))
             with open(os.path.join(page_dir, iframe_filename), 'w') as f:
                 f.write(output_from_parsed_template)
             self.replace_with_iframe(soup, swagger_ui_ele, cur_id,
@@ -142,14 +149,19 @@ class SwaggerUIPlugin(BasePlugin):
             # only use options from first grouped swagger ui tag
             cur_options = self.process_options(config, grouped_list[0])
             cur_oath2_prop = self.process_oath2_prop(grouped_list[0])
+            oauth2_redirect_url = cur_options.pop('oauth2RedirectUrl', '')
+            if not oauth2_redirect_url:
+                oauth2_redirect_url = default_oauth2_redirect_file
+
             output_from_parsed_template = template.render(
                 css_dir=css_dir,
                 js_dir=js_dir,
                 background=self.config['background'],
                 id=cur_id,
                 openapi_spec_url=openapi_spec_url,
-                options=json.dumps(cur_options, indent=4)[1:-1],
-                oath2_prop=json.dumps(cur_oath2_prop))
+                oauth2_redirect_url=oauth2_redirect_url,
+                options_str=json.dumps(cur_options, indent=4)[1:-1],
+                oath2_prop_str=json.dumps(cur_oath2_prop))
             with open(os.path.join(page_dir, iframe_filename), 'w') as f:
                 f.write(output_from_parsed_template)
             self.replace_with_iframe(soup, grouped_list[0], cur_id,
@@ -254,8 +266,6 @@ class SwaggerUIPlugin(BasePlugin):
         if "syntaxHighlightTheme" in cur_options:
             cur_options["syntaxHighlight.theme"] = cur_options.pop(
                 "syntaxHighlightTheme")
-        if "oauth2RedirectUrl" not in cur_options:
-            cur_options["oauth2RedirectUrl"] = urljoin(config['site_url'], "assets/swagger-ui/oauth2-redirect.html")
         return cur_options
 
     def process_oath2_prop(self, swagger_ui_ele):
