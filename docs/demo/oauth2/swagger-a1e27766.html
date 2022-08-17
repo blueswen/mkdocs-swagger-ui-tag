@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <title>Swagger UI</title>
   <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/swagger-ui.css" />
-  <link rel="stylesheet" type="text/css" id="slate-css" media="none" href="../../assets/stylesheets//swagger-ui-dark.css" />
+  <link rel="stylesheet" type="text/css" id="slate-css" media="none" href="../../assets/stylesheets/swagger-ui-dark.css" />
 </head>
 
 <body style="overflow:hidden;background: ;">
   <div id="swagger-ui"></div>
-  <script src="../../assets/javascripts//swagger-ui-bundle.js" charset="UTF-8"> </script>
-  <script src="../../assets/javascripts//swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
+  <script src="../../assets/javascripts/swagger-ui-bundle.js" charset="UTF-8"> </script>
+  <script src="../../assets/javascripts/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
   <script>
     window.onload = function () {
       window.ui = SwaggerUIBundle({
@@ -22,6 +22,9 @@
         ],
         
         url: '../openapi-spec/sample-oauth2.yaml',
+        
+        
+        "oauth2RedirectUrl": new URL("../../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
         
         
     "docExpansion": "list",
@@ -37,8 +40,7 @@
         "patch",
         "trace"
     ],
-    "syntaxHighlight.theme": "agate",
-    "oauth2RedirectUrl": "https://blueswen.github.io/mkdocs-swagger-ui-tag/assets/swagger-ui/oauth2-redirect.html"
+    "syntaxHighlight.theme": "agate"
 
       })
 
@@ -53,7 +55,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("24d3849a");
+      parent.update_swagger_ui_iframe_height("a1e27766");
     });
 
     // start observing for resize
