@@ -95,7 +95,7 @@ class SwaggerUIPlugin(BasePlugin):
             loader=FileSystemLoader(os.path.join(base_path, "swagger-ui")))
         template = env.get_template('swagger.html')
 
-        page_dir = os.path.dirname(os.path.join(config['site_dir'], page.url))
+        page_dir = os.path.dirname(os.path.join(config['site_dir'], urlunquote(page.url)))
         if not os.path.exists(page_dir):
             os.makedirs(page_dir)
 
