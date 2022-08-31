@@ -104,6 +104,9 @@ class SwaggerUIPlugin(BasePlugin):
         iframe_id_list = []
         grouped_list = []
 
+        if len(swagger_ui_list) == 0:
+            return str(soup)
+
         for swagger_ui_ele in swagger_ui_list:
             if swagger_ui_ele.has_attr("grouped"):
                 grouped_list.append(swagger_ui_ele)
@@ -182,18 +185,35 @@ class SwaggerUIPlugin(BasePlugin):
                 }
             }
         """
+        # listen scroll event to update modal position in iframe
+        js_code.string += f"""
+            const iframe_id_list = {json.dumps(iframe_id_list)};
+        """
+        js_code.string += """
+            let ticking = false;
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        """
         if config["theme"].name == "material":
             # synchronized dark mode with mkdocs-material
             js_code.string += """
             window.scheme = document.body.getAttribute("data-md-color-scheme")
             const options = {
-                childList: true,
-                attributes: true,
-                characterData: false,
-                subtree: false,
                 attributeFilter: ['data-md-color-scheme'],
-                attributeOldValue: false,
-                characterDataOldValue: false
             };
             function color_scheme_callback(mutations) {
                 for (let mutation of mutations) {
