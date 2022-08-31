@@ -10,6 +10,7 @@ theme:
   name: material
   features:
     - toc.integrate
+    - navigation.tabs
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
@@ -53,10 +54,11 @@ plugins:
 
 nav:
   - Home: index.md
-  - Pet Store: pet-store.md 
+  - Pet Store Example: pet-store.md 
   - Plugin Options: options.md
   - Demo: 
     - Static File: demo/static-file.md
+    - Full Width Swagger UI:  demo/pet-store-full-width.md
     - Multiple: demo/multiple.md
     - Build-in Multiple: demo/build-in-multiple.md
     - OAuth2 Initialization: demo/oauth2.md

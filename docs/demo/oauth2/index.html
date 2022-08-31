@@ -81,12 +81,50 @@
 </nav>
 </header>
 <div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+        
+  
+  Home
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../pet-store/">
+        
+  
+  Pet Store Example
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../options/">
+        
+  
+  Plugin Options
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../static-file/">
+          
+  
+  Demo
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
 <main class="md-main" data-md-component="main">
 <div class="md-main__inner md-grid">
 <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
-<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--integrated" data-md-level="0">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
 <a aria-label="MkDocs Swagger UI Tag" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="MkDocs Swagger UI Tag">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
@@ -114,7 +152,7 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../pet-store/">
 <span class="md-ellipsis">
-    Pet Store
+    Pet Store Example
   </span>
 </a>
 </li>
@@ -143,6 +181,13 @@
 <a class="md-nav__link" href="../static-file/">
 <span class="md-ellipsis">
     Static File
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../pet-store-full-width/">
+<span class="md-ellipsis">
+    Full Width Swagger UI
   </span>
 </a>
 </li>
@@ -262,7 +307,7 @@
 <a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a>            <span class="na">usePkceWithAuthorizationCodeGrant</span><span class="o">=</span><span class="s">"false"</span><span class="p">/&gt;</span>
 </code></pre></div>
 <h2 id="swagger-ui">Swagger UI</h2>
-<p><iframe class="swagger-ui-iframe" frameborder="0" id="a1e27766" src="swagger-a1e27766.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
+<p><iframe class="swagger-ui-iframe" frameborder="0" id="08309560" src="swagger-08309560.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
 </article>
 <script>var input,hash=location.hash.slice(1);hash.startsWith("__tabbed_")&&((input=document.getElementById(hash)).checked=!0)</script>
 </div>
@@ -301,7 +346,7 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["toc.integrate"], "search": "../../assets/javascripts/workers/search.720157f5.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["toc.integrate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.720157f5.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
 <script src="../../assets/javascripts/bundle.15234abc.min.js"></script>
 <script>document$.subscribe(() => {
             window.update_swagger_ui_iframe_height = function (id) {
@@ -313,15 +358,29 @@
                 }
             }
         
+            const iframe_id_list = ["08309560"];
+        
+            let ticking = false;
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        
             window.scheme = document.body.getAttribute("data-md-color-scheme")
             const options = {
-                childList: true,
-                attributes: true,
-                characterData: false,
-                subtree: false,
                 attributeFilter: ['data-md-color-scheme'],
-                attributeOldValue: false,
-                characterDataOldValue: false
             };
             function color_scheme_callback(mutations) {
                 for (let mutation of mutations) {
