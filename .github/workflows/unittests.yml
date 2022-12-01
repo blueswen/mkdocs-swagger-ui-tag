@@ -29,10 +29,10 @@ jobs:
 
     - name: Static code checking with pyflakes
       run: |
-        pyflakes mkdocs_glightbox
+        pyflakes mkdocs_swagger_ui_tag
 
     - name: Run unit tests
       run: |
         git config --global user.name "Github Action"
         git config --global user.email "githubaction@gmail.com"
-        pytest --cov=mkdocs_glightbox
+        pytest --cov=mkdocs_swagger_ui_tag
