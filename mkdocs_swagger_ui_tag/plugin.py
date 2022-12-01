@@ -53,7 +53,8 @@ class SwaggerUIPlugin(BasePlugin):
                 ],
             ),
         ),
-        ("validatorUrl", config_options.Type(str, default=None)),
+        ("validatorUrl", config_options.Type(str, default="none")),
+        ("custom_css_files", config_options.Type(list, default=[])),
     )
 
     def on_pre_page(self, page, config, files, **kwargs):
@@ -119,6 +120,10 @@ class SwaggerUIPlugin(BasePlugin):
             loader=FileSystemLoader(os.path.join(base_path, "swagger-ui"))
         )
         template = env.get_template("swagger.html")
+        custom_css_files = map(
+            lambda f: os.path.basename(f),
+            filter(lambda f: os.path.exists(f), self.config["custom_css_files"]),
+        )
 
         page_dir = os.path.dirname(
             os.path.join(config["site_dir"], urlunquote(page.url))
@@ -153,11 +158,13 @@ class SwaggerUIPlugin(BasePlugin):
             )
             output_from_parsed_template = template.render(
                 css_dir=css_dir,
+                custom_css_files=custom_css_files,
                 js_dir=js_dir,
                 background=self.config["background"],
                 id=cur_id,
                 openapi_spec_url=openapi_spec_url,
                 oauth2_redirect_url=oauth2_redirect_url,
+                validatorUrl=self.config["validatorUrl"],
                 options_str=json.dumps(cur_options, indent=4)[1:-1],
                 oath2_prop_str=json.dumps(cur_oath2_prop),
             )
@@ -184,11 +191,13 @@ class SwaggerUIPlugin(BasePlugin):
 
             output_from_parsed_template = template.render(
                 css_dir=css_dir,
+                custom_css_files=custom_css_files,
                 js_dir=js_dir,
                 background=self.config["background"],
                 id=cur_id,
                 openapi_spec_url=openapi_spec_url,
                 oauth2_redirect_url=oauth2_redirect_url,
+                validatorUrl=self.config["validatorUrl"],
                 options_str=json.dumps(cur_options, indent=4)[1:-1],
                 oath2_prop_str=json.dumps(cur_oath2_prop),
             )
@@ -281,8 +290,9 @@ class SwaggerUIPlugin(BasePlugin):
 
     def process_options(self, config, swagger_ui_ele):
         """Retrieve Swagger UI options from attribute and use config options as default"""
+        skip_option_keys = ["background", "custom_css_files"]
         global_options = {
-            k: v for k, v in dict(self.config).items() if k != "background"
+            k: v for k, v in dict(self.config).items() if k not in skip_option_keys
         }
         options_keys = global_options.keys()
         cur_options = {}
@@ -298,10 +308,11 @@ class SwaggerUIPlugin(BasePlugin):
                             )
                         cur_options[k] = val
                     except Exception as e:
-                        logging.error(e)
-                        logging.error(
+                        logging.warning(e)
+                        logging.warning(
                             "Ignore supportedSubmitMethods attribute setting."
                         )
+                        cur_options[k] = None
                 else:
                     cur_options[k] = val
             else:
@@ -339,8 +350,8 @@ class SwaggerUIPlugin(BasePlugin):
                             )
                         cur_prop[k] = val
                     except Exception as e:
-                        logging.error(e)
-                        logging.error(
+                        logging.warning(e)
+                        logging.warning(
                             "Ignore additionalQueryStringParams attribute setting."
                         )
                 elif k in [
@@ -364,6 +375,17 @@ class SwaggerUIPlugin(BasePlugin):
                 os.path.join(base_path, "swagger-ui", "stylesheets", file_name),
                 os.path.join(css_path, file_name),
             )
+
+        for custom_css_file in self.config["custom_css_files"]:
+            custom_css_file_path = os.path.normpath(custom_css_file)
+            if not os.path.exists(custom_css_file_path):
+                logging.warning(f"custom_css_files: {custom_css_file} dose not exist")
+            else:
+                file_name = os.path.basename(custom_css_file_path)
+                utils.copy_file(
+                    os.path.join(custom_css_file_path),
+                    os.path.join(css_path, file_name),
+                )
 
         js_path = os.path.join(output_base_path, "javascripts")
         for file_name in os.listdir(

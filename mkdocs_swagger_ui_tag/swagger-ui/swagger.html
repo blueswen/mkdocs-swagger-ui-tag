@@ -6,6 +6,9 @@
   <title>Swagger UI</title>
   <link rel="stylesheet" type="text/css" href="{{ css_dir }}swagger-ui.css" />
   <link rel="stylesheet" type="text/css" id="slate-css" media="none" href="{{ css_dir }}swagger-ui-dark.css" />
+  {% for css_file in custom_css_files %}
+  <link rel="stylesheet" type="text/css" href="{{ css_dir }}{{ css_file }}" />
+  {% endfor %}
 </head>
 
 <body style="overflow:hidden;background: {{background}};">
@@ -15,14 +18,14 @@
   <script>
     window.onload = function () {
       window.ui = SwaggerUIBundle({
-        dom_id: '#swagger-ui',
+        dom_id: "#swagger-ui",
         onComplete: onComplete,
         presets: [
           SwaggerUIBundle.presets.apis,
           SwaggerUIStandalonePreset
         ],
         {% if openapi_spec_url is string %}
-        url: '{{openapi_spec_url}}',
+        url: "{{openapi_spec_url}}",
         {% elif openapi_spec_url is sequence %}
         urls: [
         {% for item in openapi_spec_url %}
@@ -36,6 +39,7 @@
         {% else %}
         "oauth2RedirectUrl": "{{oauth2_redirect_url}}",
         {% endif %}
+        "validatorUrl": "{{validatorUrl}}",
         {{options_str}}
       })
 
