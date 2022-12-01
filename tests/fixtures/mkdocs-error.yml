@@ -1,0 +1,6 @@
+site_name: test mkdocs_swagger_ui_tag
+use_directory_urls: true
+docs_dir: error_docs
+
+plugins:
+    - swagger-ui-tag

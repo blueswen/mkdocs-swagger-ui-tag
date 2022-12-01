@@ -1,0 +1,9 @@
+<swagger-ui src="./openapi-spec/sample-oauth2.yaml"
+            clientId="your-client-id"
+            clientSecret="your-client-secret-if-required"
+            realm="your-realms"
+            appName="your-app-name"
+            scopes="openid profile"
+            additionalQueryStringParams="{'test': 'hello'}"
+            useBasicAuthenticationWithAccessCodeGrant="false"
+            usePkceWithAuthorizationCodeGrant="false"/>

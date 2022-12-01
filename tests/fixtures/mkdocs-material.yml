@@ -1,0 +1,12 @@
+site_name: test mkdocs_swagger_ui_tag
+use_directory_urls: true
+
+theme:
+  name: material
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+
+plugins:
+    - swagger-ui-tag
