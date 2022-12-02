@@ -1,5 +1,9 @@
 # MkDocs Swagger UI Tag 
 
+<a target="_blank" href="https://pypi.org/project/mkdocs-swagger-ui-tag"><img src="https://img.shields.io/pypi/v/mkdocs-swagger-ui-tag.svg" alt="PyPI version"/></a>
+<a target="_blank" href="https://pypi.org/project/mkdocs-swagger-ui-tag"><img src="https://img.shields.io/pypi/dm/mkdocs-swagger-ui-tag.svg" alt="PyPI downloads"/></a>
+<a target="_blank" href="https://codecov.io/gh/blueswen/mkdocs-swagger-ui-tag"><img src="https://codecov.io/gh/blueswen/mkdocs-swagger-ui-tag/branch/main/graph/badge.svg?token=1D1B0GAQN1" alt="Codecov"/></a>
+
 A MkDocs plugin supports for add [Swagger UI](https://github.com/swagger-api/swagger-ui) in page.
 
 ## Features
