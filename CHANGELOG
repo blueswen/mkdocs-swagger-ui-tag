@@ -1,3 +1,9 @@
+mkdocs-swagger-ui-tag 0.5.0 (2022-12-03)
+
+    * Supported extra CSS files in Swagger UI iframe (#7)
+    * Fixed validatorUrl option not working issue
+    * Updated swagger-ui-dist to 4.15.5
+
 mkdocs-swagger-ui-tag 0.4.3 (2022-08-31)
 
     * Fixed #6: Incompatible with special character in path
