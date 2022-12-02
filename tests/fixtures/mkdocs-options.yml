@@ -12,8 +12,8 @@ plugins:
         supportedSubmitMethods:
             - get
         validatorUrl: "https://validator.swagger.io/validator"
-        custom_css_files:
-            - not_exist/custom.css
-            - docs/custom-1.css
-            - docs/sub_dir/custom-2.css
+        extra_css:
+            - not_exist/extra.css
+            - docs/extra-1.css
+            - docs/sub_dir/extra-2.css
 

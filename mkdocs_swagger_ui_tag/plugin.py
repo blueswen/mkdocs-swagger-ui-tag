@@ -54,7 +54,7 @@ class SwaggerUIPlugin(BasePlugin):
             ),
         ),
         ("validatorUrl", config_options.Type(str, default="none")),
-        ("custom_css_files", config_options.Type(list, default=[])),
+        ("extra_css", config_options.Type(list, default=[])),
     )
 
     def on_pre_page(self, page, config, files, **kwargs):
@@ -107,6 +107,14 @@ class SwaggerUIPlugin(BasePlugin):
         Create a html with Swagger UI for iframe
         """
 
+        soup = BeautifulSoup(output, "html.parser")
+        swagger_ui_list = soup.find_all("swagger-ui")
+        iframe_id_list = []
+        grouped_list = []
+
+        if len(swagger_ui_list) == 0:
+            return str(soup)
+
         css_dir = utils.get_relative_url(
             utils.normalize_url("assets/stylesheets/"), page.url
         )
@@ -120,9 +128,9 @@ class SwaggerUIPlugin(BasePlugin):
             loader=FileSystemLoader(os.path.join(base_path, "swagger-ui"))
         )
         template = env.get_template("swagger.html")
-        custom_css_files = map(
+        extra_css_files = map(
             lambda f: os.path.basename(f),
-            filter(lambda f: os.path.exists(f), self.config["custom_css_files"]),
+            filter(lambda f: os.path.exists(f), self.config["extra_css"]),
         )
 
         page_dir = os.path.dirname(
@@ -130,14 +138,6 @@ class SwaggerUIPlugin(BasePlugin):
         )
         if not os.path.exists(page_dir):
             os.makedirs(page_dir)
-
-        soup = BeautifulSoup(output, "html.parser")
-        swagger_ui_list = soup.find_all("swagger-ui")
-        iframe_id_list = []
-        grouped_list = []
-
-        if len(swagger_ui_list) == 0:
-            return str(soup)
 
         for swagger_ui_ele in swagger_ui_list:
             if swagger_ui_ele.has_attr("grouped"):
@@ -158,7 +158,7 @@ class SwaggerUIPlugin(BasePlugin):
             )
             output_from_parsed_template = template.render(
                 css_dir=css_dir,
-                custom_css_files=custom_css_files,
+                extra_css_files=extra_css_files,
                 js_dir=js_dir,
                 background=self.config["background"],
                 id=cur_id,
@@ -191,7 +191,7 @@ class SwaggerUIPlugin(BasePlugin):
 
             output_from_parsed_template = template.render(
                 css_dir=css_dir,
-                custom_css_files=custom_css_files,
+                extra_css_files=extra_css_files,
                 js_dir=js_dir,
                 background=self.config["background"],
                 id=cur_id,
@@ -376,14 +376,14 @@ class SwaggerUIPlugin(BasePlugin):
                 os.path.join(css_path, file_name),
             )
 
-        for custom_css_file in self.config["custom_css_files"]:
-            custom_css_file_path = os.path.normpath(custom_css_file)
-            if not os.path.exists(custom_css_file_path):
-                logging.warning(f"custom_css_files: {custom_css_file} dose not exist")
+        for extra_css_file in self.config["extra_css"]:
+            extra_css_file_path = os.path.normpath(extra_css_file)
+            if not os.path.exists(extra_css_file_path):
+                logging.warning(f"extra_css: {extra_css_file} dose not exist")
             else:
-                file_name = os.path.basename(custom_css_file_path)
+                file_name = os.path.basename(extra_css_file_path)
                 utils.copy_file(
-                    os.path.join(custom_css_file_path),
+                    os.path.join(extra_css_file_path),
                     os.path.join(css_path, file_name),
                 )
 

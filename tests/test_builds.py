@@ -492,10 +492,10 @@ def test_plugin_options(tmp_path):
         r'"supportedSubmitMethods": \[(\n|\r)        "get"(\n|\r)    \]', iframe_content
     )
 
-    assert (testproject_path / "site/assets/stylesheets/custom-1.css").exists()
-    assert (testproject_path / "site/assets/stylesheets/custom-2.css").exists()
-    assert "assets/stylesheets/custom-1.css" in iframe_content
-    assert "assets/stylesheets/custom-2.css" in iframe_content
+    assert (testproject_path / "site/assets/stylesheets/extra-1.css").exists()
+    assert (testproject_path / "site/assets/stylesheets/extra-2.css").exists()
+    assert "assets/stylesheets/extra-1.css" in iframe_content
+    assert "assets/stylesheets/extra-2.css" in iframe_content
 
 
 def test_attribute_options(tmp_path):
