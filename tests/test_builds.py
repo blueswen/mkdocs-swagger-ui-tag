@@ -492,10 +492,28 @@ def test_plugin_options(tmp_path):
         r'"supportedSubmitMethods": \[(\n|\r)        "get"(\n|\r)    \]', iframe_content
     )
 
-    assert (testproject_path / "site/assets/stylesheets/extra-1.css").exists()
-    assert (testproject_path / "site/assets/stylesheets/extra-2.css").exists()
-    assert "assets/stylesheets/extra-1.css" in iframe_content
-    assert "assets/stylesheets/extra-2.css" in iframe_content
+    assert (testproject_path / "site/stylesheets/extra-1.css").exists()
+    assert (testproject_path / "site/stylesheets/sub_dir/extra-2.css").exists()
+    assert '"stylesheets/extra-1.css"' in iframe_content
+    assert '"stylesheets/sub_dir/extra-2.css"' in iframe_content
+
+    file = testproject_path / "site/sub_dir/page_in_sub_dir/index.html"
+    contents = file.read_text(encoding="utf8")
+
+    iframe_content_list = validate_iframe(contents, file.parent)
+    assert len(iframe_content_list) == 1
+    iframe_content = iframe_content_list[0]
+    assert '"../../stylesheets/extra-1.css"' in iframe_content
+    assert '"../../stylesheets/sub_dir/extra-2.css"' in iframe_content
+
+    file = testproject_path / "site/multiple/index.html"
+    contents = file.read_text(encoding="utf8")
+
+    iframe_content_list = validate_iframe(contents, file.parent)
+    assert len(iframe_content_list) == 3
+    for iframe_content in iframe_content_list:
+        assert '"../stylesheets/extra-1.css"' in iframe_content
+        assert '"../stylesheets/sub_dir/extra-2.css"' in iframe_content
 
 
 def test_attribute_options(tmp_path):

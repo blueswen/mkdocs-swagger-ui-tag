@@ -128,10 +128,10 @@ class SwaggerUIPlugin(BasePlugin):
             loader=FileSystemLoader(os.path.join(base_path, "swagger-ui"))
         )
         template = env.get_template("swagger.html")
-        extra_css_files = map(
-            lambda f: os.path.basename(f),
-            filter(lambda f: os.path.exists(f), self.config["extra_css"]),
-        )
+        extra_css_files = list(map(
+            lambda f: utils.get_relative_url(utils.normalize_url(f), page.url),
+            self.config["extra_css"],
+        ))
 
         page_dir = os.path.dirname(
             os.path.join(config["site_dir"], urlunquote(page.url))
@@ -375,17 +375,6 @@ class SwaggerUIPlugin(BasePlugin):
                 os.path.join(base_path, "swagger-ui", "stylesheets", file_name),
                 os.path.join(css_path, file_name),
             )
-
-        for extra_css_file in self.config["extra_css"]:
-            extra_css_file_path = os.path.normpath(extra_css_file)
-            if not os.path.exists(extra_css_file_path):
-                logging.warning(f"extra_css: {extra_css_file} dose not exist")
-            else:
-                file_name = os.path.basename(extra_css_file_path)
-                utils.copy_file(
-                    os.path.join(extra_css_file_path),
-                    os.path.join(css_path, file_name),
-                )
 
         js_path = os.path.join(output_base_path, "javascripts")
         for file_name in os.listdir(

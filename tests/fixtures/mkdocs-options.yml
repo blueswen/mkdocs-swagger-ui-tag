@@ -13,7 +13,6 @@ plugins:
             - get
         validatorUrl: "https://validator.swagger.io/validator"
         extra_css:
-            - not_exist/extra.css
-            - docs/extra-1.css
-            - docs/sub_dir/extra-2.css
+            - stylesheets/extra-1.css
+            - stylesheets/sub_dir/extra-2.css
 
