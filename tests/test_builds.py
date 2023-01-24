@@ -3,8 +3,6 @@ import logging
 import os
 import re
 import shutil
-import json
-import collections
 
 # MkDocs
 from mkdocs.__main__ import build_command
@@ -178,14 +176,6 @@ def validate_iframe(html_content, iframe_src_dir):
         )
         iframe_content_list.append(iframe_content)
         iframe_id_list.append(iframe_id)
-
-    regex_obj = re.search(
-        r"const iframe_id_list = (.*);",
-        html_content,
-    )
-    assert collections.Counter(iframe_id_list) == collections.Counter(
-        json.loads(regex_obj.group(1))
-    )
 
     return iframe_content_list
 
@@ -556,7 +546,7 @@ def test_empty(tmp_path):
     file = testproject_path / "site/empty/index.html"
     contents = file.read_text(encoding="utf8")
 
-    validate_additional_script_code(contents, exists=False)
+    validate_additional_script_code(contents, exists=True)
 
 
 def test_error(tmp_path):

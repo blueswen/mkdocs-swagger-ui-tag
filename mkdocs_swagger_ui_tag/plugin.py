@@ -112,101 +112,99 @@ class SwaggerUIPlugin(BasePlugin):
         iframe_id_list = []
         grouped_list = []
 
-        if len(swagger_ui_list) == 0:
-            return str(soup)
-
-        css_dir = utils.get_relative_url(
-            utils.normalize_url("assets/stylesheets/"), page.url
-        )
-        js_dir = utils.get_relative_url(
-            utils.normalize_url("assets/javascripts/"), page.url
-        )
-        default_oauth2_redirect_file = utils.get_relative_url(
-            utils.normalize_url("assets/swagger-ui/oauth2-redirect.html"), page.url
-        )
-        env = Environment(
-            loader=FileSystemLoader(os.path.join(base_path, "swagger-ui"))
-        )
-        template = env.get_template("swagger.html")
-        extra_css_files = list(map(
-            lambda f: utils.get_relative_url(utils.normalize_url(f), page.url),
-            self.config["extra_css"],
-        ))
-
-        page_dir = os.path.dirname(
-            os.path.join(config["site_dir"], urlunquote(page.url))
-        )
-        if not os.path.exists(page_dir):
-            os.makedirs(page_dir)
-
-        for swagger_ui_ele in swagger_ui_list:
-            if swagger_ui_ele.has_attr("grouped"):
-                grouped_list.append(swagger_ui_ele)
-                continue
-
-            cur_id = str(uuid.uuid4())[:8]
-            iframe_filename = f"swagger-{cur_id}.html"
-            iframe_id_list.append(cur_id)
-            cur_options = self.process_options(config, swagger_ui_ele)
-            cur_oath2_prop = self.process_oath2_prop(swagger_ui_ele)
-            oauth2_redirect_url = cur_options.pop("oauth2RedirectUrl", "")
-            if not oauth2_redirect_url:
-                oauth2_redirect_url = default_oauth2_redirect_file
-
-            openapi_spec_url = self.path_to_url(
-                page.file, swagger_ui_ele.get("src", "")
+        if len(swagger_ui_list) > 0:
+            css_dir = utils.get_relative_url(
+                utils.normalize_url("assets/stylesheets/"), page.url
             )
-            output_from_parsed_template = template.render(
-                css_dir=css_dir,
-                extra_css_files=extra_css_files,
-                js_dir=js_dir,
-                background=self.config["background"],
-                id=cur_id,
-                openapi_spec_url=openapi_spec_url,
-                oauth2_redirect_url=oauth2_redirect_url,
-                validatorUrl=self.config["validatorUrl"],
-                options_str=json.dumps(cur_options, indent=4)[1:-1],
-                oath2_prop_str=json.dumps(cur_oath2_prop),
+            js_dir = utils.get_relative_url(
+                utils.normalize_url("assets/javascripts/"), page.url
             )
-            with open(os.path.join(page_dir, iframe_filename), "w") as f:
-                f.write(output_from_parsed_template)
-            self.replace_with_iframe(soup, swagger_ui_ele, cur_id, iframe_filename)
-
-        if grouped_list:
-            cur_id = str(uuid.uuid4())[:8]
-            iframe_filename = f"swagger-{cur_id}.html"
-            iframe_id_list.append(cur_id)
-            openapi_spec_url = []
-            for swagger_ui_ele in grouped_list:
-                cur_url = self.path_to_url(page.file, swagger_ui_ele.get("src", ""))
-                cur_name = swagger_ui_ele.get("name", swagger_ui_ele.get("src", ""))
-                openapi_spec_url.append({"url": cur_url, "name": cur_name})
-
-            # only use options from first grouped swagger ui tag
-            cur_options = self.process_options(config, grouped_list[0])
-            cur_oath2_prop = self.process_oath2_prop(grouped_list[0])
-            oauth2_redirect_url = cur_options.pop("oauth2RedirectUrl", "")
-            if not oauth2_redirect_url:
-                oauth2_redirect_url = default_oauth2_redirect_file
-
-            output_from_parsed_template = template.render(
-                css_dir=css_dir,
-                extra_css_files=extra_css_files,
-                js_dir=js_dir,
-                background=self.config["background"],
-                id=cur_id,
-                openapi_spec_url=openapi_spec_url,
-                oauth2_redirect_url=oauth2_redirect_url,
-                validatorUrl=self.config["validatorUrl"],
-                options_str=json.dumps(cur_options, indent=4)[1:-1],
-                oath2_prop_str=json.dumps(cur_oath2_prop),
+            default_oauth2_redirect_file = utils.get_relative_url(
+                utils.normalize_url("assets/swagger-ui/oauth2-redirect.html"), page.url
             )
-            with open(os.path.join(page_dir, iframe_filename), "w") as f:
-                f.write(output_from_parsed_template)
-            self.replace_with_iframe(soup, grouped_list[0], cur_id, iframe_filename)
-            # only keep first grouped swagger ui tag
-            for rest_swagger_ui_ele in grouped_list[1:]:
-                rest_swagger_ui_ele.extract()
+            env = Environment(
+                loader=FileSystemLoader(os.path.join(base_path, "swagger-ui"))
+            )
+            template = env.get_template("swagger.html")
+            extra_css_files = list(map(
+                lambda f: utils.get_relative_url(utils.normalize_url(f), page.url),
+                self.config["extra_css"],
+            ))
+
+            page_dir = os.path.dirname(
+                os.path.join(config["site_dir"], urlunquote(page.url))
+            )
+            if not os.path.exists(page_dir):
+                os.makedirs(page_dir)
+
+            for swagger_ui_ele in swagger_ui_list:
+                if swagger_ui_ele.has_attr("grouped"):
+                    grouped_list.append(swagger_ui_ele)
+                    continue
+
+                cur_id = str(uuid.uuid4())[:8]
+                iframe_filename = f"swagger-{cur_id}.html"
+                iframe_id_list.append(cur_id)
+                cur_options = self.process_options(config, swagger_ui_ele)
+                cur_oath2_prop = self.process_oath2_prop(swagger_ui_ele)
+                oauth2_redirect_url = cur_options.pop("oauth2RedirectUrl", "")
+                if not oauth2_redirect_url:
+                    oauth2_redirect_url = default_oauth2_redirect_file
+
+                openapi_spec_url = self.path_to_url(
+                    page.file, swagger_ui_ele.get("src", "")
+                )
+                output_from_parsed_template = template.render(
+                    css_dir=css_dir,
+                    extra_css_files=extra_css_files,
+                    js_dir=js_dir,
+                    background=self.config["background"],
+                    id=cur_id,
+                    openapi_spec_url=openapi_spec_url,
+                    oauth2_redirect_url=oauth2_redirect_url,
+                    validatorUrl=self.config["validatorUrl"],
+                    options_str=json.dumps(cur_options, indent=4)[1:-1],
+                    oath2_prop_str=json.dumps(cur_oath2_prop),
+                )
+                with open(os.path.join(page_dir, iframe_filename), "w") as f:
+                    f.write(output_from_parsed_template)
+                self.replace_with_iframe(soup, swagger_ui_ele, cur_id, iframe_filename)
+
+            if grouped_list:
+                cur_id = str(uuid.uuid4())[:8]
+                iframe_filename = f"swagger-{cur_id}.html"
+                iframe_id_list.append(cur_id)
+                openapi_spec_url = []
+                for swagger_ui_ele in grouped_list:
+                    cur_url = self.path_to_url(page.file, swagger_ui_ele.get("src", ""))
+                    cur_name = swagger_ui_ele.get("name", swagger_ui_ele.get("src", ""))
+                    openapi_spec_url.append({"url": cur_url, "name": cur_name})
+
+                # only use options from first grouped swagger ui tag
+                cur_options = self.process_options(config, grouped_list[0])
+                cur_oath2_prop = self.process_oath2_prop(grouped_list[0])
+                oauth2_redirect_url = cur_options.pop("oauth2RedirectUrl", "")
+                if not oauth2_redirect_url:
+                    oauth2_redirect_url = default_oauth2_redirect_file
+
+                output_from_parsed_template = template.render(
+                    css_dir=css_dir,
+                    extra_css_files=extra_css_files,
+                    js_dir=js_dir,
+                    background=self.config["background"],
+                    id=cur_id,
+                    openapi_spec_url=openapi_spec_url,
+                    oauth2_redirect_url=oauth2_redirect_url,
+                    validatorUrl=self.config["validatorUrl"],
+                    options_str=json.dumps(cur_options, indent=4)[1:-1],
+                    oath2_prop_str=json.dumps(cur_oath2_prop),
+                )
+                with open(os.path.join(page_dir, iframe_filename), "w") as f:
+                    f.write(output_from_parsed_template)
+                self.replace_with_iframe(soup, grouped_list[0], cur_id, iframe_filename)
+                # only keep first grouped swagger ui tag
+                for rest_swagger_ui_ele in grouped_list[1:]:
+                    rest_swagger_ui_ele.extract()
 
         js_code = soup.new_tag("script")
         # trigger from iframe body ResizeObserver
@@ -221,17 +219,31 @@ class SwaggerUIPlugin(BasePlugin):
             }
         """
         # listen scroll event to update modal position in iframe
-        js_code.string += f"""
-            const iframe_id_list = {json.dumps(iframe_id_list)};
-        """
         js_code.string += """
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        """
+        if len(iframe_id_list) == 0:
+            js_code.string += """
+            let ticking = true;
+            """
+        else:
+            js_code.string += """
             let ticking = false;
+            """
+        js_code.string += """
             document.addEventListener('scroll', function(e) {
                 if (!ticking) {
                     window.requestAnimationFrame(()=> {
                         let half_vh = window.innerHeight/2;
                         for(var i = 0; i < iframe_id_list.length; i++) {
                             let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
                             let diff = element.getBoundingClientRect().top
                             if(element.contentWindow.update_top_val){
                                 element.contentWindow.update_top_val(half_vh - diff)
