@@ -1,3 +1,7 @@
+mkdocs-swagger-ui-tag 0.6.0 (2023-03-10)
+
+    * Updated swagger-ui-dist to 5.0.0-alpha.0, which starting support OpenAPI 3.1
+
 mkdocs-swagger-ui-tag 0.5.2 (20223-01-24)
 
     * Fixed undefined function bug when using mkdocs-material instant loading feature (#9)
