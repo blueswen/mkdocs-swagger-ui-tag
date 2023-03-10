@@ -23,7 +23,7 @@
           SwaggerUIStandalonePreset
         ],
         
-        url: "../openapi-spec/sample.yaml",
+        url: "../openapi-spec/sample-oauth2.yaml",
         
         
         "oauth2RedirectUrl": new URL("../../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
@@ -50,6 +50,8 @@
       })
 
       
+      window.ui.initOAuth({"clientId": "your-client-id", "clientSecret": "your-client-secret-if-required", "realm": "your-realms", "appName": "your-app-name", "scopes": "openid profile", "additionalQueryStringParams": {"test": "hello"}, "useBasicAuthenticationWithAccessCodeGrant": false, "usePkceWithAuthorizationCodeGrant": false})
+      
 
       const scheme = parent.scheme
       if (scheme === "slate") {
@@ -66,7 +68,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("ba373286");
+      parent.update_swagger_ui_iframe_height("b3cf5a8c");
     });
 
     // start observing for resizing
