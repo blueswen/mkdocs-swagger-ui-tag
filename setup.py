@@ -4,7 +4,7 @@ with open("README.md", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(name="mkdocs-swagger-ui-tag",
-      version="0.6.0",
+      version="0.6.1",
       author="Blueswen",
       author_email="blueswen.tw@gmail.com",
       url="https://blueswen.github.io/mkdocs-swagger-ui-tag",

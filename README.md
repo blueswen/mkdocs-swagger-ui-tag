@@ -73,6 +73,7 @@ A MkDocs plugin supports for add [Swagger UI](https://github.com/swagger-api/swa
     | supportedSubmitMethods | Array | Default: All Http Methods. Array=["get", "put", "post", "delete", "options", "head", "patch", "trace"]. List of HTTP methods that have the "Try it out" feature enabled. An empty array disables "Try it out" for all operations. This does not filter the operations from the display. |
     | validatorUrl | String | Default: "none". By default, the validation is disabled. When setting with "https://validator.swagger.io/validator", Swagger UI  attempts to validate specs against swagger.io's online validator in multiple OAS Swagger UI. You can use this parameter to set a different validator URL, for example for locally deployed validators ([Validator Badge](https://github.com/swagger-api/validator-badge)). |
     | extra_css | Array | Default: []. Extra CSS files in your `docs_dir` included in Swagger UI iframe target html file. |
+    | dark_scheme_name | String | Default: "slate". Custom dark mode scheme name for [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/). Check more details on [Material for MkDocs Documents](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/). |
 
 ## How it works
 

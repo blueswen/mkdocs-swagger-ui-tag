@@ -328,6 +328,7 @@ def test_material(tmp_path):
     file = testproject_path / "site/index.html"
     contents = file.read_text(encoding="utf8")
     validate_additional_script_code_for_material(contents, exists=True)
+    assert 'const dark_scheme_name = "slate"' in contents
 
     iframe_content_list = validate_iframe(contents, file.parent)
     assert len(iframe_content_list) == 1
@@ -341,6 +342,18 @@ def test_material(tmp_path):
     assert regex_obj
     openapi_spec_url = regex_obj.group(1)
     assert (file.parent / openapi_spec_url).resolve().exists()
+
+
+def test_material_dark_scheme_name(tmp_path):
+    """
+    Integrate with Material for MkDocs
+    """
+    mkdocs_file = "mkdocs-material-options.yml"
+    testproject_path = validate_mkdocs_file(tmp_path, f"tests/fixtures/{mkdocs_file}")
+    file = testproject_path / "site/index.html"
+    contents = file.read_text(encoding="utf8")
+    validate_additional_script_code_for_material(contents, exists=True)
+    assert 'const dark_scheme_name = "white"' in contents
 
 
 def test_url(tmp_path):

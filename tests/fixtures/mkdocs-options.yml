@@ -15,4 +15,3 @@ plugins:
         extra_css:
             - stylesheets/extra-1.css
             - stylesheets/sub_dir/extra-2.css
-

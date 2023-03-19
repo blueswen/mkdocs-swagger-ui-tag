@@ -55,6 +55,7 @@ class SwaggerUIPlugin(BasePlugin):
         ),
         ("validatorUrl", config_options.Type(str, default="none")),
         ("extra_css", config_options.Type(list, default=[])),
+        ("dark_scheme_name", config_options.Type(str, default="slate")),
     )
 
     def on_pre_page(self, page, config, files, **kwargs):
@@ -126,10 +127,12 @@ class SwaggerUIPlugin(BasePlugin):
                 loader=FileSystemLoader(os.path.join(base_path, "swagger-ui"))
             )
             template = env.get_template("swagger.html")
-            extra_css_files = list(map(
-                lambda f: utils.get_relative_url(utils.normalize_url(f), page.url),
-                self.config["extra_css"],
-            ))
+            extra_css_files = list(
+                map(
+                    lambda f: utils.get_relative_url(utils.normalize_url(f), page.url),
+                    self.config["extra_css"],
+                )
+            )
 
             page_dir = os.path.dirname(
                 os.path.join(config["site_dir"], urlunquote(page.url))
@@ -257,6 +260,9 @@ class SwaggerUIPlugin(BasePlugin):
         """
         if config["theme"].name == "material":
             # synchronized dark mode with mkdocs-material
+            js_code.string += f"""
+            const dark_scheme_name = "{self.config['dark_scheme_name']}"
+            """
             js_code.string += """
             window.scheme = document.body.getAttribute("data-md-color-scheme")
             const options = {
@@ -270,7 +276,7 @@ class SwaggerUIPlugin(BasePlugin):
                         for(var i = 0; i < iframe_list.length; i++) {
                             var ele = iframe_list.item(i);
                             if (ele) {
-                                if (scheme === "slate") {
+                                if (scheme === dark_scheme_name) {
                                     ele.contentWindow.enable_dark_mode();
                                 } else {
                                     ele.contentWindow.disable_dark_mode();
