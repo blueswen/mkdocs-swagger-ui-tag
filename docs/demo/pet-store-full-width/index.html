@@ -348,7 +348,7 @@
 <a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="p">&lt;</span><span class="nt">swagger-ui</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://petstore.swagger.io/v2/swagger.json"</span><span class="p">/&gt;</span>
 </code></pre></div>
 <h2 id="swagger-ui">Swagger UI</h2>
-<p><iframe class="swagger-ui-iframe" frameborder="0" id="fa13c87f" src="swagger-fa13c87f.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
+<p><iframe class="swagger-ui-iframe" frameborder="0" id="d50a8796" src="swagger-d50a8796.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
@@ -412,6 +412,8 @@
                 }
             });
         
+            const dark_scheme_name = "slate"
+            
             window.scheme = document.body.getAttribute("data-md-color-scheme")
             const options = {
                 attributeFilter: ['data-md-color-scheme'],
@@ -424,7 +426,7 @@
                         for(var i = 0; i < iframe_list.length; i++) {
                             var ele = iframe_list.item(i);
                             if (ele) {
-                                if (scheme === "slate") {
+                                if (scheme === dark_scheme_name) {
                                     ele.contentWindow.enable_dark_mode();
                                 } else {
                                     ele.contentWindow.disable_dark_mode();

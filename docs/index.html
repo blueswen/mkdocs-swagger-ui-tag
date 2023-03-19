@@ -412,7 +412,7 @@
 3. Add <code>swagger-ui</code> tag in markdown to include Swagger UI</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">swagger-ui</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://petstore.swagger.io/v2/swagger.json"</span><span class="p">/&gt;</span>
 </code></pre></div>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="80%" href="sample.png"><img alt="Swagger UI Sample Image" src="sample.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="sample.png"><img alt="Swagger UI Sample Image" src="sample.png"/></a></p>
 </li>
 <li>
 <p>You may customize the plugin by passing options in mkdocs.yml, check more details on <a href="./options/">options</a>:</p>
@@ -473,6 +473,11 @@
 <td>extra_css</td>
 <td>Array</td>
 <td>Default: []. Extra CSS files in your <code>docs_dir</code> included in Swagger UI iframe target html file.</td>
+</tr>
+<tr>
+<td>dark_scheme_name</td>
+<td>String</td>
+<td>Default: "slate". Custom dark mode scheme name for <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a>. Check more details on <a href="https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/">Material for MkDocs Documents</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -552,6 +557,8 @@
                 }
             });
         
+            const dark_scheme_name = "slate"
+            
             window.scheme = document.body.getAttribute("data-md-color-scheme")
             const options = {
                 attributeFilter: ['data-md-color-scheme'],
@@ -564,7 +571,7 @@
                         for(var i = 0; i < iframe_list.length; i++) {
                             var ele = iframe_list.item(i);
                             if (ele) {
-                                if (scheme === "slate") {
+                                if (scheme === dark_scheme_name) {
                                     ele.contentWindow.enable_dark_mode();
                                 } else {
                                     ele.contentWindow.disable_dark_mode();

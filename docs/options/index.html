@@ -432,9 +432,9 @@
 </code></pre></div>
 <p>Tag attributes also supports setting <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/">initOAuth</a> method.</p>
 <h3 id="swagger-ui-with-local-configurations">Swagger UI with local configurations</h3>
-<p><iframe class="swagger-ui-iframe" frameborder="0" id="e1d0e4bd" src="swagger-e1d0e4bd.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
+<p><iframe class="swagger-ui-iframe" frameborder="0" id="d3b292e2" src="swagger-d3b292e2.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
 <h3 id="swagger-ui-without-local-configurations">Swagger UI without local configurations</h3>
-<p><iframe class="swagger-ui-iframe" frameborder="0" id="0f35139b" src="swagger-0f35139b.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
+<p><iframe class="swagger-ui-iframe" frameborder="0" id="952dde27" src="swagger-952dde27.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
@@ -498,6 +498,8 @@
                 }
             });
         
+            const dark_scheme_name = "slate"
+            
             window.scheme = document.body.getAttribute("data-md-color-scheme")
             const options = {
                 attributeFilter: ['data-md-color-scheme'],
@@ -510,7 +512,7 @@
                         for(var i = 0; i < iframe_list.length; i++) {
                             var ele = iframe_list.item(i);
                             if (ele) {
-                                if (scheme === "slate") {
+                                if (scheme === dark_scheme_name) {
                                     ele.contentWindow.enable_dark_mode();
                                 } else {
                                     ele.contentWindow.disable_dark_mode();
