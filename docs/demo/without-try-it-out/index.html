@@ -5,12 +5,12 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://blueswen.github.io/mkdocs-swagger-ui-tag/demo/multiple/" rel="canonical"/>
-<link href="../pet-store-full-width/" rel="prev"/>
-<link href="../build-in-multiple/" rel="next"/>
+<link href="https://blueswen.github.io/mkdocs-swagger-ui-tag/demo/without-try-it-out/" rel="canonical"/>
+<link href="../oauth2/" rel="prev"/>
+<link href="../openapi-v3.1/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.1.15+insiders-4.35.3" name="generator"/>
-<title>Multiple - MkDocs Swagger UI Tag</title>
+<title>Without Try It Out - MkDocs Swagger UI Tag</title>
 <link href="../../assets/stylesheets/main.cac7c1ad.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.ecc776e4.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -60,7 +60,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Multiple
+              Without Try It Out
             
           </span>
 </div>
@@ -244,13 +244,49 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../multiple/">
+<span class="md-ellipsis">
+    
+  
+    Multiple
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../build-in-multiple/">
+<span class="md-ellipsis">
+    
+  
+    Build-in Multiple
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../oauth2/">
+<span class="md-ellipsis">
+    
+  
+    OAuth2 Initialization
+  
+
+    
+  </span>
+</a>
+</li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
     
   
-    Multiple
+    Without Try It Out
   
 
     
@@ -261,7 +297,7 @@
 <span class="md-ellipsis">
     
   
-    Multiple
+    Without Try It Out
   
 
     
@@ -295,42 +331,6 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../build-in-multiple/">
-<span class="md-ellipsis">
-    
-  
-    Build-in Multiple
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../oauth2/">
-<span class="md-ellipsis">
-    
-  
-    OAuth2 Initialization
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../without-try-it-out/">
-<span class="md-ellipsis">
-    
-  
-    Without Try It Out
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="../openapi-v3.1/">
 <span class="md-ellipsis">
     
@@ -352,17 +352,19 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>Multiple</h1>
-<p>Support render multiple Swagger UI.</p>
+<h1>Without Try It Out</h1>
+<p>Disable the "Try It Out" feature using the <code>supportedSubmitMethods</code> option. This is particularly useful for pure documentation purposes when there is no live backend server.</p>
 <h2 id="markdown">Markdown</h2>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">swagger-ui</span> <span class="na">src</span><span class="o">=</span><span class="s">"./openapi-spec/sample.yaml"</span><span class="p">/&gt;</span>
-<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="p">&lt;</span><span class="nt">swagger-ui</span> <span class="na">src</span><span class="o">=</span><span class="s">"./openapi-spec/sample-oauth2.yaml"</span><span class="p">/&gt;</span>
-<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="p">&lt;</span><span class="nt">swagger-ui</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://petstore.swagger.io/v2/swagger.json"</span><span class="p">/&gt;</span>
+<p>With local configurations:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">swagger-ui</span> <span class="na">supportedSubmitMethods</span><span class="o">=</span><span class="s">"[]"</span> <span class="na">src</span><span class="o">=</span><span class="s">"./openapi-spec/sample.yaml"</span><span class="p">/&gt;</span>
+</code></pre></div>
+<p>With global configurations:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nt">plugins</span><span class="p">:</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">swagger-ui</span><span class="p">:</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">      </span><span class="nt">supportedSubmitMethods</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
 </code></pre></div>
 <h2 id="swagger-ui">Swagger UI</h2>
-<p><iframe class="swagger-ui-iframe" frameborder="0" id="1e250f64" src="swagger-1e250f64.html" style="overflow:hidden;width:100%;" width="100%"></iframe>
-<iframe class="swagger-ui-iframe" frameborder="0" id="559504db" src="swagger-559504db.html" style="overflow:hidden;width:100%;" width="100%"></iframe>
-<iframe class="swagger-ui-iframe" frameborder="0" id="e45894e5" src="swagger-e45894e5.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
+<p><iframe class="swagger-ui-iframe" frameborder="0" id="77cc1911" src="swagger-77cc1911.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>

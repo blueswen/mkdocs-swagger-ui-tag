@@ -1,4 +1,4 @@
-Support using local OpenAPI Specification file on website.
+Support OpenAPI Specification v3.1.0.
 
 ## Markdown
 

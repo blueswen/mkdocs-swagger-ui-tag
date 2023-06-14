@@ -68,4 +68,5 @@ nav:
     - Multiple: demo/multiple.md
     - Build-in Multiple: demo/build-in-multiple.md
     - OAuth2 Initialization: demo/oauth2.md
+    - Without Try It Out: demo/without-try-it-out.md
     - OpenAPI v3.1: demo/openapi-v3.1.md

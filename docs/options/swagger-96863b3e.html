@@ -23,30 +23,23 @@
           SwaggerUIStandalonePreset
         ],
         
-        url: "https://petstore.swagger.io/v2/swagger.json",
+        url: "../demo/openapi-spec/sample.yaml",
         
         
         "oauth2RedirectUrl": new URL("../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
         
         "validatorUrl": "none",
         
-    "docExpansion": "list",
-    "filter": false,
+    "docExpansion": "none",
+    "filter": "",
     "tryItOutEnabled": false,
     "supportedSubmitMethods": [
-        "get",
-        "put",
-        "post",
-        "delete",
-        "options",
-        "head",
-        "patch",
-        "trace"
+        "get"
     ],
     "validatorUrl": "none",
     "extra_css": [],
     "dark_scheme_name": "slate",
-    "syntaxHighlight.theme": "agate"
+    "syntaxHighlight.theme": "monokai"
 
       })
 
@@ -67,7 +60,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("a67d3344");
+      parent.update_swagger_ui_iframe_height("96863b3e");
     });
 
     // start observing for resizing
