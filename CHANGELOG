@@ -1,3 +1,7 @@
+mkdocs-swagger-ui-tag 0.6.3 (2023-07-23)
+
+    * Updated swagger-ui-dist to 5.1.3
+
 mkdocs-swagger-ui-tag 0.6.2 (2023-06-14)
 
     * Updated swagger-ui-dist to 5.0.0, which officially starting support OpenAPI 3.1
