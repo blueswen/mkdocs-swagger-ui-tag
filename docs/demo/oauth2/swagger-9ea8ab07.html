@@ -23,7 +23,7 @@
           SwaggerUIStandalonePreset
         ],
         
-        url: "../openapi-spec/sample.yaml",
+        url: "../openapi-spec/sample-oauth2.yaml",
         
         
         "oauth2RedirectUrl": new URL("../../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
@@ -33,7 +33,16 @@
     "docExpansion": "list",
     "filter": false,
     "tryItOutEnabled": false,
-    "supportedSubmitMethods": [],
+    "supportedSubmitMethods": [
+        "get",
+        "put",
+        "post",
+        "delete",
+        "options",
+        "head",
+        "patch",
+        "trace"
+    ],
     "validatorUrl": "none",
     "extra_css": [],
     "dark_scheme_name": "slate",
@@ -41,6 +50,8 @@
 
       })
 
+      
+      window.ui.initOAuth({"clientId": "your-client-id", "clientSecret": "your-client-secret-if-required", "realm": "your-realms", "appName": "your-app-name", "scopes": "openid profile", "additionalQueryStringParams": {"test": "hello"}, "useBasicAuthenticationWithAccessCodeGrant": false, "usePkceWithAuthorizationCodeGrant": false})
       
 
       const scheme = parent.scheme
@@ -58,7 +69,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("d4a3eb9f");
+      parent.update_swagger_ui_iframe_height("9ea8ab07");
     });
 
     // start observing for resizing
