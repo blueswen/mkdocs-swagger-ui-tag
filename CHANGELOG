@@ -1,3 +1,8 @@
+mkdocs-swagger-ui-tag 0.6.6 (2023-10-25)
+
+    * Updated swagger-ui-dist to 5.9.1
+    * Updated dark mode background color to #1e2129
+
 mkdocs-swagger-ui-tag 0.6.5 (2023-09-14)
 
     * Updated swagger-ui-dist to 5.7.1
