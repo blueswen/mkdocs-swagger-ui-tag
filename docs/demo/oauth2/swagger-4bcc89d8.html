@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Swagger UI</title>
-  <link rel="stylesheet" type="text/css" href="../assets/stylesheets/swagger-ui.css" />
-  <link rel="stylesheet" type="text/css" id="slate-css" media="none" href="../assets/stylesheets/swagger-ui-dark.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/swagger-ui.css" />
+  <link rel="stylesheet" type="text/css" id="slate-css" media="none" href="../../assets/stylesheets/swagger-ui-dark.css" />
   
 </head>
 
 <body style="overflow:hidden;background: ;">
   <div id="swagger-ui"></div>
-  <script src="../assets/javascripts/swagger-ui-bundle.js" charset="UTF-8"> </script>
-  <script src="../assets/javascripts/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
+  <script src="../../assets/javascripts/swagger-ui-bundle.js" charset="UTF-8"> </script>
+  <script src="../../assets/javascripts/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
   <script>
     window.onload = function () {
       window.ui = SwaggerUIBundle({
@@ -23,26 +23,35 @@
           SwaggerUIStandalonePreset
         ],
         
-        url: "../demo/openapi-spec/sample.yaml",
+        url: "../openapi-spec/sample-oauth2.yaml",
         
         
-        "oauth2RedirectUrl": new URL("../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
+        "oauth2RedirectUrl": new URL("../../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
         
         "validatorUrl": "none",
         
-    "docExpansion": "none",
-    "filter": "",
+    "docExpansion": "list",
+    "filter": false,
     "tryItOutEnabled": false,
     "supportedSubmitMethods": [
-        "get"
+        "get",
+        "put",
+        "post",
+        "delete",
+        "options",
+        "head",
+        "patch",
+        "trace"
     ],
     "validatorUrl": "none",
     "extra_css": [],
     "dark_scheme_name": "slate",
-    "syntaxHighlight.theme": "monokai"
+    "syntaxHighlight.theme": "agate"
 
       })
 
+      
+      window.ui.initOAuth({"clientId": "your-client-id", "clientSecret": "your-client-secret-if-required", "realm": "your-realms", "appName": "your-app-name", "scopes": "openid profile", "additionalQueryStringParams": {"test": "hello"}, "useBasicAuthenticationWithAccessCodeGrant": false, "usePkceWithAuthorizationCodeGrant": false})
       
 
       const scheme = parent.scheme
@@ -60,7 +69,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("143d9cc2");
+      parent.update_swagger_ui_iframe_height("4bcc89d8");
     });
 
     // start observing for resizing
