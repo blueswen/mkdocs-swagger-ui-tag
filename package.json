@@ -1,5 +1,5 @@
 {
     "dependencies": {
-        "swagger-ui-dist": "5.9.1"
+        "swagger-ui-dist": "5.11.0"
     }
 }

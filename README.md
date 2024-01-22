@@ -6,36 +6,36 @@
 <a target="_blank" href="https://codecov.io/gh/blueswen/mkdocs-swagger-ui-tag"><img src="https://codecov.io/gh/blueswen/mkdocs-swagger-ui-tag/branch/main/graph/badge.svg?token=1D1B0GAQN1" alt="Codecov"/></a>
 </p>
 
-A MkDocs plugin supports for add [Swagger UI](https://github.com/swagger-api/swagger-ui) in page.
+A MkDocs plugin supports adding [Swagger UI](https://github.com/swagger-api/swagger-ui) to the page.
 
 [Live demo](https://blueswen.github.io/mkdocs-swagger-ui-tag/) with [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
 
 ## Features
 
 1. OpenAPI Specification file from online over URL or static file in docs
-2. All dependencies are using static files handled by plugin not from CDN, especially suitable for those documents been deployed in the intranet
-3. Multiple Swagger UI in same page
+2. All dependencies are using static files handled by the plugin not from CDN, especially suitable for those documents been deployed in the intranet
+3. Multiple Swagger UI on the same page
 4. Synchronized dark mode with [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
 5. Configure [Swagger UI configuration](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/) through plugin options and tag attributes
-6. Support multiple OAS in single Swagger UI with top bar selector
+6. Support multiple OAS in a single Swagger UI with a top bar selector
 7. Support Swagger UI [initOAuth](https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/) method
 
 ## Dependency
 
 1. Python Package
     1. beautifulsoup4>=4.11.1
-2. [Swagger UI dist](https://www.npmjs.com/package/swagger-ui-dist) javascript file and css file
-    1. swagger-ui-dist==5.10.0
+2. [Swagger UI dist](https://www.npmjs.com/package/swagger-ui-dist) javascript file and CSS file
+    1. swagger-ui-dist==5.11.0
 
 ## Usage
 
-1. Install plugin from pypi
+1. Install the plugin from PyPI
 
     ```bash
     pip install mkdocs-swagger-ui-tag
     ```
 
-2. Add ```swagger-ui-tag``` plugin in to your mkdocs.yml plugins sections:
+2. Add ```swagger-ui-tag``` plugin to your mkdocs.yml plugins sections:
 
     ```yaml
     plugins:
@@ -75,8 +75,8 @@ A MkDocs plugin supports for add [Swagger UI](https://github.com/swagger-api/swa
 
 ## How it works
 
-1. Copy Swagger UI script file into `site/assets/javascripts/` directory, CSS file into `site/assets/stylesheets/` directory, and the [default Oauth2 redirect html](https://github.com/blueswen/mkdocs-swagger-ui-tag/blob/main/mkdocs_swagger_ui_tag/swagger-ui/oauth2-redirect.html) into `site/assets/swagger-ui/` directory
-2. Search all swagger-ui tags, then convert them to an iframe tag and generate the iframe target html with the given OpenAPI Specification src path and options
+1. Copy the Swagger UI script file into `site/assets/javascripts/` directory, the CSS file into `site/assets/stylesheets/` directory, and the [default Oauth2 redirect html](https://github.com/blueswen/mkdocs-swagger-ui-tag/blob/main/mkdocs_swagger_ui_tag/swagger-ui/oauth2-redirect.html) into `site/assets/swagger-ui/` directory
+2. Search all swagger-ui tags, then convert them to an iframe tag and generate the iframe target HTML with the given OpenAPI Specification src path and options
 
 ## License
 

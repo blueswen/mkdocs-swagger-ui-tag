@@ -4,12 +4,12 @@ import os
 import re
 import shutil
 
-# MkDocs
-from mkdocs.__main__ import build_command
-
 # other 3rd party
 from bs4 import BeautifulSoup
 from click.testing import CliRunner
+
+# MkDocs
+from mkdocs.__main__ import build_command
 
 # ##################################
 # ######## Globals #################
@@ -114,39 +114,6 @@ def validate_mkdocs_file(
     validate_build(testproject_path)
 
     return testproject_path
-
-
-def validate_static(html_content: str, path: str = "", exist: bool = True):
-    """
-    Validate glightbox.min.css and glightbox.min.js have been loaded or not
-    """
-    assert exist == (
-        re.search(
-            rf'<link href="{path}assets\/stylesheets\/glightbox\.min\.css" rel="stylesheet"\/>',
-            html_content,
-        )
-        is not None
-    )
-    assert exist == (
-        re.search(
-            rf'<script src="{path}assets\/javascripts\/glightbox\.min\.js"><\/script>',
-            html_content,
-        )
-        is not None
-    )
-
-
-def validate_script(html_content: str, exist: bool = True):
-    """
-    Validate GLightbox have been initialized or not
-    """
-    assert exist == (
-        re.search(
-            r"const lightbox = GLightbox\((.*)\);",
-            html_content,
-        )
-        is not None
-    )
 
 
 def validate_iframe(html_content, iframe_src_dir):
