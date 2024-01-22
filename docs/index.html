@@ -8,9 +8,9 @@
 <link href="https://blueswen.github.io/mkdocs-swagger-ui-tag/" rel="canonical"/>
 <link href="pet-store/" rel="next"/>
 <link href="assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.5.3, mkdocs-material-9.4.6+insiders-4.42.2" name="generator"/>
+<meta content="mkdocs-1.5.3, mkdocs-material-9.4.11+insiders-4.44.0" name="generator"/>
 <title>MkDocs Swagger UI Tag</title>
-<link href="assets/stylesheets/main.62ccb7e6.min.css" rel="stylesheet"/>
+<link href="assets/stylesheets/main.0ab26e37.min.css" rel="stylesheet"/>
 <link href="assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -391,15 +391,15 @@
 <p><a href="https://pypi.org/project/mkdocs-swagger-ui-tag" target="_blank"><img alt="PyPI version" src="https://img.shields.io/pypi/v/mkdocs-swagger-ui-tag.svg"/></a>
 <a href="https://pypi.org/project/mkdocs-swagger-ui-tag" target="_blank"><img alt="PyPI downloads" src="https://img.shields.io/pypi/dm/mkdocs-swagger-ui-tag.svg"/></a>
 <a href="https://codecov.io/gh/blueswen/mkdocs-swagger-ui-tag" target="_blank"><img alt="Codecov" src="https://codecov.io/gh/blueswen/mkdocs-swagger-ui-tag/branch/main/graph/badge.svg?token=1D1B0GAQN1"/></a></p>
-<p>A MkDocs plugin supports for add <a href="https://github.com/swagger-api/swagger-ui">Swagger UI</a> in page.</p>
+<p>A MkDocs plugin supports adding <a href="https://github.com/swagger-api/swagger-ui">Swagger UI</a> to the page.</p>
 <h2 id="features">Features</h2>
 <ol>
 <li>OpenAPI Specification file from online over URL or static file in docs</li>
-<li>All dependencies are using static files handled by plugin not from CDN, especially suitable for those documents been deployed in the intranet</li>
-<li>Multiple Swagger UI in same page</li>
+<li>All dependencies are using static files handled by the plugin not from CDN, especially suitable for those documents been deployed in the intranet</li>
+<li>Multiple Swagger UI on the same page</li>
 <li>Synchronized dark mode with <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></li>
 <li>Configure <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/">Swagger UI configuration</a> through plugin options and tag attributes</li>
-<li>Support multiple OAS in single Swagger UI with top bar selector</li>
+<li>Support multiple OAS in a single Swagger UI with a top bar selector</li>
 <li>Support Swagger UI <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/">initOAuth</a> method</li>
 </ol>
 <h2 id="dependency">Dependency</h2>
@@ -408,24 +408,26 @@
 <li>beautifulsoup4&gt;=4.11.1</li>
 </ol>
 </li>
-<li><a href="https://www.npmjs.com/package/swagger-ui-dist">Swagger UI dist</a> javascript file and css file<ol>
-<li>swagger-ui-dist==5.10.0</li>
+<li><a href="https://www.npmjs.com/package/swagger-ui-dist">Swagger UI dist</a> javascript file and CSS file<ol>
+<li>swagger-ui-dist==5.11.0</li>
 </ol>
 </li>
 </ol>
 <h2 id="usage">Usage</h2>
 <ol>
 <li>
-<p>Install plugin from pypi</p>
+<p>Install the plugin from PyPI</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-swagger-ui-tag
 </code></pre></div>
 </li>
 <li>
-<p>Add <code>swagger-ui-tag</code> plugin in to your mkdocs.yml plugins sections:</p>
-<p><div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nt">plugins</span><span class="p">:</span>
+<p>Add <code>swagger-ui-tag</code> plugin to your mkdocs.yml plugins sections:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nt">plugins</span><span class="p">:</span>
 <a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">swagger-ui-tag</span>
 </code></pre></div>
-3. Add <code>swagger-ui</code> tag in markdown to include Swagger UI</p>
+</li>
+<li>
+<p>Add <code>swagger-ui</code> tag in markdown to include Swagger UI</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">swagger-ui</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://petstore.swagger.io/v2/swagger.json"</span><span class="p">/&gt;</span>
 </code></pre></div>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="sample.png"><img alt="Swagger UI Sample Image" src="sample.png"/></a></p>
@@ -491,8 +493,8 @@
 </ol>
 <h2 id="how-it-works">How it works</h2>
 <ol>
-<li>Copy Swagger UI script file into <code>site/assets/javascripts/</code> directory, CSS file into <code>site/assets/stylesheets/</code> directory, and the <a href="https://github.com/blueswen/mkdocs-swagger-ui-tag/blob/main/mkdocs_swagger_ui_tag/swagger-ui/oauth2-redirect.html">default Oauth2 redirect html</a> into <code>site/assets/swagger-ui/</code> directory</li>
-<li>Search all swagger-ui tags, then convert them to an iframe tag and generate the iframe target html with the given OpenAPI Specification src path and options</li>
+<li>Copy the Swagger UI script file into <code>site/assets/javascripts/</code> directory, the CSS file into <code>site/assets/stylesheets/</code> directory, and the <a href="https://github.com/blueswen/mkdocs-swagger-ui-tag/blob/main/mkdocs_swagger_ui_tag/swagger-ui/oauth2-redirect.html">default Oauth2 redirect html</a> into <code>site/assets/swagger-ui/</code> directory</li>
+<li>Search all swagger-ui tags, then convert them to an iframe tag and generate the iframe target HTML with the given OpenAPI Specification src path and options</li>
 </ol>
 <h2 id="license">License</h2>
 <p>This project is licensed under the MIT License - see the <a href="https://github.com/Blueswen/mkdocs-swagger-ui-tag/blob/main/LICENSE">LICENSE.md</a> file for details.</p>
@@ -524,7 +526,7 @@
 <div class="md-dialog__inner md-typeset"></div>
 </div>
 <script id="__config" type="application/json">{"base": ".", "features": ["toc.integrate", "navigation.tabs"], "search": "assets/javascripts/workers/search.1e90e0fb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-<script src="assets/javascripts/bundle.59e7e423.min.js"></script>
+<script src="assets/javascripts/bundle.6981e6db.min.js"></script>
 <script>document$.subscribe(() => {
             window.update_swagger_ui_iframe_height = function (id) {
                 var iFrameID = document.getElementById(id);
