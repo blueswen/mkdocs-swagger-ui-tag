@@ -1,7 +1,7 @@
+import hashlib
 import json
 import logging
 import os
-import uuid
 from urllib.parse import unquote as urlunquote
 from urllib.parse import urlsplit, urlunsplit
 
@@ -140,43 +140,45 @@ class SwaggerUIPlugin(BasePlugin):
             if not os.path.exists(page_dir):
                 os.makedirs(page_dir)
 
-            for swagger_ui_ele in swagger_ui_list:
-                if swagger_ui_ele.has_attr("grouped"):
-                    grouped_list.append(swagger_ui_ele)
-                    continue
-
-                cur_id = str(uuid.uuid4())[:8]
-                iframe_filename = f"swagger-{cur_id}.html"
-                iframe_id_list.append(cur_id)
+            def render_template(openapi_spec_url, swagger_ui_ele):
                 cur_options = self.process_options(config, swagger_ui_ele)
                 cur_oath2_prop = self.process_oath2_prop(swagger_ui_ele)
                 oauth2_redirect_url = cur_options.pop("oauth2RedirectUrl", "")
                 if not oauth2_redirect_url:
                     oauth2_redirect_url = default_oauth2_redirect_file
 
-                openapi_spec_url = self.path_to_url(
-                    page.file, swagger_ui_ele.get("src", "")
-                )
-                output_from_parsed_template = template.render(
+                template_output = template.render(
                     css_dir=css_dir,
                     extra_css_files=extra_css_files,
                     js_dir=js_dir,
                     background=self.config["background"],
-                    id=cur_id,
+                    id="{{ID_PLACEHOLDER}}",  # ID is unknown yet - it's the hash of the content.
                     openapi_spec_url=openapi_spec_url,
                     oauth2_redirect_url=oauth2_redirect_url,
                     validatorUrl=self.config["validatorUrl"],
                     options_str=json.dumps(cur_options, indent=4)[1:-1],
                     oath2_prop_str=json.dumps(cur_oath2_prop),
                 )
+                cur_id = hashlib.sha256(template_output.encode()).hexdigest()[:8]
+                iframe_filename = f"swagger-{cur_id}.html"
+                template_output = template_output.replace("{{ID_PLACEHOLDER}}", cur_id)
                 with open(os.path.join(page_dir, iframe_filename), "w") as f:
-                    f.write(output_from_parsed_template)
+                    f.write(template_output)
                 self.replace_with_iframe(soup, swagger_ui_ele, cur_id, iframe_filename)
 
+            for swagger_ui_ele in swagger_ui_list:
+                if swagger_ui_ele.has_attr("grouped"):
+                    grouped_list.append(swagger_ui_ele)
+                    continue
+
+                openapi_spec_url = self.path_to_url(
+                    page.file, swagger_ui_ele.get("src", "")
+                )
+                render_template(
+                    openapi_spec_url=openapi_spec_url, swagger_ui_ele=swagger_ui_ele
+                )
+
             if grouped_list:
-                cur_id = str(uuid.uuid4())[:8]
-                iframe_filename = f"swagger-{cur_id}.html"
-                iframe_id_list.append(cur_id)
                 openapi_spec_url = []
                 for swagger_ui_ele in grouped_list:
                     cur_url = self.path_to_url(page.file, swagger_ui_ele.get("src", ""))
@@ -184,27 +186,9 @@ class SwaggerUIPlugin(BasePlugin):
                     openapi_spec_url.append({"url": cur_url, "name": cur_name})
 
                 # only use options from first grouped swagger ui tag
-                cur_options = self.process_options(config, grouped_list[0])
-                cur_oath2_prop = self.process_oath2_prop(grouped_list[0])
-                oauth2_redirect_url = cur_options.pop("oauth2RedirectUrl", "")
-                if not oauth2_redirect_url:
-                    oauth2_redirect_url = default_oauth2_redirect_file
-
-                output_from_parsed_template = template.render(
-                    css_dir=css_dir,
-                    extra_css_files=extra_css_files,
-                    js_dir=js_dir,
-                    background=self.config["background"],
-                    id=cur_id,
-                    openapi_spec_url=openapi_spec_url,
-                    oauth2_redirect_url=oauth2_redirect_url,
-                    validatorUrl=self.config["validatorUrl"],
-                    options_str=json.dumps(cur_options, indent=4)[1:-1],
-                    oath2_prop_str=json.dumps(cur_oath2_prop),
+                render_template(
+                    openapi_spec_url=openapi_spec_url, swagger_ui_ele=grouped_list[0]
                 )
-                with open(os.path.join(page_dir, iframe_filename), "w") as f:
-                    f.write(output_from_parsed_template)
-                self.replace_with_iframe(soup, grouped_list[0], cur_id, iframe_filename)
                 # only keep first grouped swagger ui tag
                 for rest_swagger_ui_ele in grouped_list[1:]:
                     rest_swagger_ui_ele.extract()
