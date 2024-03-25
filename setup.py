@@ -5,7 +5,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="mkdocs-swagger-ui-tag",
-    version="0.6.8",
+    version="0.6.9",
     author="Blueswen",
     author_email="blueswen.tw@gmail.com",
     url="https://blueswen.github.io/mkdocs-swagger-ui-tag",
