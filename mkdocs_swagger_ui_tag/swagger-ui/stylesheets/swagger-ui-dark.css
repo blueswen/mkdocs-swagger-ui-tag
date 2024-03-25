@@ -839,3 +839,11 @@ font, html { color: #bfbfbf; }
 .json-schema-2020-12__attribute {
     color: #c2c2e0 !important;
 }
+
+.swagger-ui .opblock-control-arrow svg {
+    fill: #c2c2e0;
+}
+
+.json-schema-2020-12-accordion__icon svg {
+    fill: #c2c2e0;
+}
