@@ -165,6 +165,7 @@ class SwaggerUIPlugin(BasePlugin):
                 with open(os.path.join(page_dir, iframe_filename), "w") as f:
                     f.write(template_output)
                 self.replace_with_iframe(soup, swagger_ui_ele, cur_id, iframe_filename)
+                return cur_id
 
             for swagger_ui_ele in swagger_ui_list:
                 if swagger_ui_ele.has_attr("grouped"):
@@ -174,8 +175,10 @@ class SwaggerUIPlugin(BasePlugin):
                 openapi_spec_url = self.path_to_url(
                     page.file, swagger_ui_ele.get("src", "")
                 )
-                render_template(
-                    openapi_spec_url=openapi_spec_url, swagger_ui_ele=swagger_ui_ele
+                iframe_id_list.append(
+                    render_template(
+                        openapi_spec_url=openapi_spec_url, swagger_ui_ele=swagger_ui_ele
+                    )
                 )
 
             if grouped_list:
