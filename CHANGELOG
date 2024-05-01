@@ -1,3 +1,7 @@
+mkdocs-swagger-ui-tag 0.6.10 (2024-05-01)
+
+    * Updated swagger-ui-dist to 5.17.3
+
 mkdocs-swagger-ui-tag 0.6.9 (2024-03-25)
 
     * Updated swagger-ui-dist to 5.12.0
