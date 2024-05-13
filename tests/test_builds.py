@@ -526,7 +526,7 @@ def test_empty(tmp_path):
     file = testproject_path / "site/empty/index.html"
     contents = file.read_text(encoding="utf8")
 
-    validate_additional_script_code(contents, exists=True)
+    validate_additional_script_code(contents, exists=False)
 
 
 def test_error(tmp_path):
@@ -548,3 +548,23 @@ def test_template(tmp_path):
 
     iframe_content_list = validate_iframe(contents, file.parent)
     assert len(iframe_content_list) == 2
+
+
+def test_filter_filenames(tmp_path):
+    mkdocs_file = "mkdocs-filter-filenames.yml"
+    testproject_path = validate_mkdocs_file(
+        tmp_path,
+        f"tests/fixtures/{mkdocs_file}",
+    )
+    file = testproject_path / "site/index.html"
+    contents = file.read_text(encoding="utf8")
+    iframe_content_list = validate_iframe(contents, file.parent)
+    assert len(iframe_content_list) == 1
+
+    file = testproject_path / "site/empty/index.html"
+    contents = file.read_text(encoding="utf8")
+    validate_additional_script_code(contents, exists=False)
+
+    file = testproject_path / "site/multiple/index.html"
+    contents = file.read_text(encoding="utf8")
+    validate_additional_script_code(contents, exists=False)
