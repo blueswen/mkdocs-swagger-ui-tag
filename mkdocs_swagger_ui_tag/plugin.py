@@ -66,7 +66,7 @@ class SwaggerUIPlugin(BasePlugin):
         ("extra_css", config_options.Type(list, default=[])),
         ("dark_scheme_name", config_options.Type(str, default="slate")),
         (
-            "filter_filenames",
+            "filter_files",
             config_options.ListOfItems(config_options.Type(str), default=[]),
         ),
     )
@@ -120,10 +120,10 @@ class SwaggerUIPlugin(BasePlugin):
         Add javascript code to update iframe height
         Create a html with Swagger UI for iframe
         """
-        # Using filename filter for performance
+        # Using file filter for performance
         # https://github.com/blueswen/mkdocs-swagger-ui-tag/issues/25
-        if filter_list := self.config["filter_filenames"]:
-            if page.file.name not in filter_list:
+        if filter_list := self.config["filter_files"]:
+            if page.file.src_path not in filter_list:
                 return output
 
         soup = BeautifulSoup(output, "html.parser")
@@ -239,16 +239,7 @@ class SwaggerUIPlugin(BasePlugin):
             for (var i = 0; i < iframes.length; i++) { 
                 iframe_id_list.push(iframes[i].getAttribute("id"))
             }
-        """
-        if len(iframe_id_list) == 0:
-            js_code.string += """
-            let ticking = true;
-            """
-        else:
-            js_code.string += """
             let ticking = false;
-            """
-        js_code.string += """
             document.addEventListener('scroll', function(e) {
                 if (!ticking) {
                     window.requestAnimationFrame(()=> {

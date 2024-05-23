@@ -3,4 +3,6 @@ use_directory_urls: true
 
 plugins:
     - swagger-ui-tag:
-        filter_filenames: ["index"]
+        filter_files:
+            - index.md
+            - sub_dir/page_in_sub_dir.md

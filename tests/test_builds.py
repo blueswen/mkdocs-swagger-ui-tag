@@ -3,6 +3,7 @@ import logging
 import os
 import re
 import shutil
+from unittest.mock import MagicMock
 
 # other 3rd party
 from bs4 import BeautifulSoup
@@ -550,13 +551,18 @@ def test_template(tmp_path):
     assert len(iframe_content_list) == 2
 
 
-def test_filter_filenames(tmp_path):
-    mkdocs_file = "mkdocs-filter-filenames.yml"
+def test_filter_files(tmp_path):
+    mkdocs_file = "mkdocs-filter-files.yml"
     testproject_path = validate_mkdocs_file(
         tmp_path,
         f"tests/fixtures/{mkdocs_file}",
     )
     file = testproject_path / "site/index.html"
+    contents = file.read_text(encoding="utf8")
+    iframe_content_list = validate_iframe(contents, file.parent)
+    assert len(iframe_content_list) == 1
+
+    file = testproject_path / "site/sub_dir/page_in_sub_dir/index.html"
     contents = file.read_text(encoding="utf8")
     iframe_content_list = validate_iframe(contents, file.parent)
     assert len(iframe_content_list) == 1
@@ -568,3 +574,23 @@ def test_filter_filenames(tmp_path):
     file = testproject_path / "site/multiple/index.html"
     contents = file.read_text(encoding="utf8")
     validate_additional_script_code(contents, exists=False)
+
+
+def test_import_error(monkeypatch):
+    # Simulate ImportError for 'get_plugin_logger'
+    with monkeypatch.context() as m:
+        m.setattr(
+            "mkdocs.plugins.get_plugin_logger", MagicMock(side_effect=ImportError)
+        )
+
+        # Reload the module to apply the monkeypatch
+        import importlib
+
+        from mkdocs_swagger_ui_tag import plugin
+
+        importlib.reload(plugin)
+        # Test that the fallback logger is used
+        assert plugin.log.name == f"mkdocs.plugins.{plugin.__name__}"
+
+        # Ensure the logger works without raising errors
+        plugin.log.info("Test message")
