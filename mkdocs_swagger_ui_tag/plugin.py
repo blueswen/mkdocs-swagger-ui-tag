@@ -123,7 +123,8 @@ class SwaggerUIPlugin(BasePlugin):
         # Using file filter for performance
         # https://github.com/blueswen/mkdocs-swagger-ui-tag/issues/25
         if filter_list := self.config["filter_files"]:
-            if page.file.src_path not in filter_list:
+            filter_list = [os.path.normpath(f) for f in filter_list]
+            if os.path.normpath(page.file.src_path) not in filter_list:
                 return output
 
         soup = BeautifulSoup(output, "html.parser")
