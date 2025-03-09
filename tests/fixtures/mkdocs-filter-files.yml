@@ -1,0 +1,8 @@
+site_name: test mkdocs_swagger_ui_tag
+use_directory_urls: true
+
+plugins:
+    - swagger-ui-tag:
+        filter_files:
+            - index.md
+            - sub_dir/page_in_sub_dir.md
