@@ -3,6 +3,7 @@ import logging
 import os
 import re
 import shutil
+from pathlib import Path
 from unittest.mock import MagicMock
 
 # other 3rd party
@@ -25,7 +26,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 def setup_clean_mkdocs_folder(
-    mkdocs_yml_path: str, output_path: str, docs_path: str = "tests/fixtures/docs"
+    mkdocs_yml_path: Path, output_path: Path, docs_path: Path = Path("tests/fixtures/docs")
 ):
     """
     Sets up a clean mkdocs directory
@@ -50,7 +51,7 @@ def setup_clean_mkdocs_folder(
         shutil.rmtree(str(testproject_path))
 
     # Copy correct mkdocs.yml file and our test 'docs/'
-    shutil.copytree(docs_path, str(testproject_path / docs_path.split("/")[-1]))
+    shutil.copytree(docs_path, str(testproject_path / str(docs_path).split("/")[-1]))
 
     shutil.copyfile(mkdocs_yml_path, str(testproject_path / "mkdocs.yml"))
 
@@ -80,7 +81,7 @@ def build_docs_setup(testproject_path: str):
         raise
 
 
-def validate_build(testproject_path: str, plugin_config: dict = {}):
+def validate_build(testproject_path: Path, plugin_config: dict = {}):
     """
     Validates a build from a testproject
     Args:
@@ -104,10 +105,10 @@ def validate_mkdocs_file(
         mkdocs_yml_file (PosixPath): Path to mkdocs.yml file
     """
     testproject_path = setup_clean_mkdocs_folder(
-        mkdocs_yml_path=mkdocs_yml_file, output_path=temp_path, docs_path=docs_path
+        mkdocs_yml_path=Path(mkdocs_yml_file), output_path=Path(temp_path), docs_path=Path(docs_path)
     )
     result = build_docs_setup(
-        testproject_path,
+        str(testproject_path),
     )
     assert result.exit_code == 0, "'mkdocs build' command failed"
 

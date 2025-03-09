@@ -115,7 +115,7 @@ class SwaggerUIPlugin(BasePlugin):
         components = (scheme, netloc, path, query, fragment)
         return urlunsplit(components)
 
-    def on_post_page(self, output, page, config, **kwargs):
+    def on_post_page(self, output, /, *, page, config):
         """Replace swagger-ui tag with iframe
         Add javascript code to update iframe height
         Create a html with Swagger UI for iframe
@@ -150,7 +150,7 @@ class SwaggerUIPlugin(BasePlugin):
         )
         env = Environment(
             loader=FileSystemLoader(os.path.join(base_path, "swagger-ui")),
-            autoescape=select_autoescape(['html'])
+            autoescape=select_autoescape(["html"]),
         )
         template = env.get_template("swagger.html")
         extra_css_files = list(
@@ -265,7 +265,7 @@ class SwaggerUIPlugin(BasePlugin):
         if config["theme"].name == "material":
             # synchronized dark mode with mkdocs-material
             js_code.string += f"""
-            const dark_scheme_name = "{self.config['dark_scheme_name']}"
+            const dark_scheme_name = "{self.config["dark_scheme_name"]}"
             """
             js_code.string += """
             window.scheme = document.body.getAttribute("data-md-color-scheme")
@@ -385,7 +385,7 @@ class SwaggerUIPlugin(BasePlugin):
                     cur_prop[k] = val
         return cur_prop
 
-    def on_post_build(self, config, **kwargs):
+    def on_post_build(self, *, config):
         """Copy Swagger UI css and js files to assets directory"""
 
         log.info("Copying swagger ui assets.")

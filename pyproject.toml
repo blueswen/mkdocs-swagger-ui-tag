@@ -23,7 +23,11 @@ dev = [
     "mkdocs>=1.6.1",
     "mkdocs-glightbox>=0.4.0",
     "mkdocs-material>=9.6.7",
+    "pyright>=1.1.396",
     "pytest>=8.3.5",
     "pytest-cov>=5.0.0",
     "ruff>=0.9.10",
 ]
+
+[tool.pyright]
+include = ["mkdocs_swagger_ui_tag/plugin.py", "tests/test_builds.py"]
