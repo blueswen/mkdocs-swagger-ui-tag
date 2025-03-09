@@ -38,5 +38,5 @@ jobs:
         run: |
           uv venv test-install
           source test-install/bin/activate
-          uv pip install dist/*.whl
-          python -c "import mkdocs_swagger_ui_tag; print(mkdocs_swagger_ui_tag.__version__)"
+          uv pip install dist/*.whl mkdocs
+          uv run mkdocs build -f tests/fixtures/mkdocs.yml
