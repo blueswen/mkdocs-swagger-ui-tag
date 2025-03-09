@@ -50,6 +50,42 @@ wheels = [
 ]
 
 [[package]]
+name = "bandit"
+version = "1.7.10"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version < '3.9'",
+]
+dependencies = [
+    { name = "colorama", marker = "python_full_version < '3.9' and sys_platform == 'win32'" },
+    { name = "pyyaml", marker = "python_full_version < '3.9'" },
+    { name = "rich", marker = "python_full_version < '3.9'" },
+    { name = "stevedore", version = "5.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/38/26/bdd962d6ee781f6229c3fb83483cf9e09d87959150a9000789806d750f3c/bandit-1.7.10.tar.gz", hash = "sha256:59ed5caf5d92b6ada4bf65bc6437feea4a9da1093384445fed4d472acc6cff7b", size = 4228540 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/9e/9c/491231d973d54f6465002812b4cadc663f208436407745be473254725f55/bandit-1.7.10-py3-none-any.whl", hash = "sha256:665721d7bebbb4485a339c55161ac0eedde27d51e638000d91c8c2d68343ad02", size = 130756 },
+]
+
+[[package]]
+name = "bandit"
+version = "1.8.3"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.9'",
+]
+dependencies = [
+    { name = "colorama", marker = "python_full_version >= '3.9' and sys_platform == 'win32'" },
+    { name = "pyyaml", marker = "python_full_version >= '3.9'" },
+    { name = "rich", marker = "python_full_version >= '3.9'" },
+    { name = "stevedore", version = "5.4.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/1a/a5/144a45f8e67df9d66c3bc3f7e69a39537db8bff1189ab7cff4e9459215da/bandit-1.8.3.tar.gz", hash = "sha256:f5847beb654d309422985c36644649924e0ea4425c76dec2e89110b87506193a", size = 4232005 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/88/85/db74b9233e0aa27ec96891045c5e920a64dd5cbccd50f8e64e9460f48d35/bandit-1.8.3-py3-none-any.whl", hash = "sha256:28f04dc0d258e1dd0f99dee8eefa13d1cb5e3fde1a5ab0c523971f97b289bcd8", size = 129078 },
+]
+
+[[package]]
 name = "beautifulsoup4"
 version = "4.13.3"
 source = { registry = "https://pypi.org/simple" }
@@ -454,6 +490,18 @@ wheels = [
 ]
 
 [[package]]
+name = "markdown-it-py"
+version = "3.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "mdurl" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/38/71/3b932df36c1a044d397a1f92d1cf91ee0a503d91e470cbd670aa66b07ed0/markdown-it-py-3.0.0.tar.gz", hash = "sha256:e3f60a94fa066dc52ec76661e37c851cb232d92f9886b15cb560aaada2df8feb", size = 74596 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/42/d7/1ec15b46af6af88f19b8e5ffea08fa375d433c998b8a7639e76935c14f1f/markdown_it_py-3.0.0-py3-none-any.whl", hash = "sha256:355216845c60bd96232cd8d8c40e8f9765cc86f46880e43a8fd22dc1a1a8cab1", size = 87528 },
+]
+
+[[package]]
 name = "markupsafe"
 version = "2.1.5"
 source = { registry = "https://pypi.org/simple" }
@@ -586,6 +634,15 @@ wheels = [
 ]
 
 [[package]]
+name = "mdurl"
+version = "0.1.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d6/54/cfe61301667036ec958cb99bd3efefba235e65cdeb9c84d24a8293ba1d90/mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba", size = 8729 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8", size = 9979 },
+]
+
+[[package]]
 name = "mergedeep"
 version = "1.3.4"
 source = { registry = "https://pypi.org/simple" }
@@ -689,6 +746,8 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "bandit", version = "1.7.10", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
+    { name = "bandit", version = "1.8.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
     { name = "click" },
     { name = "codecov" },
     { name = "mkdocs" },
@@ -705,6 +764,7 @@ requires-dist = [{ name = "beautifulsoup4", specifier = ">=4.13.3" }]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "bandit", specifier = ">=1.7.10" },
     { name = "click", specifier = ">=8.1.8" },
     { name = "codecov", specifier = ">=2.1.13" },
     { name = "mkdocs", specifier = ">=1.6.1" },
@@ -740,6 +800,19 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/ca/bc/f35b8446f4531a7cb215605d100cd88b7ac6f44ab3fc94870c120ab3adbf/pathspec-0.12.1.tar.gz", hash = "sha256:a482d51503a1ab33b1c67a6c3813a26953dbdc71c31dacaef9a838c4e29f5712", size = 51043 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/cc/20/ff623b09d963f88bfde16306a54e12ee5ea43e9b597108672ff3a408aad6/pathspec-0.12.1-py3-none-any.whl", hash = "sha256:a0d503e138a4c123b27490a4f7beda6a01c6f288df0e4a8b79c7eb0dc7b4cc08", size = 31191 },
+]
+
+[[package]]
+name = "pbr"
+version = "6.1.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "setuptools", version = "75.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
+    { name = "setuptools", version = "75.9.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/01/d2/510cc0d218e753ba62a1bc1434651db3cd797a9716a0a66cc714cb4f0935/pbr-6.1.1.tar.gz", hash = "sha256:93ea72ce6989eb2eed99d0f75721474f69ad88128afdef5ac377eb797c4bf76b", size = 125702 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/47/ac/684d71315abc7b1214d59304e23a982472967f6bf4bde5a98f1503f648dc/pbr-6.1.1-py2.py3-none-any.whl", hash = "sha256:38d4daea5d9fa63b3f626131b9d34947fd0c8be9b05a29276870580050a25a76", size = 108997 },
 ]
 
 [[package]]
@@ -941,6 +1014,20 @@ wheels = [
 ]
 
 [[package]]
+name = "rich"
+version = "13.9.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "markdown-it-py" },
+    { name = "pygments" },
+    { name = "typing-extensions", marker = "python_full_version < '3.11'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ab/3a/0316b28d0761c6734d6bc14e770d85506c986c85ffb239e688eeaab2c2bc/rich-13.9.4.tar.gz", hash = "sha256:439594978a49a09530cff7ebc4b5c7103ef57baf48d5ea3184f21d9a2befa098", size = 223149 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/19/71/39c7c0d87f8d4e6c020a393182060eaefeeae6c01dab6a84ec346f2567df/rich-13.9.4-py3-none-any.whl", hash = "sha256:6049d5e6ec054bf2779ab3358186963bac2ea89175919d699e378b99738c2a90", size = 242424 },
+]
+
+[[package]]
 name = "ruff"
 version = "0.9.10"
 source = { registry = "https://pypi.org/simple" }
@@ -966,6 +1053,30 @@ wheels = [
 ]
 
 [[package]]
+name = "setuptools"
+version = "75.3.0"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version < '3.9'",
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ed/22/a438e0caa4576f8c383fa4d35f1cc01655a46c75be358960d815bfbb12bd/setuptools-75.3.0.tar.gz", hash = "sha256:fba5dd4d766e97be1b1681d98712680ae8f2f26d7881245f2ce9e40714f1a686", size = 1351577 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/90/12/282ee9bce8b58130cb762fbc9beabd531549952cac11fc56add11dcb7ea0/setuptools-75.3.0-py3-none-any.whl", hash = "sha256:f2504966861356aa38616760c0f66568e535562374995367b4e69c7143cf6bcd", size = 1251070 },
+]
+
+[[package]]
+name = "setuptools"
+version = "75.9.1"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.9'",
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d0/df/ec5ad16b0ec305081c372bd0550fd638fa96e472cd5a03049c344076ea76/setuptools-75.9.1.tar.gz", hash = "sha256:b6eca2c3070cdc82f71b4cb4bb2946bc0760a210d11362278cf1ff394e6ea32c", size = 1345088 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8d/28/19ad82a0549d73ec6feffa6711eacf9246035a9426b8a8b528440c9959d2/setuptools-75.9.1-py3-none-any.whl", hash = "sha256:0a6f876d62f4d978ca1a11ab4daf728d1357731f978543ff18ecdbf9fd071f73", size = 1231632 },
+]
+
+[[package]]
 name = "six"
 version = "1.17.0"
 source = { registry = "https://pypi.org/simple" }
@@ -981,6 +1092,36 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/d7/ce/fbaeed4f9fb8b2daa961f90591662df6a86c1abf25c548329a86920aedfb/soupsieve-2.6.tar.gz", hash = "sha256:e2e68417777af359ec65daac1057404a3c8a5455bb8abc36f1a9866ab1a51abb", size = 101569 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d1/c2/fe97d779f3ef3b15f05c94a2f1e3d21732574ed441687474db9d342a7315/soupsieve-2.6-py3-none-any.whl", hash = "sha256:e72c4ff06e4fb6e4b5a9f0f55fe6e81514581fca1515028625d0f299c602ccc9", size = 36186 },
+]
+
+[[package]]
+name = "stevedore"
+version = "5.3.0"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version < '3.9'",
+]
+dependencies = [
+    { name = "pbr", marker = "python_full_version < '3.9'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c4/59/f8aefa21020054f553bf7e3b405caec7f8d1f432d9cb47e34aaa244d8d03/stevedore-5.3.0.tar.gz", hash = "sha256:9a64265f4060312828151c204efbe9b7a9852a0d9228756344dbc7e4023e375a", size = 513768 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ec/50/70762bdb23f6c2b746b90661f461d33c4913a22a46bb5265b10947e85ffb/stevedore-5.3.0-py3-none-any.whl", hash = "sha256:1efd34ca08f474dad08d9b19e934a22c68bb6fe416926479ba29e5013bcc8f78", size = 49661 },
+]
+
+[[package]]
+name = "stevedore"
+version = "5.4.1"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.9'",
+]
+dependencies = [
+    { name = "pbr", marker = "python_full_version >= '3.9'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/28/3f/13cacea96900bbd31bb05c6b74135f85d15564fc583802be56976c940470/stevedore-5.4.1.tar.gz", hash = "sha256:3135b5ae50fe12816ef291baff420acb727fcd356106e3e9cbfa9e5985cd6f4b", size = 513858 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f7/45/8c4ebc0c460e6ec38e62ab245ad3c7fc10b210116cea7c16d61602aa9558/stevedore-5.4.1-py3-none-any.whl", hash = "sha256:d10a31c7b86cba16c1f6e8d15416955fc797052351a56af15e608ad20811fcfe", size = 49533 },
 ]
 
 [[package]]

@@ -40,11 +40,11 @@
         "oauth2RedirectUrl": "{{oauth2_redirect_url}}",
         {% endif %}
         "validatorUrl": "{{validatorUrl}}",
-        {{options_str}}
+        {{options_str | safe}}
       })
 
       {% if oath2_prop_str != "{}" %}
-      window.ui.initOAuth({{oath2_prop_str}})
+      window.ui.initOAuth({{oath2_prop_str | safe}})
       {% endif %}
 
       const scheme = parent.scheme

@@ -17,6 +17,7 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
+    "bandit>=1.7.10",
     "click>=8.1.8",
     "codecov>=2.1.13",
     "mkdocs>=1.6.1",
