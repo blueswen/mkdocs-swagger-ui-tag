@@ -26,7 +26,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 def setup_clean_mkdocs_folder(
-    mkdocs_yml_path: Path, output_path: Path, docs_path: Path = Path("tests/fixtures/docs")
+    mkdocs_yml_path: str, output_path: str, docs_path: str = "tests/fixtures/docs"
 ):
     """
     Sets up a clean mkdocs directory
@@ -34,13 +34,13 @@ def setup_clean_mkdocs_folder(
     ├── docs/
     └── mkdocs.yml
     Args:
-        mkdocs_yml_path (Path): Path of mkdocs.yml file to use
-        output_path (Path): Path of folder in which to create mkdocs project
+        mkdocs_yml_path (str): Path of mkdocs.yml file to use
+        output_path (str): Path of folder in which to create mkdocs project
     Returns:
-        testproject_path (Path): Path to test project
+        testproject_path (str): Path to test project
     """
 
-    testproject_path = output_path / "testproject"
+    testproject_path = os.path.join(output_path, "testproject")
 
     # Create empty 'testproject' folder
     if os.path.exists(str(testproject_path)):
@@ -51,9 +51,9 @@ def setup_clean_mkdocs_folder(
         shutil.rmtree(str(testproject_path))
 
     # Copy correct mkdocs.yml file and our test 'docs/'
-    shutil.copytree(docs_path, str(testproject_path / str(docs_path).split("/")[-1]))
+    shutil.copytree(docs_path, os.path.join(testproject_path, docs_path.split("/")[-1]))
 
-    shutil.copyfile(mkdocs_yml_path, str(testproject_path / "mkdocs.yml"))
+    shutil.copyfile(mkdocs_yml_path, os.path.join(testproject_path, "mkdocs.yml"))
 
     return testproject_path
 
@@ -81,17 +81,17 @@ def build_docs_setup(testproject_path: str):
         raise
 
 
-def validate_build(testproject_path: Path, plugin_config: dict = {}):
+def validate_build(testproject_path: str, plugin_config: dict = {}):
     """
     Validates a build from a testproject
     Args:
         testproject_path (Path): Path to test project
     """
-    assert os.path.exists(str(testproject_path / "site"))
+    assert os.path.exists(os.path.join(testproject_path, "site"))
 
     # Make sure index file exists
-    index_file = testproject_path / "site/index.html"
-    assert index_file.exists(), "%s does not exist" % index_file
+    index_file = os.path.join(testproject_path, "site/index.html")
+    assert os.path.exists(index_file), "%s does not exist" % index_file
 
 
 def validate_mkdocs_file(
@@ -105,7 +105,7 @@ def validate_mkdocs_file(
         mkdocs_yml_file (PosixPath): Path to mkdocs.yml file
     """
     testproject_path = setup_clean_mkdocs_folder(
-        mkdocs_yml_path=Path(mkdocs_yml_file), output_path=Path(temp_path), docs_path=Path(docs_path)
+        mkdocs_yml_path=mkdocs_yml_file, output_path=temp_path, docs_path=docs_path
     )
     result = build_docs_setup(
         str(testproject_path),
@@ -115,7 +115,7 @@ def validate_mkdocs_file(
     # validate build with locale retrieved from mkdocs config file
     validate_build(testproject_path)
 
-    return testproject_path
+    return Path(testproject_path)
 
 
 def validate_iframe(html_content, iframe_src_dir):
