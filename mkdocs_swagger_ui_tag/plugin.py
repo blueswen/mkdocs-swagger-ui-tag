@@ -291,7 +291,7 @@ class SwaggerUIPlugin(BasePlugin):
         iframe["style"] = "overflow:hidden;width:100%;"
         iframe["width"] = "100%"
         iframe["class"] = "swagger-ui-iframe"
-        swagger_ui_ele.replaceWith(iframe)
+        swagger_ui_ele.replace_with(iframe)
 
     def process_options(self, config, swagger_ui_ele):
         """Retrieve Swagger UI options from attribute and use config options as default"""
