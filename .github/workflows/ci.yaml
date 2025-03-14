@@ -39,4 +39,4 @@ jobs:
           uv venv test-install
           source test-install/bin/activate
           uv pip install dist/*.whl mkdocs
-          uv run mkdocs build -f tests/fixtures/mkdocs.yml
+          uv run --active mkdocs build -f tests/fixtures/mkdocs.yml
