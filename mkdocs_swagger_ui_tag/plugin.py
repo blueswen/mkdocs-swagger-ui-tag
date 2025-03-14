@@ -305,9 +305,10 @@ class SwaggerUIPlugin(BasePlugin):
         iframe["id"] = cur_id
         iframe["src"] = iframe_filename
         iframe["frameborder"] = "0"
-        iframe["style"] = "overflow:hidden;width:100%;"
+        iframe["style"] = "display:none;"
         iframe["width"] = "100%"
         iframe["class"] = "swagger-ui-iframe"
+        iframe["onload"] = "this.style.display = 'block'; this.style.overflow = 'hidden'; this.style.width = '100%';"
         swagger_ui_ele.replace_with(iframe)
 
     def process_options(self, config, swagger_ui_ele):
