@@ -23,9 +23,9 @@ A MkDocs plugin supports adding [Swagger UI](https://github.com/swagger-api/swag
 ## Dependency
 
 1. Python Package
-    1. beautifulsoup4>=4.11.1
+    1. beautifulsoup4>=4.13.3
 2. [Swagger UI dist](https://www.npmjs.com/package/swagger-ui-dist) javascript file and CSS file
-    1. swagger-ui-dist==5.17.14
+    1. swagger-ui-dist==5.20.6
 
 ## Usage
 
@@ -72,6 +72,11 @@ A MkDocs plugin supports adding [Swagger UI](https://github.com/swagger-api/swag
     | oauth2RedirectUrl | String | Default: Absolute URL of "/assets/swagger-ui/oauth2-redirect.html" relative with site_url in mkdocs.yml or document root path on site without site_url, e.g. "[https://blueswen.github.io/mkdocs-swagger-ui-tag/assets/swagger-ui/oauth2-redirect.html](https://blueswen.github.io/mkdocs-swagger-ui-tag/assets/swagger-ui/oauth2-redirect.html)". OAuth redirect URL. |
     | supportedSubmitMethods | Array | Default: All Http Methods. Array=["get", "put", "post", "delete", "options", "head", "patch", "trace"]. List of HTTP methods that have the "Try it out" feature enabled. An empty array disables "Try it out" for all operations. This does not filter the operations from the display. |
     | validatorUrl | String | Default: "https://validator.swagger.io/validator". By default, Swagger UI attempts to validate specs against swagger.io's online validator in multiple OAS Swagger UI. You can use this parameter to set a different validator URL, for example for locally deployed validators ([Validator Badge](https://github.com/swagger-api/validator-badge)). Setting it "none" to disable validation. |
+
+
+Add dark_scheme_name
+extra_css
+filter_files
 
 ## How it works
 
