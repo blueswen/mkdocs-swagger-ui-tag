@@ -7,10 +7,44 @@ name = "mkdocs-swagger-ui-tag"
 version = "0.7.0"
 description = "A MkDocs plugin supports for add Swagger UI in page."
 readme = "README.md"
+license = "MIT"
 requires-python = ">=3.8"
+authors = [
+  {name = "Blueswen", email = "blueswen.tw@gmail.com"}
+]
 dependencies = [
     "beautifulsoup4>=4.13.3",
 ]
+keywords = [
+    "mkdocs",
+    "plugin",
+    "swagger-ui",
+    "openapi"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Documentation",
+    "Topic :: Text Processing"
+]
+
+[project.urls]
+Homepage = "https://blueswen.github.io/mkdocs-swagger-ui-tag/"
+Source = "https://github.com/blueswen/mkdocs-swagger-ui-tag"
+Issues = "https://github.com/blueswen/mkdocs-swagger-ui-tag/issues"
+History = "https://github.com/blueswen/mkdocs-swagger-ui-tag/blob/main/CHANGELOG"
 
 [project.entry-points."mkdocs.plugins"]
 swagger-ui-tag = "mkdocs_swagger_ui_tag.plugin:SwaggerUIPlugin"
@@ -26,6 +60,7 @@ dev = [
     "pyright>=1.1.396",
     "pytest>=8.3.5",
     "pytest-cov>=5.0.0",
+    "pytest-playwright>=0.5.2",
     "ruff>=0.9.10",
     "twine>=6.1.0",
 ]
