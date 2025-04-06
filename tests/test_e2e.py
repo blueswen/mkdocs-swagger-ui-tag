@@ -2,7 +2,7 @@ import subprocess
 import time
 import os
 import pytest
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 from .test_builds import validate_mkdocs_file
 
