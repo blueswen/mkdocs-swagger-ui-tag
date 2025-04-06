@@ -1,3 +1,10 @@
+mkdocs-swagger-ui-tag 0.7.0 (2025-04-06)
+
+    * Updated swagger-ui-dist to 5.20.6
+    * Migrated to uv and pyproject.toml for development and building
+    * Supported filename filter (#26)
+    * Compatible with bs4 4.0.0+ (#29)
+
 mkdocs-swagger-ui-tag 0.6.11 (2024-10-27)
 
     * Updated swagger-ui-dist to 5.17.14
