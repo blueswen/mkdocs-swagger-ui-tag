@@ -27,4 +27,4 @@ jobs:
         run: uv sync --all-extras --dev --frozen
 
       - name: Run tests
-        run: uv run pytest tests
+        run: uv run pytest tests -m "not e2e"

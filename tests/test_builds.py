@@ -158,7 +158,7 @@ def validate_additional_script_code(html_content, exists=True):
 
 def validate_additional_script_code_for_material(html_content, exists=True):
     assert exists == (
-        'window.scheme = document.body.getAttribute("data-md-color-scheme")'
+        'const schemeAttr = document.body.getAttribute("data-md-color-scheme")'
         in html_content
     )
     assert exists == (
