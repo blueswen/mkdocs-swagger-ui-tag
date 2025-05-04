@@ -21,7 +21,7 @@ A MkDocs plugin supports adding [Swagger UI](https://github.com/swagger-api/swag
 1. Python Package
     1. beautifulsoup4>=4.13.3
 2. [Swagger UI dist](https://www.npmjs.com/package/swagger-ui-dist) javascript file and CSS file
-    1. swagger-ui-dist==5.20.6
+    1. swagger-ui-dist==5.21.0
 
 ## Usage
 
