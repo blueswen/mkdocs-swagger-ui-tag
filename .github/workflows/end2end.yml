@@ -43,6 +43,7 @@ jobs:
           directory: 'playwright-results'
           branch: 'glimpse'
           generations: '5'
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Preview image in summary
         run: |
