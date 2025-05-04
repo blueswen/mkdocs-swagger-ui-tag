@@ -1,6 +1,9 @@
 name: End to End Test
 on: [push, pull_request]
 
+permissions:
+  contents: write
+
 jobs:
   run:
     name: End to End Test with Playwright
