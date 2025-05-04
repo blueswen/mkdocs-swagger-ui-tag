@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 jobs:
   run:
-    name: Lint, Type Check, Security Scan & Build Test
+    name: End to End Test with Playwright
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -43,9 +43,9 @@ jobs:
 
       - name: Preview image in summary
         run: |
-          echo "## Screenshot URLs" >> $GITHUB_STEP_SUMMARY
+          echo "# End to End Test Images" >> $GITHUB_STEP_SUMMARY
           for file_url in $(echo "${{ steps.upload.outputs.file_urls }}" | tr ',' '\n'); do
             filename=$(basename "$file_url")
-            echo "## filename\n" >> $GITHUB_STEP_SUMMARY
-            echo "![${filename}](${file_url})\n" >> $GITHUB_STEP_SUMMARY
+            echo "## ${filename}" >> $GITHUB_STEP_SUMMARY
+            echo "![${filename}](${file_url})" >> $GITHUB_STEP_SUMMARY
           done
