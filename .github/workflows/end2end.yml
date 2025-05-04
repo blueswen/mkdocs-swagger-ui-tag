@@ -1,0 +1,40 @@
+name: End to End Test
+on: [push, pull_request]
+
+jobs:
+  run:
+    name: Lint, Type Check, Security Scan & Build Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: Install the project
+        run: uv sync --all-extras --dev --frozen
+      
+      - name: Run tests
+        run: uv run pytest tests -m "e2e"
+
+      - name: Upload files
+        id: upload
+        uses: blueswen/glimpse-action@v1
+        with:
+          directory: 'playwright-results'
+          branch: 'glimpse'
+          generations: '5'
+
+      - name: Preview image in summary
+        run: |
+          echo "## Screenshot URLs" >> $GITHUB_STEP_SUMMARY
+          for file_url in $(echo "${{ steps.upload.outputs.file_urls }}" | tr ',' '\n'); do
+            filename=$(basename "$file_url")
+            echo "## filename\n" >> $GITHUB_STEP_SUMMARY
+            echo "![${filename}](${file_url})\n" >> $GITHUB_STEP_SUMMARY
+          done
