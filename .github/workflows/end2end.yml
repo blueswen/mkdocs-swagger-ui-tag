@@ -18,6 +18,17 @@ jobs:
 
       - name: Install the project
         run: uv sync --all-extras --dev --frozen
+
+      - name: Install Playwright browsers
+        run: uv run playwright install
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-browsers-week-${{ env.CACHE_WEEK }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-browsers-week-
       
       - name: Run tests
         run: uv run pytest tests -m "e2e"
