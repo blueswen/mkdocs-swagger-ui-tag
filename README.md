@@ -25,7 +25,7 @@ A MkDocs plugin supports adding [Swagger UI](https://github.com/swagger-api/swag
 1. Python Package
     1. beautifulsoup4>=4.13.3
 2. [Swagger UI dist](https://www.npmjs.com/package/swagger-ui-dist) javascript file and CSS file
-    1. swagger-ui-dist==5.21.0
+    1. swagger-ui-dist==5.27.1
 
 ## Usage
 
@@ -80,8 +80,16 @@ filter_files
 
 ## How it works
 
-1. Copy the Swagger UI script file into `site/assets/javascripts/` directory, the CSS file into `site/assets/stylesheets/` directory, and the [default Oauth2 redirect html](https://github.com/blueswen/mkdocs-swagger-ui-tag/blob/main/mkdocs_swagger_ui_tag/swagger-ui/oauth2-redirect.html) into `site/assets/swagger-ui/` directory
+1. Copies the Swagger UI script file into `site/assets/javascripts/` directory, the CSS file into `site/assets/stylesheets/` directory, and the [default Oauth2 redirect html](https://github.com/blueswen/mkdocs-swagger-ui-tag/blob/main/mkdocs_swagger_ui_tag/swagger-ui/oauth2-redirect.html) into `site/assets/swagger-ui/` directory
 2. Search all swagger-ui tags, then convert them to an iframe tag and generate the iframe target HTML with the given OpenAPI Specification src path and options
+
+## Development
+
+### Upgrading the Swagger-UI version
+
+To upgrade the version of `swagger-ui-dist` update the version in the [package.json](./package.json) and install with `npm i`. 
+
+After this, run the provided [update swagger ui script](./update-swagger-ui.sh) to move the files to the appropriate folders and commit the changes.
 
 ## License
 
