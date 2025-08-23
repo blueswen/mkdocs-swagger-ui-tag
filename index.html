@@ -714,7 +714,7 @@
 </ol>
 </li>
 <li><a href="https://www.npmjs.com/package/swagger-ui-dist">Swagger UI dist</a> javascript file and CSS file<ol>
-<li>swagger-ui-dist==5.21.0</li>
+<li>swagger-ui-dist==5.27.1</li>
 </ol>
 </li>
 </ol>
@@ -792,13 +792,28 @@
 <td>String</td>
 <td>Default: "https://validator.swagger.io/validator". By default, Swagger UI attempts to validate specs against swagger.io's online validator in multiple OAS Swagger UI. You can use this parameter to set a different validator URL, for example for locally deployed validators (<a href="https://github.com/swagger-api/validator-badge">Validator Badge</a>). Setting it "none" to disable validation.</td>
 </tr>
+<tr>
+<td>extra_css</td>
+<td>Array</td>
+<td>Default: []. List of additional CSS files to include in Swagger UI iframes.</td>
+</tr>
+<tr>
+<td>dark_scheme_name</td>
+<td>String</td>
+<td>Default: "slate". The color scheme name used for dark mode detection with Material for MkDocs theme.</td>
+</tr>
+<tr>
+<td>filter_files</td>
+<td>Array</td>
+<td>Default: []. List of file paths to filter processing. If specified, only files in this list will be processed for swagger-ui tags.</td>
+</tr>
 </tbody>
 </table>
 </li>
 </ol>
 <h2 id="how-it-works">How it works</h2>
 <ol>
-<li>Copy the Swagger UI script file into <code>site/assets/javascripts/</code> directory, the CSS file into <code>site/assets/stylesheets/</code> directory, and the <a href="https://github.com/blueswen/mkdocs-swagger-ui-tag/blob/main/mkdocs_swagger_ui_tag/swagger-ui/oauth2-redirect.html">default Oauth2 redirect html</a> into <code>site/assets/swagger-ui/</code> directory</li>
+<li>Copies the Swagger UI script file into <code>site/assets/javascripts/</code> directory, the CSS file into <code>site/assets/stylesheets/</code> directory, and the <a href="https://github.com/blueswen/mkdocs-swagger-ui-tag/blob/main/mkdocs_swagger_ui_tag/swagger-ui/oauth2-redirect.html">default Oauth2 redirect html</a> into <code>site/assets/swagger-ui/</code> directory</li>
 <li>Search all swagger-ui tags, then convert them to an iframe tag and generate the iframe target HTML with the given OpenAPI Specification src path and options</li>
 </ol>
 <h2 id="license">License</h2>
