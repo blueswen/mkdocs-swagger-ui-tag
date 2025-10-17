@@ -17,6 +17,25 @@
   <script src="{{ js_dir }}swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
   <script>
     window.onload = function () {
+      {% if openapi_spec_url is string %}
+        var url = "{{openapi_spec_url}}";
+        {% if nocache %}
+        url += (url.includes('?') ? '&' : '?') + "nocache=" + new Date().getTime();
+        {% endif %}
+      {% elif openapi_spec_url is sequence %}
+        var urls = [
+        {% for item in openapi_spec_url %}
+          {url:"{{item.url}}", name:"{{item.name}}"},
+        {% endfor %}
+        ];
+        {% if nocache %}
+        urls = urls.map(function(item){
+          var url = item.url;
+          url += (url.includes('?') ? '&' : '?') + "nocache=" + new Date().getTime();
+          return {url: url, name: item.name};
+        });
+        {% endif %}
+      {% endif %}
       window.ui = SwaggerUIBundle({
         dom_id: "#swagger-ui",
         onComplete: onComplete,
@@ -25,13 +44,9 @@
           SwaggerUIStandalonePreset
         ],
         {% if openapi_spec_url is string %}
-        url: "{{openapi_spec_url}}",
+        url,
         {% elif openapi_spec_url is sequence %}
-        urls: [
-        {% for item in openapi_spec_url %}
-          {url:"{{item.url}}", name:"{{item.name}}"},
-        {% endfor %}
-        ],
+        urls,
         layout: "StandaloneLayout",
         {% endif %}
         {% if oauth2_redirect_url.startswith('.') %}

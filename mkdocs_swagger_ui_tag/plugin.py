@@ -177,6 +177,7 @@ class SwaggerUIPlugin(BasePlugin):
                 css_dir=css_dir,
                 extra_css_files=extra_css_files,
                 js_dir=js_dir,
+                nocache=swagger_ui_ele.has_attr("nocache"),
                 background=self.config["background"],
                 id="{{ID_PLACEHOLDER}}",  # ID is unknown yet - it's the hash of the content.
                 openapi_spec_url=openapi_spec_url,
