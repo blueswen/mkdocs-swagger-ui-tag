@@ -136,7 +136,7 @@ def validate_iframe(html_content, iframe_src_dir):
         iframe_src = iframe_tag.attrs.get("src")
         assert iframe_id is not None
         assert iframe_src is not None
-        assert f"swagger-{iframe_id}.html" == iframe_src
+        assert f"swagger-{iframe_id}.html" in iframe_src
         iframe_file = iframe_src_dir / iframe_src
         assert iframe_file.exists()
         iframe_content = iframe_file.read_text(encoding="utf8")
@@ -199,7 +199,7 @@ def test_basic(tmp_path):
 
     # validate OpenAPI spec exist
     regex_obj = re.search(
-        r'url: "(.*)"',
+        r'var url = "(.*)"',
         iframe_contents,
     )
     assert regex_obj
@@ -224,7 +224,7 @@ def test_basic_sub_dir(tmp_path):
 
     # validate OpenAPI spec exists
     regex_obj = re.search(
-        r'url: "(.*)"',
+        r'var url = "(.*)"',
         iframe_contents,
     )
     assert regex_obj
@@ -251,7 +251,7 @@ def test_use_directory_urls(tmp_path):
 
     # validate OpenAPI spec exist
     regex_obj = re.search(
-        r'url: "(.*)"',
+        r'var url = "(.*)"',
         iframe_contents,
     )
     assert regex_obj
@@ -278,7 +278,7 @@ def test_use_directory_urls_sub_dir(tmp_path):
 
     # validate OpenAPI spec exist
     regex_obj = re.search(
-        r'url: "(.*)"',
+        r'var url = "(.*)"',
         iframe_contents,
     )
     assert regex_obj
@@ -305,7 +305,7 @@ def test_material(tmp_path):
 
     # validate OpenAPI spec exist
     regex_obj = re.search(
-        r'url: "(.*)"',
+        r'var url = "(.*)"',
         iframe_contents,
     )
     assert regex_obj
@@ -340,7 +340,7 @@ def test_url(tmp_path):
 
     # validate OpenAPI spec exist
     regex_obj = re.search(
-        r'url: "(.*)"',
+        r'var url = "(.*)"',
         iframe_contents,
     )
     assert regex_obj
@@ -361,7 +361,7 @@ def test_multiple(tmp_path):
     for ind, iframe_contents in enumerate(iframe_content_list):
         # validate OpenAPI spec exist
         regex_obj = re.search(
-            r'url: "(.*)"',
+            r'var url = "(.*)"',
             iframe_contents,
         )
         assert regex_obj
@@ -370,6 +370,35 @@ def test_multiple(tmp_path):
             assert (file.parent / openapi_spec_url).resolve().exists()
         elif ind == 2:
             assert regex_obj.group(1) == "https://petstore.swagger.io/v2/swagger.json"
+
+
+def test_nocache(tmp_path):
+    """
+    Validate nocache url in multiple Swagger UI in the same page
+    """
+    mkdocs_file = "mkdocs.yml"
+    testproject_path = validate_mkdocs_file(tmp_path, f"tests/fixtures/{mkdocs_file}")
+    file = testproject_path / "site/nocache/index.html"
+    contents = file.read_text(encoding="utf8")
+
+    iframe_content_list = validate_iframe(contents, file.parent)
+    assert len(iframe_content_list) == 3
+    for ind, iframe_contents in enumerate(iframe_content_list):
+        # validate nocache detected
+        assert "nocache=" in iframe_contents
+        # validate OpenAPI spec exist
+        regex_obj = re.search(
+            r'var url = "(.*)"',
+            iframe_contents,
+        )
+        assert regex_obj
+        openapi_spec_url = regex_obj.group(1)
+        if ind == 0:
+            assert "./openapi-spec/sample.yaml" in openapi_spec_url
+        elif ind == 1:
+            assert "./openapi-spec/sample.yaml?doudou=doudou" in openapi_spec_url
+        elif ind == 2:
+            assert "https://petstore.swagger.io/v2/swagger.json" in openapi_spec_url
 
 
 def test_build_in_multiple(tmp_path):
@@ -396,7 +425,7 @@ def test_build_in_multiple(tmp_path):
                     assert (file.parent / spec_url).resolve().exists()
         elif ind == 1:
             regex_obj = re.search(
-                r'url: "(.*)"',
+                r'var url = "(.*)"',
                 iframe_contents,
             )
             assert regex_obj
