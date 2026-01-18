@@ -1,0 +1,135 @@
+name: Swagger UI Integrity Check
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'mkdocs_swagger_ui_tag/swagger-ui/**'
+      - 'package.json'
+      - '.github/workflows/integrity.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'mkdocs_swagger_ui_tag/swagger-ui/**'
+      - 'package.json'
+      - '.github/workflows/integrity.yml'
+
+jobs:
+  verify-integrity:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Get Swagger UI Version
+        id: get-version
+        run: |
+          VERSION=$(node -p "require('./package.json').dependencies['swagger-ui-dist']")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📦 Using Swagger UI version: $VERSION"
+
+      - name: Verify package-lock.json registry sources
+        run: |
+          echo "🔍 Check package-lock.json sources..."
+          
+          # Check if all resolved fields in package-lock.json come from registry.npmjs.org
+          INVALID_SOURCES=$(jq -r '
+            .. | 
+            objects | 
+            select(has("resolved")) | 
+            .resolved | 
+            select(. != null and (. | test("^https://registry\\.npmjs\\.org/") | not))
+          ' package-lock.json)
+          
+          if [ -n "$INVALID_SOURCES" ]; then
+            echo "❌ Found sources not from registry.npmjs.org:"
+            echo "$INVALID_SOURCES"
+            exit 1
+          else
+            echo "✅ All package sources come from registry.npmjs.org"
+          fi
+      
+      - name: Install Swagger UI from npm
+        run: |
+          npm install swagger-ui-dist@${{ steps.get-version.outputs.version }}
+      
+      - name: Verify File Integrity
+        run: |
+          SOURCE="$(pwd)/node_modules/swagger-ui-dist"
+          DEST="$(pwd)/mkdocs_swagger_ui_tag/swagger-ui"
+          
+          echo "🔍 Starting file integrity verification..."
+          echo ""
+          
+          FAILED=0
+          CHECKED=0
+          
+          # Change to DEST directory and find all files
+          cd "${DEST}"
+          
+          while IFS= read -r -d '' rel_path; do
+            # Skip if it's current directory
+            if [ "$rel_path" = "." ]; then
+              continue
+            fi
+            
+            # Remove leading ./
+            rel_path="${rel_path#./}"
+            
+            # Determine corresponding source file path based on directory structure
+            if [[ "$rel_path" == javascripts/* ]]; then
+              # Remove 'javascripts/' prefix for source path
+              source_file="${SOURCE}/${rel_path#javascripts/}"
+            elif [[ "$rel_path" == stylesheets/* ]]; then
+              # Remove 'stylesheets/' prefix for source path
+              source_file="${SOURCE}/${rel_path#stylesheets/}"
+            else
+              # Direct file in root (oauth2-redirect files)
+              source_file="${SOURCE}/${rel_path}"
+            fi
+            
+            # Check if source file exists
+            if [ ! -f "$source_file" ]; then
+              echo "❌ Cannot find corresponding file in npm package: ${rel_path}"
+              echo "   Expected location: ${source_file}"
+              FAILED=1
+              continue
+            fi
+            
+            # Calculate checksums
+            dest_checksum=$(sha256sum "${rel_path}" | awk '{print $1}')
+            source_checksum=$(sha256sum "${source_file}" | awk '{print $1}')
+            
+            CHECKED=$((CHECKED + 1))
+            
+            if [ "$dest_checksum" != "$source_checksum" ]; then
+              echo "❌ Checksum mismatch: ${rel_path}"
+              echo "   Repo file: ${dest_checksum}"
+              echo "   NPM file: ${source_checksum}"
+              FAILED=1
+            else
+              echo "✅ ${rel_path}"
+            fi
+          done < <(find . -type f -print0)
+          
+          echo ""
+          echo "📊 Checked ${CHECKED} files"
+          
+          if [ $FAILED -eq 1 ]; then
+            echo ""
+            echo "❌ Verification failed! Swagger UI files do not match the npm package"
+            echo "💡 Please run the following command to update the files:"
+            echo "   ./update-swagger-ui.sh ${{ steps.get-version.outputs.version }}"
+            exit 1
+          else
+            echo "✅ All files verified successfully! Swagger UI files match the npm package"
+          fi
