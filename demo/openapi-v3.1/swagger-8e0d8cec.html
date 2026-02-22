@@ -4,17 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Swagger UI</title>
-  <link rel="stylesheet" type="text/css" href="../assets/stylesheets/swagger-ui.css" />
-  <link rel="stylesheet" type="text/css" id="slate-css" media="none" href="../assets/stylesheets/swagger-ui-dark.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/swagger-ui.css" />
   
 </head>
 
 <body style="overflow:hidden;">
   <div id="swagger-ui"></div>
-  <script src="../assets/javascripts/swagger-ui-bundle.js" charset="UTF-8"> </script>
-  <script src="../assets/javascripts/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
+  <script src="../../assets/javascripts/swagger-ui-bundle.js" charset="UTF-8"> </script>
+  <script src="../../assets/javascripts/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
   <script>
     window.onload = function () {
+      
+        var url = "../openapi-spec/v3.1/non-oauth-scopes.yaml";
+        
+      
       window.ui = SwaggerUIBundle({
         dom_id: "#swagger-ui",
         onComplete: onComplete,
@@ -23,24 +26,31 @@
           SwaggerUIStandalonePreset
         ],
         
-        url: "../demo/openapi-spec/sample.yaml",
+        url,
         
         
-        "oauth2RedirectUrl": new URL("../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
+        "oauth2RedirectUrl": new URL("../../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
         
         "validatorUrl": "none",
         
-    "docExpansion": "none",
-    "filter": "",
+    "docExpansion": "list",
+    "filter": false,
     "tryItOutEnabled": false,
     "supportedSubmitMethods": [
-        "get"
+        "get",
+        "put",
+        "post",
+        "delete",
+        "options",
+        "head",
+        "patch",
+        "trace"
     ],
     "validatorUrl": "none",
     "extra_css": [],
     "dark_scheme_name": "slate",
     "filter_files": [],
-    "syntaxHighlight.theme": "monokai"
+    "syntaxHighlight.theme": "agate"
 
       })
 
@@ -52,15 +62,15 @@
     }
 
     enable_dark_mode = function(){
-      document.getElementById("slate-css").media = ""
+      document.documentElement.classList.add("dark-mode");
     }
 
     disable_dark_mode = function(){
-      document.getElementById("slate-css").media = "none"
+      document.documentElement.classList.remove("dark-mode");
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("f158a01b");
+      parent.update_swagger_ui_iframe_height("8e0d8cec");
     });
 
     // start observing for resizing

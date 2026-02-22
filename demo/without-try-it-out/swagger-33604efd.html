@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <title>Swagger UI</title>
   <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/swagger-ui.css" />
-  <link rel="stylesheet" type="text/css" id="slate-css" media="none" href="../../assets/stylesheets/swagger-ui-dark.css" />
   
 </head>
 
@@ -15,6 +14,10 @@
   <script src="../../assets/javascripts/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
   <script>
     window.onload = function () {
+      
+        var url = "../openapi-spec/sample.yaml";
+        
+      
       window.ui = SwaggerUIBundle({
         dom_id: "#swagger-ui",
         onComplete: onComplete,
@@ -23,7 +26,7 @@
           SwaggerUIStandalonePreset
         ],
         
-        url: "../openapi-spec/sample-oauth2.yaml",
+        url,
         
         
         "oauth2RedirectUrl": new URL("../../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
@@ -33,16 +36,7 @@
     "docExpansion": "list",
     "filter": false,
     "tryItOutEnabled": false,
-    "supportedSubmitMethods": [
-        "get",
-        "put",
-        "post",
-        "delete",
-        "options",
-        "head",
-        "patch",
-        "trace"
-    ],
+    "supportedSubmitMethods": [],
     "validatorUrl": "none",
     "extra_css": [],
     "dark_scheme_name": "slate",
@@ -52,8 +46,6 @@
       })
 
       
-      window.ui.initOAuth({"clientId": "your-client-id", "clientSecret": "your-client-secret-if-required", "realm": "your-realms", "appName": "your-app-name", "scopes": "openid profile", "additionalQueryStringParams": {"test": "hello"}, "useBasicAuthenticationWithAccessCodeGrant": false, "usePkceWithAuthorizationCodeGrant": false})
-      
 
       if (parent.__init_is_dark_mode) {
           enable_dark_mode();
@@ -61,15 +53,15 @@
     }
 
     enable_dark_mode = function(){
-      document.getElementById("slate-css").media = ""
+      document.documentElement.classList.add("dark-mode");
     }
 
     disable_dark_mode = function(){
-      document.getElementById("slate-css").media = "none"
+      document.documentElement.classList.remove("dark-mode");
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("1f2321d4");
+      parent.update_swagger_ui_iframe_height("33604efd");
     });
 
     // start observing for resizing
