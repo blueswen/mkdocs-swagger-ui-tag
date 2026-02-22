@@ -35,8 +35,6 @@ jobs:
           restore-keys: |
             mkdocs-material-
 
-      - run: uv pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
-
       - run: uv run mkdocs gh-deploy --force -f demo-mkdocs/mkdocs.yml
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }} 
