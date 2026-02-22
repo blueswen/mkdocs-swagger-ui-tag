@@ -1,8 +1,9 @@
 name: End to End Test
-on: [push, pull_request]
+on: [push, pull_request_target]
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   run:
