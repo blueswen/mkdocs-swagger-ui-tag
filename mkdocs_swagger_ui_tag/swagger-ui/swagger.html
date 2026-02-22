@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <title>Swagger UI</title>
   <link rel="stylesheet" type="text/css" href="{{ css_dir }}swagger-ui.css" />
-  <link rel="stylesheet" type="text/css" id="slate-css" media="none" href="{{ css_dir }}swagger-ui-dark.css" />
   {% for css_file in extra_css_files %}
   <link rel="stylesheet" type="text/css" href="{{ css_file }}" />
   {% endfor %}
@@ -68,11 +67,11 @@
     }
 
     enable_dark_mode = function(){
-      document.getElementById("slate-css").media = ""
+      document.documentElement.classList.add("dark-mode");
     }
 
     disable_dark_mode = function(){
-      document.getElementById("slate-css").media = "none"
+      document.documentElement.classList.remove("dark-mode");
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
