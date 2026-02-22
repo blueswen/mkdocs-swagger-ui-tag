@@ -66,6 +66,10 @@ jobs:
         run: |
           SOURCE="$(pwd)/node_modules/swagger-ui-dist"
           DEST="$(pwd)/mkdocs_swagger_ui_tag/swagger-ui"
+          SKIP_FILES=(
+            "LICENSE"
+            "swagger.html"
+          )
           
           echo "🔍 Starting file integrity verification..."
           echo ""
@@ -86,7 +90,10 @@ jobs:
             rel_path="${rel_path#./}"
             
             # Determine corresponding source file path based on directory structure
-            if [[ "$rel_path" == javascripts/* ]]; then
+            if [[ " ${SKIP_FILES[*]} " == *" ${rel_path} "* ]]; then
+              echo "⏭️ Skipping ${rel_path} (in skip list)"
+              continue
+            elif [[ "$rel_path" == javascripts/* ]]; then
               # Remove 'javascripts/' prefix for source path
               source_file="${SOURCE}/${rel_path#javascripts/}"
             elif [[ "$rel_path" == stylesheets/* ]]; then
