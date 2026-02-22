@@ -542,7 +542,7 @@ def test_static(tmp_path):
     ]
     for file_name in js_files:
         assert (testproject_path / "site/assets/javascripts/" / file_name).exists()
-    css_files = ["swagger-ui-dark.css", "swagger-ui.css", "swagger-ui.css.map"]
+    css_files = ["swagger-ui.css", "swagger-ui.css.map"]
     for file_name in css_files:
         assert (testproject_path / "site/assets/stylesheets/" / file_name).exists()
     assert (testproject_path / "site/assets/swagger-ui/oauth2-redirect.html").exists()

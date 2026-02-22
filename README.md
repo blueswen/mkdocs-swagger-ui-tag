@@ -85,9 +85,10 @@ A MkDocs plugin supports adding [Swagger UI](https://github.com/swagger-api/swag
 
 ### Upgrading the Swagger-UI version
 
-To upgrade the version of `swagger-ui-dist` update the version in the [package.json](./package.json) and install with `npm i`. 
-
-After this, run the provided [update swagger ui script](./update-swagger-ui.sh) to move the files to the appropriate folders and commit the changes.
+```bash
+SWAGGER_UI_VERSION=GIVEN_VERSION
+./update-swagger-ui.sh $SWAGGER_UI_VERSION
+```
 
 ## License
 
