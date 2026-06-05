@@ -534,6 +534,7 @@ def test_static(tmp_path):
     mkdocs_file = "mkdocs.yml"
     testproject_path = validate_mkdocs_file(tmp_path, f"tests/fixtures/{mkdocs_file}")
     assert (testproject_path / "site/assets/swagger-ui/oauth2-redirect.html").exists()
+    assert (testproject_path / "site/assets/swagger-ui/oauth2-redirect.js").exists()
     js_files = [
         "swagger-ui-bundle.js",
         "swagger-ui-bundle.js.map",
