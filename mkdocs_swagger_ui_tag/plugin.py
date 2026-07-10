@@ -239,7 +239,7 @@ class SwaggerUIPlugin(BasePlugin):
         js_code.string += """
             let iframe_id_list = []
             var iframes = document.getElementsByClassName("swagger-ui-iframe");
-            for (var i = 0; i < iframes.length; i++) { 
+            for (var i = 0; i < iframes.length; i++) {
                 iframe_id_list.push(iframes[i].getAttribute("id"))
             }
             let ticking = false;
@@ -263,7 +263,7 @@ class SwaggerUIPlugin(BasePlugin):
                 }
             });
         """
-        if config["theme"].name == "material":
+        if config["theme"].name in ("material", "materialx"):
             # synchronized dark mode with mkdocs-material
             js_code.string += f"""
             const dark_scheme_name = "{self.config["dark_scheme_name"]}"
