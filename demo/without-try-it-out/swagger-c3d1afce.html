@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Swagger UI</title>
-  <link rel="stylesheet" type="text/css" href="../assets/stylesheets/swagger-ui.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/swagger-ui.css" />
   
 </head>
 
 <body style="overflow:hidden;">
   <div id="swagger-ui"></div>
-  <script src="../assets/javascripts/swagger-ui-bundle.js" charset="UTF-8"> </script>
-  <script src="../assets/javascripts/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
+  <script src="../../assets/javascripts/swagger-ui-bundle.js" charset="UTF-8"> </script>
+  <script src="../../assets/javascripts/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
   <script>
     window.onload = function () {
       
-        var url = "../demo/openapi-spec/sample.yaml";
+        var url = "../openapi-spec/sample.yaml";
         
       
       window.ui = SwaggerUIBundle({
@@ -29,28 +29,21 @@
         url,
         
         
-        "oauth2RedirectUrl": new URL("../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
+        "oauth2RedirectUrl": new URL("../../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
         
         "validatorUrl": "none",
         
     "docExpansion": "list",
     "filter": false,
     "tryItOutEnabled": false,
-    "supportedSubmitMethods": [
-        "get",
-        "put",
-        "post",
-        "delete",
-        "options",
-        "head",
-        "patch",
-        "trace"
-    ],
+    "supportedSubmitMethods": [],
     "validatorUrl": "none",
     "extra_css": [],
     "dark_scheme_name": "slate",
     "filter_files": [],
-    "syntaxHighlight.theme": "agate"
+    "syntaxHighlight": {
+        "theme": "agate"
+    }
 
       })
 
@@ -70,7 +63,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("fc5a4533");
+      parent.update_swagger_ui_iframe_height("c3d1afce");
     });
 
     // start observing for resizing

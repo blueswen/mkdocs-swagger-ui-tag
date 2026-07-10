@@ -9,10 +9,10 @@
 <link href="../oauth2/" rel="prev"/>
 <link href="../openapi-v3.1/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.7.2" name="generator"/>
+<meta content="mkdocs-1.6.1, mkdocs-materialx-10.1.8" name="generator"/>
 <title>Without Try It Out - MkDocs Swagger UI Tag</title>
-<link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
-<link href="../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/main.314bbef5.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.a45159b5.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
@@ -29,10 +29,12 @@
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
     body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
-<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" data-mx-topbar="glass" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
+<label class="md-overlay" for="__toc"></label>
 <div data-md-component="skip">
 <a class="md-skip" href="#markdown">
           Skip to content
@@ -162,7 +164,7 @@
   </div>
 </a>
 </div>
-<ul class="md-nav__list" data-md-scrollfix="">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../..">
 <span class="md-ellipsis">
@@ -221,7 +223,7 @@
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../static-file/">
 <span class="md-ellipsis">
@@ -310,7 +312,7 @@
 <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<ul class="md-nav__list" data-md-component="toc">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#markdown">
 <span class="md-ellipsis">
@@ -378,10 +380,21 @@
 <a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">      </span><span class="nt">supportedSubmitMethods</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
 </code></pre></div>
 <h2 id="swagger-ui">Swagger UI</h2>
-<p><iframe class="swagger-ui-iframe" frameborder="0" id="33604efd" onload="this.style.display = 'block'; this.style.overflow = 'hidden'; this.style.width = '100%';" src="swagger-33604efd.html" style="display:none;" width="100%"></iframe></p>
+<p><iframe class="swagger-ui-iframe" frameborder="0" id="c3d1afce" onload="this.style.display = 'block'; this.style.overflow = 'hidden'; this.style.width = '100%';" src="swagger-c3d1afce.html" style="display:none;" width="100%"></iframe></p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<div class="md-top" data-md-component="top" hidden="">
+<div class="md-top__center">
+<button class="md-top__button md-top__button--main" data-md-action="top" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+<span>Back to top</span>
+</button>
+<label class="md-top__button md-top__side md-top__side--nav" for="__drawer">
+<svg class="lucide lucide-panel-left" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect height="18" rx="2" width="18" x="3" y="3"></rect><path d="M9 3v18"></path></svg>
+</label>
+</div>
 </div>
 </main>
 <footer class="md-footer">
@@ -391,8 +404,8 @@
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
-      Material for MkDocs
+    <a href="https://jaywhj.github.io/mkdocs-materialx/" rel="noopener" target="_blank">
+      MaterialX
     </a>
 </div>
 </div>
@@ -402,8 +415,8 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.integrate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-<script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script id="__config" type="application/json">{"annotate": null, "base": "../..", "code": null, "features": ["toc.integrate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "code.collapse": "Collapse", "code.download": "Download", "code.expand": "Expand remaining # lines", "code.select": "Toggle line selection", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.fc193f93.min.js"></script>
 <script>document$.subscribe(() => {
             window.update_swagger_ui_iframe_height = function (id) {
                 var iFrameID = document.getElementById(id);
@@ -416,7 +429,7 @@
         
             let iframe_id_list = []
             var iframes = document.getElementsByClassName("swagger-ui-iframe");
-            for (var i = 0; i < iframes.length; i++) { 
+            for (var i = 0; i < iframes.length; i++) {
                 iframe_id_list.push(iframes[i].getAttribute("id"))
             }
             let ticking = false;

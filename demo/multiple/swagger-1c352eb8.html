@@ -15,7 +15,7 @@
   <script>
     window.onload = function () {
       
-        var url = "../openapi-spec/sample.yaml";
+        var url = "../openapi-spec/sample-oauth2.yaml";
         
       
       window.ui = SwaggerUIBundle({
@@ -50,7 +50,9 @@
     "extra_css": [],
     "dark_scheme_name": "slate",
     "filter_files": [],
-    "syntaxHighlight.theme": "agate"
+    "syntaxHighlight": {
+        "theme": "agate"
+    }
 
       })
 
@@ -70,7 +72,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("2d257458");
+      parent.update_swagger_ui_iframe_height("1c352eb8");
     });
 
     // start observing for resizing

@@ -15,7 +15,7 @@
   <script>
     window.onload = function () {
       
-        var url = "../openapi-spec/sample.yaml";
+        var url = "https://petstore.swagger.io/v2/swagger.json";
         
       
       window.ui = SwaggerUIBundle({
@@ -36,12 +36,23 @@
     "docExpansion": "list",
     "filter": false,
     "tryItOutEnabled": false,
-    "supportedSubmitMethods": [],
+    "supportedSubmitMethods": [
+        "get",
+        "put",
+        "post",
+        "delete",
+        "options",
+        "head",
+        "patch",
+        "trace"
+    ],
     "validatorUrl": "none",
     "extra_css": [],
     "dark_scheme_name": "slate",
     "filter_files": [],
-    "syntaxHighlight.theme": "agate"
+    "syntaxHighlight": {
+        "theme": "agate"
+    }
 
       })
 
@@ -61,7 +72,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("33604efd");
+      parent.update_swagger_ui_iframe_height("f8e7e434");
     });
 
     // start observing for resizing

@@ -15,9 +15,7 @@
   <script>
     window.onload = function () {
       
-        var url = "../openapi-spec/sample.yaml";
-        
-        url += (url.includes('?') ? '&' : '?') + "nocache=" + new Date().getTime();
+        var url = "../openapi-spec/v3.1/webhook-example.yaml";
         
       
       window.ui = SwaggerUIBundle({
@@ -52,7 +50,9 @@
     "extra_css": [],
     "dark_scheme_name": "slate",
     "filter_files": [],
-    "syntaxHighlight.theme": "agate"
+    "syntaxHighlight": {
+        "theme": "agate"
+    }
 
       })
 
@@ -72,7 +72,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("087267cc");
+      parent.update_swagger_ui_iframe_height("289badc5");
     });
 
     // start observing for resizing

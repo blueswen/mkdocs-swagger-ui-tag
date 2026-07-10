@@ -4,20 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Swagger UI</title>
-  <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/swagger-ui.css" />
+  <link rel="stylesheet" type="text/css" href="../assets/stylesheets/swagger-ui.css" />
   
 </head>
 
 <body style="overflow:hidden;">
   <div id="swagger-ui"></div>
-  <script src="../../assets/javascripts/swagger-ui-bundle.js" charset="UTF-8"> </script>
-  <script src="../../assets/javascripts/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
+  <script src="../assets/javascripts/swagger-ui-bundle.js" charset="UTF-8"> </script>
+  <script src="../assets/javascripts/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
   <script>
     window.onload = function () {
       
         var url = "https://petstore.swagger.io/v2/swagger.json";
-        
-        url += (url.includes('?') ? '&' : '?') + "nocache=" + new Date().getTime();
         
       
       window.ui = SwaggerUIBundle({
@@ -31,7 +29,7 @@
         url,
         
         
-        "oauth2RedirectUrl": new URL("../../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
+        "oauth2RedirectUrl": new URL("../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
         
         "validatorUrl": "none",
         
@@ -52,7 +50,9 @@
     "extra_css": [],
     "dark_scheme_name": "slate",
     "filter_files": [],
-    "syntaxHighlight.theme": "agate"
+    "syntaxHighlight": {
+        "theme": "agate"
+    }
 
       })
 
@@ -72,7 +72,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("e0871038");
+      parent.update_swagger_ui_iframe_height("a2f6d17d");
     });
 
     // start observing for resizing

@@ -15,7 +15,19 @@
   <script>
     window.onload = function () {
       
-        var url = "../openapi-spec/sample-oauth2.yaml";
+        var urls = [
+        
+          {url:"https://petstore.swagger.io/v2/swagger.json", name:"Pet Store"},
+        
+          {url:"../openapi-spec/sample.yaml", name:"Sample"},
+        
+          {url:"../openapi-spec/sample-first.yaml", name:"Sample First"},
+        
+          {url:"../openapi-spec/sample-second.yaml", name:"Sample Second"},
+        
+          {url:"../openapi-spec/sample-third.yaml", name:"Sample Third"},
+        
+        ];
         
       
       window.ui = SwaggerUIBundle({
@@ -26,7 +38,8 @@
           SwaggerUIStandalonePreset
         ],
         
-        url,
+        urls,
+        layout: "StandaloneLayout",
         
         
         "oauth2RedirectUrl": new URL("../../assets/swagger-ui/oauth2-redirect.html",window.location.href).href,
@@ -50,12 +63,12 @@
     "extra_css": [],
     "dark_scheme_name": "slate",
     "filter_files": [],
-    "syntaxHighlight.theme": "agate"
+    "syntaxHighlight": {
+        "theme": "agate"
+    }
 
       })
 
-      
-      window.ui.initOAuth({"clientId": "your-client-id", "clientSecret": "your-client-secret-if-required", "realm": "your-realms", "appName": "your-app-name", "scopes": "openid profile", "additionalQueryStringParams": {"test": "hello"}, "useBasicAuthenticationWithAccessCodeGrant": false, "usePkceWithAuthorizationCodeGrant": false})
       
 
       if (parent.__init_is_dark_mode) {
@@ -72,7 +85,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("0c0b07e6");
+      parent.update_swagger_ui_iframe_height("88409789");
     });
 
     // start observing for resizing

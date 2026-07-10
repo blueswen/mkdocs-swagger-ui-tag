@@ -17,6 +17,8 @@
       
         var url = "https://petstore.swagger.io/v2/swagger.json";
         
+        url += (url.includes('?') ? '&' : '?') + "nocache=" + new Date().getTime();
+        
       
       window.ui = SwaggerUIBundle({
         dom_id: "#swagger-ui",
@@ -50,7 +52,9 @@
     "extra_css": [],
     "dark_scheme_name": "slate",
     "filter_files": [],
-    "syntaxHighlight.theme": "agate"
+    "syntaxHighlight": {
+        "theme": "agate"
+    }
 
       })
 
@@ -70,7 +74,7 @@
     }
 
     const resize_ob = new ResizeObserver(function(entries) {
-      parent.update_swagger_ui_iframe_height("3f2185c3");
+      parent.update_swagger_ui_iframe_height("8e9862dc");
     });
 
     // start observing for resizing
