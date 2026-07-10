@@ -317,7 +317,9 @@ class SwaggerUIPlugin(BasePlugin):
         iframe["style"] = "display:none;"
         iframe["width"] = "100%"
         iframe["class"] = "swagger-ui-iframe"
-        iframe["onload"] = "this.style.display = 'block'; this.style.overflow = 'hidden'; this.style.width = '100%';"
+        iframe["onload"] = (
+            "this.style.display = 'block'; this.style.overflow = 'hidden'; this.style.width = '100%';"
+        )
         swagger_ui_ele.replace_with(iframe)
 
     def process_options(self, config, swagger_ui_ele):
@@ -352,9 +354,9 @@ class SwaggerUIPlugin(BasePlugin):
             if cur_options[k] is None:
                 cur_options.pop(k)
         if "syntaxHighlightTheme" in cur_options:
-            cur_options["syntaxHighlight.theme"] = cur_options.pop(
-                "syntaxHighlightTheme"
-            )
+            cur_options["syntaxHighlight"] = {
+                "theme": cur_options.pop("syntaxHighlightTheme")
+            }
         return cur_options
 
     def process_oath2_prop(self, swagger_ui_ele):
