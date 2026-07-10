@@ -425,3 +425,7 @@ class SwaggerUIPlugin(BasePlugin):
             os.path.join(base_path, "swagger-ui", "oauth2-redirect.html"),
             os.path.join(swagger_ui_path, "oauth2-redirect.html"),
         )
+        utils.copy_file(
+            os.path.join(base_path, "swagger-ui", "oauth2-redirect.js"),
+            os.path.join(swagger_ui_path, "oauth2-redirect.js"),
+        )
