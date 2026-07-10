@@ -1,3 +1,10 @@
+mkdocs-swagger-ui-tag 0.8.1 (2026-07-10)
+
+    * Fixed syntaxHighlightTheme bug (#44)
+    * Fixed oauth2-redirect bug (#46)
+    * Supported Mkdocs Materialx (#48)
+    * Updated swagger-ui-dist to 5.32.8
+
 mkdocs-swagger-ui-tag 0.8.0 (2026-02-22)
 
     * Supported deactivate browser cache for openapi files (#37)
