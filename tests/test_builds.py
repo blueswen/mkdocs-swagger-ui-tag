@@ -288,6 +288,31 @@ def test_use_directory_urls_sub_dir(tmp_path):
     validate_default_oauth2_html(iframe_contents, file.parent)
 
 
+def test_materialx(tmp_path):
+    """
+    Integrate with MaterialX for MkDocs
+    """
+    mkdocs_file = "mkdocs-materialx.yml"
+    testproject_path = validate_mkdocs_file(tmp_path, f"tests/fixtures/{mkdocs_file}")
+    file = testproject_path / "site/index.html"
+    contents = file.read_text(encoding="utf8")
+    validate_additional_script_code_for_material(contents, exists=True)
+    assert 'const dark_scheme_name = "slate"' in contents
+
+    iframe_content_list = validate_iframe(contents, file.parent)
+    assert len(iframe_content_list) == 1
+    iframe_contents = iframe_content_list[0]
+
+    # validate OpenAPI spec exist
+    regex_obj = re.search(
+        r'var url = "(.*)"',
+        iframe_contents,
+    )
+    assert regex_obj
+    openapi_spec_url = regex_obj.group(1)
+    assert (file.parent / openapi_spec_url).resolve().exists()
+
+
 def test_material(tmp_path):
     """
     Integrate with Material for MkDocs
@@ -487,6 +512,13 @@ def test_plugin_options(tmp_path):
             assert f'"{key}": {"true" if val else "false"}' in iframe_content
         elif key == "background":
             assert f"{key}: {val}" in iframe_content
+        elif key == "syntaxHighlight.theme":
+            assert (
+                """"syntaxHighlight": {
+        "theme": "monokai"
+    }"""
+                in iframe_content
+            )
         else:
             assert f'"{key}": "{val}"' in iframe_content
     assert re.search(

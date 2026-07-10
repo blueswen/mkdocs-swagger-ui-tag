@@ -990,6 +990,38 @@ wheels = [
 ]
 
 [[package]]
+name = "mkdocs-document-dates"
+version = "3.7.3"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version < '3.9'",
+]
+dependencies = [
+    { name = "mkdocs", marker = "python_full_version < '3.9'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d4/cf/74804b6ea5504efa44ebc4d82bad33b50e91160d7deb831185a05a6ed89d/mkdocs_document_dates-3.7.3.tar.gz", hash = "sha256:6d1603f5cbc7163b870017438e13dc00d7837234300d4522b639a53aa7e73d99", size = 193749 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/92/56/ad7c19e0b21935054b2f29c89603b831c54ef43d937e831c8fa3203bc063/mkdocs_document_dates-3.7.3-py3-none-any.whl", hash = "sha256:247a07330e4a0c5d42cbbd6e23d7549b5a12f9fc3cb13498db6aee2ae66ca778", size = 199114 },
+]
+
+[[package]]
+name = "mkdocs-document-dates"
+version = "3.8.7"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.9'",
+]
+dependencies = [
+    { name = "babel", marker = "python_full_version >= '3.9'" },
+    { name = "mkdocs", marker = "python_full_version >= '3.9'" },
+    { name = "properdocs", marker = "python_full_version >= '3.9'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/47/9d/c77aedfdc4228b6aeb80d3ccc4d3c6e642b064f44e1ce47cef93101ff59d/mkdocs_document_dates-3.8.7.tar.gz", hash = "sha256:da03b4fcc5f94689a92791e96ff4b38cb967b6abce8a3a465fee849451aa5f1f", size = 195236 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f4/10/7bd3e3a5edeb1dde352b5183a05819f8d2003958f17af42fade886cb025d/mkdocs_document_dates-3.8.7-py3-none-any.whl", hash = "sha256:9f9f699ad08080e1e8b5199820350d43e8c358c1de53bb6ef386bb360316eb9f", size = 200431 },
+]
+
+[[package]]
 name = "mkdocs-get-deps"
 version = "0.2.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1047,12 +1079,64 @@ wheels = [
 ]
 
 [[package]]
+name = "mkdocs-materialx"
+version = "10.1.0"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version < '3.9'",
+]
+dependencies = [
+    { name = "babel", marker = "python_full_version < '3.9'" },
+    { name = "backrefs", version = "5.7.post1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
+    { name = "colorama", marker = "python_full_version < '3.9'" },
+    { name = "jinja2", marker = "python_full_version < '3.9'" },
+    { name = "markdown", marker = "python_full_version < '3.9'" },
+    { name = "mkdocs", marker = "python_full_version < '3.9'" },
+    { name = "mkdocs-document-dates", version = "3.7.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
+    { name = "mkdocs-material-extensions", marker = "python_full_version < '3.9'" },
+    { name = "paginate", marker = "python_full_version < '3.9'" },
+    { name = "pygments", marker = "python_full_version < '3.9'" },
+    { name = "pymdown-extensions", marker = "python_full_version < '3.9'" },
+    { name = "requests", marker = "python_full_version < '3.9'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/9a/f4/d96971d8d3b2888b1a01ae7bc970f39606690d5819f3f8e4c81aae9965e7/mkdocs_materialx-10.1.0.tar.gz", hash = "sha256:ec608fe1c5f17b74c2555f79b1e8a72a164c9b7305efe704c868565943d10eea", size = 4095981 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c0/fb/e5194cd5c765f2dd6e601186f8448c8c14470296803e9b1619ef11bfa20e/mkdocs_materialx-10.1.0-py3-none-any.whl", hash = "sha256:26c5a5dc32a10655536223ecad3c0b4c4344d8845dec792db1e9a66f77fc2761", size = 9285962 },
+]
+
+[[package]]
+name = "mkdocs-materialx"
+version = "10.1.8"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.9'",
+]
+dependencies = [
+    { name = "babel", marker = "python_full_version >= '3.9'" },
+    { name = "backrefs", version = "5.8", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+    { name = "colorama", marker = "python_full_version >= '3.9'" },
+    { name = "jinja2", marker = "python_full_version >= '3.9'" },
+    { name = "markdown", marker = "python_full_version >= '3.9'" },
+    { name = "mkdocs", marker = "python_full_version >= '3.9'" },
+    { name = "mkdocs-document-dates", version = "3.8.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+    { name = "mkdocs-material-extensions", marker = "python_full_version >= '3.9'" },
+    { name = "paginate", marker = "python_full_version >= '3.9'" },
+    { name = "properdocs", marker = "python_full_version >= '3.9'" },
+    { name = "pygments", marker = "python_full_version >= '3.9'" },
+    { name = "pymdown-extensions", marker = "python_full_version >= '3.9'" },
+    { name = "requests", marker = "python_full_version >= '3.9'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/82/5f/bbb59ac0a84e32f63d46c129cb0b56c788807b0253253a97a7bb68a0aacb/mkdocs_materialx-10.1.8.tar.gz", hash = "sha256:53f76693411725296b49392ead856b249c17efb4bbf7889dcdb04f66c5f1b18a", size = 4257316 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/fc/a2/5c8585ce5e8272cd91ff80a69c8fde279e1968c844e0340c1b9c7adb11f1/mkdocs_materialx-10.1.8-py3-none-any.whl", hash = "sha256:6ba5d5426a5eb80cc441912ce6b3669718f6012ed7a89aed01ab8411a6d5991b", size = 10206933 },
+]
+
+[[package]]
 name = "mkdocs-swagger-ui-tag"
-version = "0.7.2"
+version = "0.8.1"
 source = { editable = "." }
 dependencies = [
     { name = "beautifulsoup4" },
-    { name = "mkdocs-material" },
 ]
 
 [package.dev-dependencies]
@@ -1064,6 +1148,8 @@ dev = [
     { name = "mkdocs" },
     { name = "mkdocs-glightbox" },
     { name = "mkdocs-material" },
+    { name = "mkdocs-materialx", version = "10.1.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
+    { name = "mkdocs-materialx", version = "10.1.8", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
     { name = "pyright" },
     { name = "pytest" },
     { name = "pytest-cov", version = "5.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
@@ -1085,6 +1171,7 @@ dev = [
     { name = "mkdocs", specifier = ">=1.6.1" },
     { name = "mkdocs-glightbox", specifier = ">=0.4.0" },
     { name = "mkdocs-material", specifier = ">=9.6.7" },
+    { name = "mkdocs-materialx", specifier = ">=10.1.0" },
     { name = "pyright", specifier = ">=1.1.396" },
     { name = "pytest", specifier = ">=8.3.5" },
     { name = "pytest-cov", specifier = ">=5.0.0" },
@@ -1255,6 +1342,30 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/96/2d/02d4312c973c6050a18b314a5ad0b3210edb65a906f868e31c111dede4a6/pluggy-1.5.0.tar.gz", hash = "sha256:2cffa88e94fdc978c4c574f15f9e59b7f4201d439195c3715ca9e2486f1d0cf1", size = 67955 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/88/5f/e351af9a41f866ac3f1fac4ca0613908d9a41741cfcf2228f4ad853b697d/pluggy-1.5.0-py3-none-any.whl", hash = "sha256:44e1ad92c8ca002de6377e165f3e0f1be63266ab4d554740532335b9d75ea669", size = 20556 },
+]
+
+[[package]]
+name = "properdocs"
+version = "1.6.7"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click", marker = "python_full_version >= '3.9'" },
+    { name = "colorama", marker = "python_full_version >= '3.9' and sys_platform == 'win32'" },
+    { name = "ghp-import", marker = "python_full_version >= '3.9'" },
+    { name = "importlib-metadata", version = "8.6.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
+    { name = "jinja2", marker = "python_full_version >= '3.9'" },
+    { name = "markdown", marker = "python_full_version >= '3.9'" },
+    { name = "markupsafe", version = "3.0.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+    { name = "packaging", marker = "python_full_version >= '3.9'" },
+    { name = "pathspec", marker = "python_full_version >= '3.9'" },
+    { name = "platformdirs", marker = "python_full_version >= '3.9'" },
+    { name = "pyyaml", marker = "python_full_version >= '3.9'" },
+    { name = "pyyaml-env-tag", marker = "python_full_version >= '3.9'" },
+    { name = "watchdog", version = "6.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ec/29/f27a4e1eddf72ed3db6e47818fbafe6debbf09fd7051f9c1a007239b46ef/properdocs-1.6.7.tar.gz", hash = "sha256:adc7b16e562890af0e098a7e5b02e3a81c20894a87d6a28d345c9300de73c26e", size = 276141 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bd/4d/fc923f5c85318ee8cc903566dc4e0ebe41b2dfc1d2ecf5546db232397ed6/properdocs-1.6.7-py3-none-any.whl", hash = "sha256:6fa0cfa2e01bf338f684892c8a506cf70ea88ae7f3479c933b6fa20168101cbd", size = 225406 },
 ]
 
 [[package]]
